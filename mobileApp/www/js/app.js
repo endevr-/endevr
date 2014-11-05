@@ -30,15 +30,6 @@ angular.module('endevr', ['ionic', 'endevr.controllers'])
       controller: 'AppCtrl'
     })
 
-    .state('app.search', {
-      url: "/search",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/search.html"
-        }
-      }
-    })
-
     .state('app.browse', {
       url: "/browse",
       views: {
@@ -47,25 +38,25 @@ angular.module('endevr', ['ionic', 'endevr.controllers'])
         }
       }
     })
-    .state('app.playlists', {
-      url: "/playlists",
+    .state('app.matches', {
+      url: "/matches",
       views: {
         'menuContent' :{
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
+          templateUrl: "templates/matches.html",
+          controller: 'MatchesCtrl'
         }
       }
     })
 
     .state('app.single', {
-      url: "/playlists/:playlistId",
+      url: "/matches/:employerId",
       views: {
         'menuContent' :{
-          templateUrl: "templates/playlist.html",
-          controller: 'PlaylistCtrl'
+          templateUrl: "templates/employer.html",
+          controller: 'EmployerCtrl'
         }
       }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/browse');
 });

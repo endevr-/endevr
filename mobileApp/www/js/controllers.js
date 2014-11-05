@@ -33,16 +33,16 @@ angular.module('endevr.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
+.controller('MatchesCtrl', function($scope) {
+  $scope.matches = [
+    { title: 'Hack Reactor', id: 1 },
+    { title: 'Facebook', id: 2 },
+    { title: 'Google', id: 3 },
+    { title: 'Yahoo', id: 4 },
+    { title: 'Twitter', id: 5 },
+    { title: 'Airbnb', id: 6 }
   ];
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('EmployerCtrl', function($scope, $stateParams) {
 });
