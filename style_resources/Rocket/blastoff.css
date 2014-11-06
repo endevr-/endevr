@@ -1,0 +1,29 @@
+body{
+  background-color: #163C54;
+}
+
+i {
+  font-size: 72pt;
+  color:#FFC930;
+  position: absolute;
+  top:calc(70% - 36pt);
+  left: calc(50% - 36pt);
+  transform: rotate(-45deg);
+  -webkit-animation: liftoff 4s ease;
+}
+
+@-webkit-keyframes liftoff{
+  5%{     transform: rotate(-50deg);}
+  7.5%{   transform: rotate(-40deg);}
+  10%{    transform: rotate(-50deg);}
+  12.5%{  transform: rotate(-40deg);}
+  15%{    transform: rotate(-50deg);}
+  17.5%{  transform: rotate(-40deg);}
+  20%{    transform: rotate(-50deg);}
+  22.5%{  transform: rotate(-40deg);}
+  25%{    transform: rotate(-50deg);}
+  25%{    transform: rotate(-45deg);
+          top:calc(70% - 36pt);}
+  100%{   top: -100%;  
+          text-shadow: -30px 30px 50px #FF6530;}
+}
