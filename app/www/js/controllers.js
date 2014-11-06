@@ -39,6 +39,42 @@ angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards'])
     $scope.closeLogin();
   };
 
+  // https://developer.github.com/v3/oauth/#scopes scopes info just in case we aren't obtaining access we need.
+
+  $scope.loginGH = function() {
+    var ref = window.open('https://github.com/login/oauth/authorize?client_id=d228adcb4ead3cd56858&state=ENDVRHR18SFCAUSA&redirect_uri=http://localhost/callback', '_blank', 'location=no');
+
+    ref.addEventListener("loadstart", function(event) {
+      if((event.url).startsWith("http://localhost/callback")) {
+        var requestToken = (event.url).split("code=")[1];
+
+        var accessTokenUrl = 'https://github.com/login/oauth/access_token?code='+requestToken+'&client_id=d228adcb4ead3cd56858&client_secret=0cb1bbb292a4f51dedc35565d855dd48ccf5b8f3&redirect_uri=http://localhost/callback';
+
+        $http.post(accessTokenUrl)
+          .success(function(data) {
+            var accessToken = (data).split("access_token=")[1];
+            accessToken = accessToken.substring(0, accessToken.indexOf('&'));
+
+            var dataUrl = 'https://api.github.com/user?access_token=' + accessToken;
+
+            $http.get(dataUrl)
+              .success(function(data) {
+                $scope.url = data;
+                $scope.$apply();
+
+                $location.path("/");
+                ref.close();
+                $scope.closeLogin();
+              })
+              .error(function(data) {
+                console.log(data);
+              });
+          });
+
+      }
+    })
+  }
+
   $scope.getLinkedInProf = function(profile) {
     $scope.linkedInProf = profile;
   };
