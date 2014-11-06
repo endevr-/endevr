@@ -39,24 +39,20 @@ angular.module('endevr.controllers', [])
 
     ref.addEventListener("loadstart", function(event) {
 
-      $scope.url = event.url;
-      $scope.$apply();
-
       if((event.url).startsWith("http://localhost/callback")) {
 
         requestToken = (event.url).split("code=")[1];
 
-        $scope.url = requestToken;
-        $scope.$apply();
+        var accessTokenUrl = 'https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code='+ requestToken +'&redirect_uri=http://localhost/callback&client_id=75omjdr2z9uzpl&client_secret=T5nt3O8QEsZXY8vR';
 
-        $http.post('https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code='+ requestToken +'&redirect_uri=http://localhost/callback&client_id=75omjdr2z9uzpl&client_secret=T5nt3O8QEsZXY8vR')
+        $http.post(accessTokenUrl)
           .success(function(data) {
             var accessToken = data.access_token;
 
             // need to specify the information we want to obtain
             // you can find the fields here:
             // https://developer.linkedin.com/documents/profile-fields
-            
+
             var dataUrl = 'https://api.linkedin.com/v1/people/~:('+
                           'specialties,'+
                           'positions,'+
@@ -72,9 +68,6 @@ angular.module('endevr.controllers', [])
                 $scope.url = data;
                 $scope.$apply();
               });
-
-            $scope.url = "+"+accessToken;
-            $scope.$apply();
 
           })
           .error(function(data, status, headers, config) {
