@@ -49,6 +49,39 @@ angular.module('endevr.controllers', [])
         $scope.url = requestToken;
         $scope.$apply();
 
+        $http.post('https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code='+ requestToken +'&redirect_uri=http://localhost/callback&client_id=75omjdr2z9uzpl&client_secret=T5nt3O8QEsZXY8vR')
+          .success(function(data) {
+            var accessToken = data.access_token;
+
+            // need to specify the information we want to obtain
+            // you can find the fields here:
+            // https://developer.linkedin.com/documents/profile-fields
+            
+            var dataUrl = 'https://api.linkedin.com/v1/people/~:('+
+                          'specialties,'+
+                          'positions,'+
+                          'skills,'+
+                          'educations,'+
+                          'industry)'+
+                          '?oauth2_access_token='+accessToken;
+
+            $http.get(dataUrl, {
+              headers: { 'x-li-format': 'json'}
+            })
+              .success(function(data){
+                $scope.url = data;
+                $scope.$apply();
+              });
+
+            $scope.url = "+"+accessToken;
+            $scope.$apply();
+
+          })
+          .error(function(data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+          });
+
         $location.path("/");
         ref.close();
         $scope.closeLogin();
@@ -57,6 +90,8 @@ angular.module('endevr.controllers', [])
 
 
   }
+
+
 
   if (typeof String.prototype.startsWith !== 'function') {
     String.prototype.startsWith = function(str) {
