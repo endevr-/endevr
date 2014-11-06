@@ -36,26 +36,22 @@ angular.module('endevr.controllers', [])
 
   $scope.loginLI = function () {
     var ref = window.open('https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=75omjdr2z9uzpl&state=ENDVRHR18SFCAUSA&redirect_uri=http://localhost/callback', '_blank', 'location=no');
-    console.log("loginLI() hit!");
 
     ref.addEventListener("loadstart", function(event) {
-      console.log("listening loadstart");
 
       $scope.url = event.url;
       $scope.$apply();
 
       if((event.url).startsWith("http://localhost/callback")) {
 
-        console.log("callback!");
-
         requestToken = (event.url).split("code=")[1];
 
-        console.log("request token: "+requestToken);
-
         $scope.url = requestToken;
+        $scope.$apply();
 
+        $location.path("/");
         ref.close();
-        $location.path("/app/browse")
+        $scope.closeLogin();
       }
     });
 

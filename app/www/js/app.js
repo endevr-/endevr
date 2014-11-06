@@ -76,9 +76,9 @@ angular.module('endevr', ['ionic', 'endevr.controllers', 'ionic.contrib.ui.tinde
 
 .controller('CardsCtrl', function($scope, TDCardDelegate) {
   var cardTypes = [
-    { image: 'img/max.jpg' },
-    { image: 'img/ben.png' },
-    { image: 'img/perry.jpg' },
+    { image: 'img/josh.jpg' },
+    { image: 'img/adam.jpg' },
+    { image: 'img/jeff.png' }
   ];
 
   $scope.cards = Array.prototype.slice.call(cardTypes, 0);
