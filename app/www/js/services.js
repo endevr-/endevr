@@ -28,10 +28,7 @@ angular.module('endevr.services', [])
               headers: { 'x-li-format': 'json'}
             })
               .success(function(data){
-                // $scope.url = data;
-                // $scope.$apply();
                 linkedInData = data;
-
                 //Post the LinkedIn JSON data object to our server
                 //Hard-coded localhost server, will need to change in production
                 $http.post('http://localhost:9000/api/developers', data)
@@ -39,16 +36,13 @@ angular.module('endevr.services', [])
                     callback(response);
                   });
               });
-
           })
           .error(function(data, status, headers, config) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
           });
-
         $location.path("/");
         ref.close();
-        // $scope.closeLogin();
       }
     });
   };
