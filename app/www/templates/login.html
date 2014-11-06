@@ -8,6 +8,7 @@
   <ion-content>
     <form ng-submit="doLogin()">
       <div class="list">
+        <a class="item" href="#" ng-click="loginLI()">Login with LinkedIn {{ url }}</a>
         <label class="item item-input">
           <span class="input-label">Username</span>
           <input type="text" ng-model="loginData.username">
@@ -23,4 +24,3 @@
     </form>
   </ion-content>
 </div>
-

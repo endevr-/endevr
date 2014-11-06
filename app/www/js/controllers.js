@@ -1,6 +1,6 @@
 angular.module('endevr.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $location) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -31,6 +31,42 @@ angular.module('endevr.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
+
+  $scope.url = 'value';
+
+  $scope.loginLI = function () {
+    var ref = window.open('https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=75omjdr2z9uzpl&state=ENDVRHR18SFCAUSA&redirect_uri=http://localhost/callback', '_blank', 'location=no');
+    console.log("loginLI() hit!");
+
+    ref.addEventListener("loadstart", function(event) {
+      console.log("listening loadstart");
+
+      $scope.url = event.url;
+      $scope.$apply();
+
+      if((event.url).startsWith("http://localhost/callback")) {
+
+        console.log("callback!");
+
+        requestToken = (event.url).split("code=")[1];
+
+        console.log("request token: "+requestToken);
+
+        $scope.url = requestToken;
+
+        ref.close();
+        $location.path("/app/browse")
+      }
+    });
+
+
+  }
+
+  if (typeof String.prototype.startsWith !== 'function') {
+    String.prototype.startsWith = function(str) {
+      return this.indexOf(str) === 0;
+    };
+  }
 })
 
 .controller('MatchesCtrl', function($scope) {
