@@ -21,6 +21,10 @@ angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards'])
     $scope.modal.show();
   };
 
+  $scope.navigate = function(route) {
+    $location.path('/app/'+route);
+  };
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
@@ -60,7 +64,11 @@ angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards'])
   }
 })
 
-.controller('MatchesCtrl', function($scope) {
+.controller('MatchesCtrl', function($scope, $location) {
+  $scope.navigate = function(route) {
+    $location.path('/app/matches/'+route);
+  };
+
   $scope.matches = [
     { title: 'Hack Reactor', id: 1 },
     { title: 'Facebook', id: 2 },
