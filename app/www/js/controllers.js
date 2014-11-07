@@ -1,4 +1,4 @@
-angular.module('endevr.controllers', [])
+angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $location, LoginFactory) {
   // Form data for the login modal
@@ -62,4 +62,37 @@ angular.module('endevr.controllers', [])
 })
 
 .controller('EmployerCtrl', function($scope, $stateParams) {
+})
+
+.controller('CardsCtrl', function($scope, TDCardDelegate) {
+  var cardTypes = [
+    { uid: 1, name: 'Josh', image: 'img/josh.jpg' },
+    { uid: 2, name: 'Adam', image: 'img/adam.jpg' },
+    { uid: 3, name: 'Jeff', image: 'img/jeff.png' }
+  ];
+
+  $scope.cards = Array.prototype.slice.call(cardTypes, 0);
+
+  $scope.cardDestroyed = function(index) {
+    $scope.cards.splice(index, 1);
+  };
+
+  $scope.addCard = function() {
+    var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+    newCard.id = Math.random();
+    $scope.cards.push(angular.extend({}, newCard));
+  }
+})
+
+.controller('CardCtrl', function($scope, TDCardDelegate) {
+  $scope.cardSwipedLeft = function(index, id) {
+    console.log('Left swipe! UID: '+id);
+    //Ping our server telling them this IS NOT a match using id
+    $scope.addCard();
+  };
+  $scope.cardSwipedRight = function(index, id) {
+    console.log('Right swipe! UID: '+id);
+    //Ping our server telling them this IS a match using id
+    $scope.addCard();
+  };
 });
