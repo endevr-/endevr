@@ -74,12 +74,21 @@ angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards'])
 .controller('EmployerCtrl', function($scope, $stateParams) {
 })
 
-.controller('CardsCtrl', function($scope, TDCardDelegate) {
-  var cardTypes = [
-    { uid: 1, name: 'Josh', image: 'img/josh.jpg' },
-    { uid: 2, name: 'Adam', image: 'img/adam.jpg' },
-    { uid: 3, name: 'Jeff', image: 'img/jeff.png' }
-  ];
+.controller('CardsCtrl', function($scope, $http, TDCardDelegate) {
+  var cardTypes = [];
+
+  //Right now, dev_id is hardcoded. Refactor at first opportunity
+  $http.get('http://localhost:9000/api/developers/XX/cards')
+    .success(function(data){
+      console.log(data);
+      // cardTypes = data;
+      for (var i = 0; i < data.length; i++) {
+        $scope.cards.push(data[i]);
+      }
+    })
+    .error(function(){
+      console.log('Error getting matches');
+    });
 
   $scope.cards = Array.prototype.slice.call(cardTypes, 0);
 
@@ -88,7 +97,7 @@ angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards'])
   };
 
   $scope.addCard = function() {
-    var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+    var newCard = $scope.cards[Math.floor(Math.random() * $scope.cards.length)];
     newCard.id = Math.random();
     $scope.cards.push(angular.extend({}, newCard));
   }
