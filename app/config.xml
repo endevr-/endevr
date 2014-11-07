@@ -5,7 +5,7 @@
         endevr is a job recruiting platform for developers.
     </description>
   <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+      Covert Lobster
     </author>
   <content src="index.html"/>
   <access origin="*"/>
@@ -13,7 +13,11 @@
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackupWebStorage" value="none"/>
+  <preference name="AutoHideSplashScreen" value="false" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
+  </feature>
+  <feature name="SplashScreen"> 
+    <param name="ios-package" value="CDVSplashScreen" onload="true"/> 
   </feature>
 </widget>

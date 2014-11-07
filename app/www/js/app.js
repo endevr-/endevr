@@ -4,10 +4,14 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('endevr', ['ionic', 'endevr.controllers', 'endevr.services', 'ionic.contrib.ui.tinderCards'])
+angular.module('endevr', ['ionic', 'endevr.controllers', 'endevr.services', 'ionic.contrib.ui.tinderCards', 'ngCordova'])
+.run(function($ionicPlatform, $cordovaSplashscreen) {
 
-.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
+    setTimeout(function() {
+      $cordovaSplashscreen.hide();
+    }, 3000);
+    
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
