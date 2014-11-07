@@ -32,11 +32,21 @@ angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards'])
     }, 1000);
   };
 
-  $scope.url = 'value';
+  $scope.gitHubProf = 'none';
+  $scope.linkedInProf = 'none2';
 
   $scope.loginLI = function () {
     LoginFactory.loginLI($scope.getLinkedInProf);
     $scope.closeLogin();
+  };
+
+  $scope.loginGH = function() {
+    LoginFactory.loginGH($scope.getGitHubProf);
+    $scope.closeLogin();
+  }
+
+  $scope.getGitHubProf = function(profile) {
+    $scope.gitHubProf = profile;
   };
 
   $scope.getLinkedInProf = function(profile) {
