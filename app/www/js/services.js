@@ -12,12 +12,17 @@ angular.module('endevr.services', [])
   var createDataUrl = function(service, accessToken) {
     if (service === 'LinkedIn') {
       return 'https://api.linkedin.com/v1/people/~:('+
-                    'specialties,'+
-                    'positions,'+
-                    'skills,'+
-                    'educations,'+
-                    'industry)'+
-                    '?oauth2_access_token=' + accessToken;
+        'first-name,'+
+        'last-name,'+
+        'id,'+
+        'location:(name),'+
+        'picture-url,'+
+        'specialties,'+
+        'positions,'+
+        'skills,'+
+        'educations,'+
+        'industry)'+
+        '?oauth2_access_token=' + accessToken;
     } else if (service === 'GitHub') {
       return 'https://api.github.com/user?access_token=' + accessToken;
     }
