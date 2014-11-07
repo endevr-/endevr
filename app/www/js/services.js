@@ -68,11 +68,11 @@ angular.module('endevr.services', [])
                 profileInfo.service = service;
                 profileInfo.data = data;
 
-                callback(data);
-                // $http.post('http://localhost:9000/api/developers', profileInfo)
-                //   .success(function(response){
-                //     callback(response);
-                //   });
+                // callback(data);
+                $http.post('http://localhost:9000/api/developers', profileInfo)
+                  .success(function(response){
+                    callback(response);
+                  });
                 $location.path("/");
                 ref.close();
 
