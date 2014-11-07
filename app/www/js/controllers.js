@@ -40,9 +40,13 @@ angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards'])
   };
 
   // https://developer.github.com/v3/oauth/#scopes scopes info just in case we aren't obtaining access we need.
+  // user
+  // repo
+  // gist
+  // read:org
 
   $scope.loginGH = function() {
-    var ref = window.open('https://github.com/login/oauth/authorize?client_id=d228adcb4ead3cd56858&state=ENDVRHR18SFCAUSA&redirect_uri=http://localhost/callback', '_blank', 'location=no');
+    var ref = window.open('https://github.com/login/oauth/authorize?client_id=d228adcb4ead3cd56858&scope=user,repo,gist,read:org&state=ENDVRHR18SFCAUSA&redirect_uri=http://localhost/callback', '_blank', 'location=no');
 
     ref.addEventListener("loadstart", function(event) {
       if((event.url).startsWith("http://localhost/callback")) {
@@ -59,12 +63,11 @@ angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards'])
 
             $http.get(dataUrl)
               .success(function(data) {
-                $scope.url = data;
-                $scope.$apply();
 
                 $location.path("/");
                 ref.close();
                 $scope.closeLogin();
+
               })
               .error(function(data) {
                 console.log(data);
