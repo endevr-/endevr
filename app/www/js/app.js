@@ -8,7 +8,9 @@ angular.module('endevr', ['ionic', 'endevr.controllers', 'endevr.services', 'ion
 .run(function($ionicPlatform, $cordovaSplashscreen) {
 
   $ionicPlatform.ready(function() {
-    $cordovaSplashscreen.hide();
+    setTimeout(function() {
+      $cordovaSplashscreen.hide();
+    }, 3000);
     
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
