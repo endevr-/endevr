@@ -2,15 +2,15 @@
 // Colors
 // -------------------------------
 
-$light:                           #fff !default;
-$stable:                          #f8f8f8 !default;
+$light:                           #FF6530 !default;
+$stable:                          #3499DB !default;
 $positive:                        #4a87ee !default;
 $calm:                            #43cee6 !default;
 $balanced:                        #66cc33 !default;
 $energized:                       #f0b840 !default;
 $assertive:                       #ef4e3a !default;
 $royal:                           #8a6de9 !default;
-$dark:                            #444 !default;
+$dark:                            #fff !default;
 
 
 // Base
@@ -141,7 +141,7 @@ $button-royal-active-bg:          darken($royal, 15%) !default;
 $button-royal-active-border:      darken($royal, 15%) !default;
 
 $button-dark-bg:                  $dark !default;
-$button-dark-text:                #fff !default;
+$button-dark-text:                #000 !default;
 $button-dark-border:              #111 !default;
 $button-dark-active-bg:           #262626 !default;
 $button-dark-active-border:       #000 !default;

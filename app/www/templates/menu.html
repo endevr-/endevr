@@ -8,18 +8,18 @@
   </ion-pane>
 
   <ion-side-menu side="left">
-    <header class="bar bar-header bar-stable">
-      <h1 class="title">Menu</h1>
+    <header class="bar bar-header bar-light">
+      <h1 class="title">enDEVr</h1>
     </header>
     <ion-content class="has-header">
       <ion-list>
         <ion-item nav-clear menu-close ng-click="login()">
           Login
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/browse">
+        <ion-item nav-clear menu-close ng-click="navigate('browse')">
           Browse
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/matches">
+        <ion-item nav-clear menu-close ng-click="navigate('matches')">
           Matches
         </ion-item>
       </ion-list>
