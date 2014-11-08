@@ -2895,7 +2895,8 @@ a.subdued {
       .bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before {
         vertical-align: top;
         font-size: 32px;
-        line-height: 32px; }
+        line-height: 32px;
+        color: #FF4100; }
     .bar .button.button-clear {
       padding-right: 2px;
       padding-left: 2px;
