@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('endevr', ['ionic', 'endevr.controllers', 'endevr.services', 'AppCtrl', 'AuthCtrl', 'BrowseCtrl', 'MatchesCtrl', 'EmployerCtrl', 'ionic.contrib.ui.tinderCards', 'ngCordova'])
+angular.module('endevr', ['ionic', 'endevr.controllers', 'endevr.services', 'AppCtrl', 'AuthCtrl', 'BrowseCtrl', 'MatchesCtrl', 'EmployerCtrl', 'CardsCtrl', 'ionic.contrib.ui.tinderCards', 'ngCordova'])
 .run(function($ionicPlatform, $cordovaSplashscreen) {
 
   $ionicPlatform.ready(function() {
