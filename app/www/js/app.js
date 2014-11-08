@@ -11,7 +11,7 @@ angular.module('endevr', ['ionic', 'endevr.controllers', 'endevr.services', 'ion
     setTimeout(function() {
       $cordovaSplashscreen.hide();
     }, 3000);
-    
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -38,7 +38,8 @@ angular.module('endevr', ['ionic', 'endevr.controllers', 'endevr.services', 'ion
       url: "/browse",
       views: {
         'menuContent' :{
-          templateUrl: "templates/browse.html"
+          templateUrl: "templates/browse.html",
+          controller: 'BrowseCtrl'
         }
       }
     })

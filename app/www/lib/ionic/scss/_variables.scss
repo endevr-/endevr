@@ -1,16 +1,15 @@
-
 // Colors
 // -------------------------------
 
-$light:                           #FF6530 !default;
-$stable:                          #3499DB !default;
+$light:                           #365E78 !default;
+$stable:                          #f8f8f8 !default;
 $positive:                        #4a87ee !default;
 $calm:                            #43cee6 !default;
 $balanced:                        #66cc33 !default;
 $energized:                       #f0b840 !default;
 $assertive:                       #ef4e3a !default;
 $royal:                           #8a6de9 !default;
-$dark:                            #fff !default;
+$dark:                            #B8C9D5 !default;
 
 
 // Base
@@ -36,7 +35,7 @@ $headings-font-weight:            500 !default;
 $headings-line-height:            1.2 !default;
 
 $base-background-color:           #fff !default;
-$base-color:                      #000 !default;
+$base-color:                      #E3EAEF !default;
 
 $link-color:                      $positive !default;
 $link-hover-color:                darken($link-color, 15%) !default;
@@ -93,13 +92,13 @@ $button-bar-button-padding:       8px !default;
 $button-bar-button-icon-size:     20px !default;
 
 $button-light-bg:                 $light !default;
-$button-light-text:               #444 !default;
-$button-light-border:             #ddd !default;
+$button-light-text:               #E3EAEF !default;
+$button-light-border:             #b2b2b2 !default;
 $button-light-active-bg:          #fafafa !default;
-$button-light-active-border:      #ccc !default;
+$button-light-active-border:      #a2a2a2 !default;
 
 $button-stable-bg:                $stable !default;
-$button-stable-text:              #444 !default;
+$button-stable-text:              #000 !default;
 $button-stable-border:            #b2b2b2 !default;
 $button-stable-active-bg:         #e5e5e5 !default;
 $button-stable-active-border:     #a2a2a2 !default;
@@ -142,9 +141,9 @@ $button-royal-active-border:      darken($royal, 15%) !default;
 
 $button-dark-bg:                  $dark !default;
 $button-dark-text:                #000 !default;
-$button-dark-border:              #111 !default;
+$button-dark-border:              #ddd !default;
 $button-dark-active-bg:           #262626 !default;
-$button-dark-active-border:       #000 !default;
+$button-dark-active-border:       #ccc !default;
 
 $button-default-bg:               $button-stable-bg !default;
 $button-default-text:             $button-stable-text !default;
@@ -362,11 +361,11 @@ $item-dark-text:                  $button-dark-text !default;
 $item-dark-active-bg:             $button-dark-active-bg !default;
 $item-dark-active-border:         $button-dark-active-border !default;
 
-$item-default-bg:                 $item-light-bg !default;
-$item-default-border:             $item-light-border !default;
-$item-default-text:               $item-light-text !default;
+$item-default-bg:                 $item-dark-bg !default;
+$item-default-border:             $item-dark-border !default;
+$item-default-text:               $item-dark-text !default;
 $item-default-active-bg:          #D9D9D9 !default;
-$item-default-active-border:      $item-light-active-border !default;
+$item-default-active-border:      $item-dark-active-border !default;
 
 
 // Item Editing

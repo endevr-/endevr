@@ -8,8 +8,8 @@
   <ion-content>
     <form ng-submit="doLogin()">
       <div class="list">
-        <a class="item" href="#" ng-click="loginLI()">Log in with LinkedIn</a>
-        <a class="item" href="#" ng-click="loginGH()">Log in with GitHub</a>
+        <a class="item item-stable" href="#" ng-click="loginLI()">Log in with LinkedIn</a>
+        <a class="item item-stable" href="#" ng-click="loginGH()">Log in with GitHub</a>
         <label class="item item-input">
           <span class="input-label">Username</span>
           <input type="text" ng-model="loginData.username">
@@ -19,7 +19,7 @@
           <input type="password" ng-model="loginData.password">
         </label>
         <label class="item">
-          <button class="button button-block button-stable" type="submit">Log in</button>
+          <button class="button button-block button-positive" type="submit">Log in</button>
         </label>
         {{ gitHubProf }} {{ linkedInProf }}
       </div>

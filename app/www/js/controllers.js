@@ -64,6 +64,10 @@ angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards'])
   }
 })
 
+.controller('BrowseCtrl', function($scope) {
+  $scope.userType = 'Employers';
+})
+
 .controller('MatchesCtrl', function($scope, $location) {
   $scope.navigate = function(route) {
     $location.path('/app/matches/'+route);
