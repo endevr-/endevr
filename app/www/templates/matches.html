@@ -4,7 +4,7 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <ion-list>
-      <ion-item ng-repeat="employer in matches" ng-click="navigate({{employer.id}})">
+      <ion-item class="item-stable" ng-repeat="employer in matches" ng-click="navigate({{employer.id}})">
         {{employer.title}}
       </ion-item>
     </ion-list>
