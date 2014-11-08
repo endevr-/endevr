@@ -64,15 +64,6 @@ angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards', 'LocalStor
   };
 })
 
-//Auth Controllers
-.controller('AuthController', function($scope, $state, localStorageService){
-  if (localStorageService.get('github-token')) {
-    $scope.Authenticated = true;
-  } else {
-    $scope.needsAuthentication = true;
-  }
-})
-
 .controller('LoginController', function($scope, LinkedInService, GitHubService){
   $scope.linkedinlogin = LinkedInService.login;
   $scope.githublogin = GitHubService.login;
