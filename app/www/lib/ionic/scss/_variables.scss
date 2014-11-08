@@ -2,7 +2,7 @@
 // -------------------------------
 
 $light:                           #365E78 !default;
-$stable:                          #f8f8f8 !default;
+$stable:                          #E3EAEF !default;
 $positive:                        #4a87ee !default;
 $calm:                            #43cee6 !default;
 $balanced:                        #66cc33 !default;
@@ -100,7 +100,7 @@ $button-light-active-border:      #a2a2a2 !default;
 $button-stable-bg:                $stable !default;
 $button-stable-text:              #000 !default;
 $button-stable-border:            #b2b2b2 !default;
-$button-stable-active-bg:         #e5e5e5 !default;
+$button-stable-active-bg:         #E3EAEF !default;
 $button-stable-active-border:     #a2a2a2 !default;
 
 $button-positive-bg:              $positive !default;
@@ -546,7 +546,7 @@ $menu-side-shadow:                -1px 0px 2px rgba(0, 0, 0, 0.2), 1px 0px 2px r
 // Modals
 // -------------------------------
 
-$modal-bg-color:                  #fff !default;
+$modal-bg-color:                  #E3EAEF !default;
 $modal-backdrop-bg-active:        rgba(0,0,0,0.5) !default;
 $modal-backdrop-bg-inactive:      rgba(0,0,0,0) !default;
 
