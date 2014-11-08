@@ -9,9 +9,9 @@
     <form ng-submit="doLogin()">
       <div class="list">
       <div ng-controller="LoginController">
-        <a class="item" href="#" ng-click="linkedinlogin()">Log in with LinkedIn</a>
+        <a class="item item-stable" href="#" ng-click="linkedinlogin()">Log in with LinkedIn</a>
       </div>
-        <a class="item" href="#" ng-click="loginGH()">Log in with GitHub</a>
+        <a class="item item-stable" href="#" ng-click="loginGH()">Log in with GitHub</a>
         <label class="item item-input item-stable">
           <span class="item-stable">Username:&nbsp;</span>
           <input type="text" ng-model="loginData.username">
@@ -23,7 +23,7 @@
         <label class="item item-stable">
           <button class="button button-block button-positive" type="submit">Log in</button>
         </label>
-        {{ gitHubProf }} {{ linkedInProf }}
+        {{ Authenticated }}
       </div>
     </form>
   </ion-content>
