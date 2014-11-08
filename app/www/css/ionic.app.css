@@ -2749,7 +2749,7 @@ a.subdued {
   border-style: solid;
   border-top: 1px solid transparent;
   border-bottom: 1px solid #ddd;
-  background-color: white;
+  background-color: #365e78;
   /* border-width: 1px will actually create 2 device pixels on retina */
   /* this nifty trick sets an actual 1px border on hi-res displays */
   background-size: 0; }
@@ -2777,7 +2777,7 @@ a.subdued {
       background: transparent; }
   .bar.bar-light {
     border-color: #ddd;
-    background-color: white;
+    background-color: #365e78;
     background-image: linear-gradient(0deg, #ddd, #ddd 50%, transparent 50%);
     color: #444; }
     .bar.bar-light .title {
@@ -2930,7 +2930,7 @@ a.subdued {
 
 .bar-light .button {
   border-color: #ddd;
-  background-color: white;
+  background-color: #365e78;
   color: #444; }
   .bar-light .button:hover {
     color: #444;
@@ -3197,12 +3197,12 @@ a.subdued {
 /* Allow parent element of tabs to define color, or just the tab itself */
 .tabs-light > .tabs, .tabs.tabs-light {
   border-color: #ddd;
-  background-color: #fff;
+  background-color: #365E78;
   background-image: linear-gradient(0deg, #ddd, #ddd 50%, transparent 50%);
   color: #444; }
   .tabs-light > .tabs .tab-item .badge, .tabs.tabs-light .tab-item .badge {
     background-color: #444;
-    color: #fff; }
+    color: #365E78; }
 
 .tabs-stable > .tabs, .tabs.tabs-stable {
   border-color: #b2b2b2;
@@ -3290,16 +3290,16 @@ a.subdued {
 .tabs-striped.tabs-light .tabs {
   background-color: #444; }
 .tabs-striped.tabs-light .tab-item {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(54, 94, 120, 0.4);
   opacity: 1; }
   .tabs-striped.tabs-light .tab-item .badge {
     opacity: 0.4; }
   .tabs-striped.tabs-light .tab-item.tab-item-active, .tabs-striped.tabs-light .tab-item.active, .tabs-striped.tabs-light .tab-item.activated {
     margin-top: -2px;
-    color: #fff;
+    color: #365E78;
     border-style: solid;
     border-width: 2px 0 0 0;
-    border-color: #fff; }
+    border-color: #365E78; }
     .tabs-striped.tabs-light .tab-item.tab-item-active .badge, .tabs-striped.tabs-light .tab-item.active .badge, .tabs-striped.tabs-light .tab-item.activated .badge {
       top: 2px;
       opacity: 1; }
@@ -3324,7 +3324,7 @@ a.subdued {
 .tabs-striped.tabs-top .tab-item.tab-item-active .badge, .tabs-striped.tabs-top .tab-item.active .badge, .tabs-striped.tabs-top .tab-item.activated .badge {
   top: 4%; }
 .tabs-striped.tabs-positive .tabs {
-  background-color: #fff; }
+  background-color: #365E78; }
 .tabs-striped.tabs-positive .tab-item {
   color: rgba(74, 135, 238, 0.4);
   opacity: 1; }
@@ -3342,7 +3342,7 @@ a.subdued {
 .tabs-striped.tabs-top .tab-item.tab-item-active .badge, .tabs-striped.tabs-top .tab-item.active .badge, .tabs-striped.tabs-top .tab-item.activated .badge {
   top: 4%; }
 .tabs-striped.tabs-calm .tabs {
-  background-color: #fff; }
+  background-color: #365E78; }
 .tabs-striped.tabs-calm .tab-item {
   color: rgba(67, 206, 230, 0.4);
   opacity: 1; }
@@ -3360,7 +3360,7 @@ a.subdued {
 .tabs-striped.tabs-top .tab-item.tab-item-active .badge, .tabs-striped.tabs-top .tab-item.active .badge, .tabs-striped.tabs-top .tab-item.activated .badge {
   top: 4%; }
 .tabs-striped.tabs-assertive .tabs {
-  background-color: #fff; }
+  background-color: #365E78; }
 .tabs-striped.tabs-assertive .tab-item {
   color: rgba(239, 78, 58, 0.4);
   opacity: 1; }
@@ -3378,7 +3378,7 @@ a.subdued {
 .tabs-striped.tabs-top .tab-item.tab-item-active .badge, .tabs-striped.tabs-top .tab-item.active .badge, .tabs-striped.tabs-top .tab-item.activated .badge {
   top: 4%; }
 .tabs-striped.tabs-balanced .tabs {
-  background-color: #fff; }
+  background-color: #365E78; }
 .tabs-striped.tabs-balanced .tab-item {
   color: rgba(102, 204, 51, 0.4);
   opacity: 1; }
@@ -3396,7 +3396,7 @@ a.subdued {
 .tabs-striped.tabs-top .tab-item.tab-item-active .badge, .tabs-striped.tabs-top .tab-item.active .badge, .tabs-striped.tabs-top .tab-item.activated .badge {
   top: 4%; }
 .tabs-striped.tabs-energized .tabs {
-  background-color: #fff; }
+  background-color: #365E78; }
 .tabs-striped.tabs-energized .tab-item {
   color: rgba(240, 184, 64, 0.4);
   opacity: 1; }
@@ -3414,7 +3414,7 @@ a.subdued {
 .tabs-striped.tabs-top .tab-item.tab-item-active .badge, .tabs-striped.tabs-top .tab-item.active .badge, .tabs-striped.tabs-top .tab-item.activated .badge {
   top: 4%; }
 .tabs-striped.tabs-royal .tabs {
-  background-color: #fff; }
+  background-color: #365E78; }
 .tabs-striped.tabs-royal .tab-item {
   color: rgba(138, 109, 233, 0.4);
   opacity: 1; }
@@ -3432,7 +3432,7 @@ a.subdued {
 .tabs-striped.tabs-top .tab-item.tab-item-active .badge, .tabs-striped.tabs-top .tab-item.active .badge, .tabs-striped.tabs-top .tab-item.activated .badge {
   top: 4%; }
 .tabs-striped.tabs-dark .tabs {
-  background-color: #fff; }
+  background-color: #365E78; }
 .tabs-striped.tabs-dark .tab-item {
   color: rgba(68, 68, 68, 0.4);
   opacity: 1; }
@@ -3450,7 +3450,7 @@ a.subdued {
 .tabs-striped.tabs-top .tab-item.tab-item-active .badge, .tabs-striped.tabs-top .tab-item.active .badge, .tabs-striped.tabs-top .tab-item.activated .badge {
   top: 4%; }
 .tabs-striped.tabs-background-light .tabs {
-  background-color: #fff; }
+  background-color: #365E78; }
 .tabs-striped.tabs-background-stable .tabs {
   background-color: #f8f8f8; }
 .tabs-striped.tabs-background-positive .tabs {
@@ -3468,14 +3468,14 @@ a.subdued {
 .tabs-striped.tabs-background-dark .tabs {
   background-color: #444; }
 .tabs-striped.tabs-color-light .tab-item {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(54, 94, 120, 0.4);
   opacity: 1; }
   .tabs-striped.tabs-color-light .tab-item .badge {
     opacity: 0.4; }
   .tabs-striped.tabs-color-light .tab-item.tab-item-active, .tabs-striped.tabs-color-light .tab-item.active, .tabs-striped.tabs-color-light .tab-item.activated {
     margin-top: -2px;
-    color: #fff;
-    border: 0 solid #fff;
+    color: #365E78;
+    border: 0 solid #365E78;
     border-top-width: 2px; }
     .tabs-striped.tabs-color-light .tab-item.tab-item-active .badge, .tabs-striped.tabs-color-light .tab-item.active .badge, .tabs-striped.tabs-color-light .tab-item.activated .badge {
       top: 2px;
@@ -3693,7 +3693,7 @@ a.subdued {
 .tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
   opacity: 1; }
   .tab-item.tab-item-active.tab-item-light, .tab-item.active.tab-item-light, .tab-item.activated.tab-item-light {
-    color: #fff; }
+    color: #365E78; }
   .tab-item.tab-item-active.tab-item-stable, .tab-item.active.tab-item-stable, .tab-item.activated.tab-item-stable {
     color: #f8f8f8; }
   .tab-item.tab-item-active.tab-item-positive, .tab-item.active.tab-item-positive, .tab-item.activated.tab-item-positive {
@@ -3872,7 +3872,7 @@ a.subdued {
   margin-left: -110px;
   height: 280px;
   width: 220px;
-  background-color: #fff;
+  background-color: #365E78;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   opacity: 0; }
   .popover .item:first-child {
@@ -3922,7 +3922,7 @@ a.subdued {
     left: 5px;
     width: 20px;
     height: 20px;
-    background-color: #fff;
+    background-color: #365E78;
     border-radius: 3px;
     content: '';
     -webkit-transform: rotate(-45deg);
@@ -4146,7 +4146,7 @@ a.subdued {
  */
 .item {
   border-color: #ddd;
-  background-color: #fff;
+  background-color: #365E78;
   color: #444;
   position: relative;
   z-index: 2;
@@ -4191,7 +4191,7 @@ a.subdued {
     margin-right: 5px; }
   .item.item-light {
     border-color: #ddd;
-    background-color: #fff;
+    background-color: #365E78;
     color: #444; }
   .item.item-stable {
     border-color: #b2b2b2;
@@ -4305,7 +4305,7 @@ a.item-content {
 
 .item-complex.item-light > .item-content {
   border-color: #ddd;
-  background-color: #fff;
+  background-color: #365E78;
   color: #444; }
   .item-complex.item-light > .item-content.active, .item-complex.item-light > .item-content:active {
     border-color: #ccc;
@@ -4842,7 +4842,7 @@ a.item-content {
     display: none; }
 
 .tabs .tab-item .badge.badge-light, .badge.badge-light {
-  background-color: #fff;
+  background-color: #365E78;
   color: #444; }
 .tabs .tab-item .badge.badge-stable, .badge.badge-stable {
   background-color: #f8f8f8;
@@ -5090,7 +5090,7 @@ input, button, select, textarea {
   border-radius: 2px;
   padding: 4px 8px 3px 0;
   border: none;
-  background-color: #fff; }
+  background-color: #365E78; }
 
 .item-stacked-label input {
   overflow: hidden;
@@ -5411,7 +5411,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   width: 28px;
   height: 28px;
   border-radius: 28px;
-  background-color: #fff;
+  background-color: #365E78;
   top: 7px;
   left: 7px; }
   .toggle .handle:before {
@@ -5425,7 +5425,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   -webkit-transform: translate3d(22px, 0, 0);
   -moz-transform: translate3d(22px, 0, 0);
   transform: translate3d(22px, 0, 0);
-  background-color: #fff; }
+  background-color: #365E78; }
 
 .item-toggle.active {
   box-shadow: none; }
@@ -5515,7 +5515,7 @@ input[type="range"] {
     width: 20px;
     height: 20px;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: #365E78;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.5), 1px 3px 5px rgba(0, 0, 0, 0.25);
     cursor: pointer;
     -webkit-appearance: none; }
@@ -5624,7 +5624,7 @@ input[type="range"] {
     padding: 14px 48px 16px 16px;
     max-width: 65%;
     border: none;
-    background: #fff;
+    background: #365E78;
     color: #333;
     text-indent: 0.01px;
     text-overflow: '';
@@ -5650,7 +5650,7 @@ input[type="range"] {
     content: "";
     pointer-events: none; }
   .item-select.item-light select {
-    background: #fff;
+    background: #365E78;
     color: #444; }
   .item-select.item-stable select {
     background: #f8f8f8;
@@ -5765,7 +5765,7 @@ progress {
     margin-bottom: 10px; }
   .button.button-light {
     border-color: #ddd;
-    background-color: #fff;
+    background-color: #365E78;
     color: #444; }
     .button.button-light:hover {
       color: #444;
@@ -7620,10 +7620,10 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
  * instead have colors which represent an emotion or generic theme.
  */
 .light, a.light {
-  color: #fff; }
+  color: #365E78; }
 
 .light-bg {
-  background-color: #fff; }
+  background-color: #365E78; }
 
 .light-border {
   border-color: #ddd; }
