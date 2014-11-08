@@ -33,7 +33,7 @@ cite    { font-style: normal; }
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  color: $base-color;
+  color: $base-background-color;
   font-weight: $headings-font-weight;
   font-family: $headings-font-family;
   line-height: $headings-line-height;
@@ -103,13 +103,13 @@ blockquote {
   margin: 0 0 $line-height-computed;
   padding: ($line-height-computed / 2) $line-height-computed;
   border-left: 5px solid gray;
-  
+
   p {
     font-weight: 300;
     font-size: ($font-size-base * 1.25);
     line-height: 1.25;
   }
-  
+
   p:last-child {
     margin-bottom: 0;
   }
