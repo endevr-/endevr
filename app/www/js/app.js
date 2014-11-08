@@ -5,15 +5,18 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('endevr', ['ionic', 'AppCtrl', 'AuthCtrl', 'BrowseCtrl', 'MatchesCtrl', 'EmployerCtrl', 'CardsCtrl', 'CardCtrl', 'LoginCtrl', 'GitHubService', 'LinkedInService', 'ionic.contrib.ui.tinderCards', 'ngCordova'])
-.run(function($ionicPlatform, $cordovaSplashscreen) {
 
+.run(function($ionicPlatform, $cordovaSplashscreen) {
+  // Holds splash screen a set amount of time
+  // before revealing default screen, browser.
+  // Should eventually be set to a ready event.
   $ionicPlatform.ready(function() {
     setTimeout(function() {
       $cordovaSplashscreen.hide();
     }, 3000);
 
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
+    // Hide the accessory bar by default 
+    // (remove this to show the accessory bar above the keyboard for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
@@ -28,36 +31,36 @@ angular.module('endevr', ['ionic', 'AppCtrl', 'AuthCtrl', 'BrowseCtrl', 'Matches
   $stateProvider
 
     .state('app', {
-      url: "/app",
+      url: '/app',
       abstract: true,
-      templateUrl: "templates/menu.html",
+      templateUrl: 'templates/menu.html',
       controller: 'AppCtrl'
     })
 
     .state('app.browse', {
-      url: "/browse",
+      url: '/browse',
       views: {
         'menuContent' :{
-          templateUrl: "templates/browse.html",
+          templateUrl: 'templates/browse.html',
           controller: 'BrowseCtrl'
         }
       }
     })
     .state('app.matches', {
-      url: "/matches",
+      url: '/matches',
       views: {
         'menuContent' :{
-          templateUrl: "templates/matches.html",
+          templateUrl: 'templates/matches.html',
           controller: 'MatchesCtrl'
         }
       }
     })
 
     .state('app.single', {
-      url: "/matches/:employerId",
+      url: '/matches/:employerId',
       views: {
         'menuContent' :{
-          templateUrl: "templates/employer.html",
+          templateUrl: 'templates/employer.html',
           controller: 'EmployerCtrl'
         }
       }
