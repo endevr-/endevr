@@ -1,6 +1,6 @@
-angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards'])
+angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards', 'LocalStorageModule', 'ionic'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $location, LoginFactory) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $location) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -34,27 +34,6 @@ angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards'])
     $timeout(function() {
       $scope.closeLogin();
     }, 1000);
-  };
-
-  $scope.gitHubProf = 'none';
-  $scope.linkedInProf = 'none2';
-
-  $scope.loginLI = function () {
-    LoginFactory.loginLI($scope.getLinkedInProf);
-    $scope.closeLogin();
-  };
-
-  $scope.loginGH = function() {
-    LoginFactory.loginGH($scope.getGitHubProf);
-    $scope.closeLogin();
-  }
-
-  $scope.getGitHubProf = function(profile) {
-    $scope.gitHubProf = profile;
-  };
-
-  $scope.getLinkedInProf = function(profile) {
-    $scope.linkedInProf = profile;
   };
 
   if (typeof String.prototype.startsWith !== 'function') {
@@ -122,4 +101,17 @@ angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards'])
     //Ping our server telling them this IS a match using id
     $scope.addCard();
   };
-});
+})
+
+//Auth Controllers
+.controller('AuthController', function($scope, $state, localStorageService){
+  if (localStorageService.get('linkedin-token')) {
+    $scope.Authenticated = true;
+  } else {
+    $scope.needsAuthentication = true;
+  }
+})
+
+.controller('LoginController', function($scope, LinkedInService){
+  $scope.linkedinlogin = LinkedInService.login;
+})
