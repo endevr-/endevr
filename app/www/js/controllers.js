@@ -1,8 +1,5 @@
 angular.module('endevr.controllers', ['ionic.contrib.ui.tinderCards', 'LocalStorageModule', 'ionic'])
 
-.controller('EmployerCtrl', function($scope, $stateParams) {
-})
-
 .controller('CardsCtrl', function($scope, $http, TDCardDelegate) {
   var cardTypes = [];
 
