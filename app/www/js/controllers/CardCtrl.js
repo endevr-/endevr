@@ -8,7 +8,7 @@ angular.module('CardCtrl', ['ionic.contrib.ui.tinderCards', 'LocalStorageModule'
   };
   $scope.cardSwipedRight = function(index, id) {
     console.log('Right swipe! UID: '+id);
-    //Ping our server telling them this IS a match using id
+    //Ping our server telling them this IS a possible match using id
     $scope.addCard();
   };
 });
