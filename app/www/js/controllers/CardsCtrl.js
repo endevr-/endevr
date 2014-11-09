@@ -27,4 +27,17 @@ angular.module('CardsCtrl', ['ionic.contrib.ui.tinderCards', 'LocalStorageModule
     newCard.id = Math.random();
     $scope.cards.push(angular.extend({}, newCard));
   }
+
+  $scope.cardSwipedLeft = function(index, id) {
+    console.log('Left swipe! UID: '+id);
+    //Ping our server telling them this IS NOT a match using id
+    $scope.addCard();
+  };
+  
+  $scope.cardSwipedRight = function(index, id) {
+    console.log('Right swipe! UID: '+id);
+    //Ping our server telling them this IS a possible match using id
+    $scope.addCard();
+  };
+
 });
