@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "ngCordova": "~0.1.7-alpha",
-    "angular-local-storage": "~0.1.5"
+    "angular-local-storage": "~0.1.5",
+    "angular-mocks": "1.2.26"
   }
 }
