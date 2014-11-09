@@ -8,10 +8,10 @@ angular.module('LinkedInService', ['LocalStorageModule', 'ionic'])
   return {
     login: function() {
       var loginWindow = window.open(url, '_blank', 'location=no');
-      console.log('before loadstart');
-      loginWindow.addEventListener('loadstart', function(event){
+      loginWindow.addEventListener('loadstart', function(event) {
         hasToken = event.url.indexOf('?oauth_token=');
         hasUserId = event.url.indexOf('&userId=');
+        
         if (hasToken > -1 && hasUserId > -1) {
           token = event.url.match('oauth_token=(.*)&userId')[1];
           userId = event.url.match('&userId=(.*)')[1];
@@ -21,6 +21,7 @@ angular.module('LinkedInService', ['LocalStorageModule', 'ionic'])
           loginWindow.close();
           location.href = location.pathname;
         }
+        
       });
     }
   }
