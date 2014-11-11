@@ -11,10 +11,9 @@ angular.module('CardsCtrl', ['ionic.contrib.ui.tinderCards', 'LocalStorageModule
     $scope.cards = card;
   });
 
-  $scope.cardDestroyed = function(index) {
-    // $scope.cards.splice(index, 1);
-    console.log('destroyed');
-    employersQueue.removeCard("justin", false);
+  $scope.cardDestroyed = function() {
+    // console.log('destroyed');
+    employersQueue.removeCard();
   };
 
 });

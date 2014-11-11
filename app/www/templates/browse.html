@@ -4,7 +4,7 @@
   </ion-nav-buttons>
   <ion-pane ng-controller="CardsCtrl">
       <td-cards>
-        <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index, card.name)" on-swipe-right="cardSwipedRight($index, card.name)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{card.index}}" ng-click="information()" ng-controller="CardCtrl">
+        <td-card ng-repeat="card in cards" on-destroy="cardDestroyed()" on-swipe-left="cardSwipedLeft(card.name)" on-swipe-right="cardSwipedRight(card.name)" on-partial-swipe="cardPartialSwipe(amt)"  ng-click="information()" ng-controller="CardCtrl">
           <div class="image">
             <div class="yes-text" ng-style="leftTextOpacity">LIKE</div>
             <img class="tdImage" ng-src="{{card.image}}">
