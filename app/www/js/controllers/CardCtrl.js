@@ -6,7 +6,7 @@
 
 // Don't fix what ain't broke.
 
-angular.module('CardCtrl', ['ionic.contrib.ui.tinderCards', 'LocalStorageModule', 'ionic'])
+angular.module('CardCtrl', ['ionic'])
 
 .controller('CardCtrl', function($scope, TDCardDelegate, $ionicModal) {
 
