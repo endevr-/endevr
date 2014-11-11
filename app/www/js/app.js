@@ -46,6 +46,7 @@ angular.module('endevr', ['ionic', 'AppCtrl', 'AuthCtrl', 'BrowseCtrl', 'Matches
         }
       }
     })
+
     .state('app.matches', {
       url: '/matches',
       views: {
