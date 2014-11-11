@@ -6,9 +6,39 @@
 
 // Don't fix what ain't broke.
 
-angular.module('CardCtrl', ['ionic'])
+angular.module('CardCtrl', ['ionic.contrib.ui.tinderCards', 'LocalStorageModule', 'ionic'])
 
-.controller('CardCtrl', function($scope, TDCardDelegate) {
+.controller('CardCtrl', function($scope, TDCardDelegate, $ionicModal) {
+
+  $ionicModal.fromTemplateUrl('templates/cardInformation.html', {
+    scope: $scope
+  })
+  .then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.information = function() {
+    $scope.modal.show();
+  }
+
+  $scope.closeInformation = function() {
+    $scope.modal.hide();
+  }
+
+  $scope.name = $scope.$parent.cards[0].name;
+
+  $scope.clickReject = function() {
+    $scope.modal.hide();
+    $scope.$parent.cardDestroyed();
+    $scope.cardSwipedLeft(0, $scope.name);
+  };
+
+  $scope.clickAccept = function() {
+    $scope.modal.hide();
+    $scope.$parent.cardDestroyed();
+    $scope.cardSwipedRight(0, $scope.name);
+  };
+
   $scope.cardSwipedLeft = function(index, id) {
     console.log('Left swipe! UID: '+id);
 
