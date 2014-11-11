@@ -7,8 +7,12 @@ angular.module('QueueService', ['ionic'])
 
   return {
     setCurrentCard: function() {
-      currentCard.push( storage.pop() );
-      return currentCard;
+      if (storage.length > 0) {
+        currentCard.push( storage.pop() );
+        return currentCard;
+      } else {
+        return;
+      }
     },
     storeTotalCards: function(url,callback) {
       // var self = this;
