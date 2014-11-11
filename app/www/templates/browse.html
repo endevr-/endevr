@@ -1,18 +1,40 @@
 <ion-view title="Browse {{ userType }}">
+
   <ion-nav-buttons side="left">
+
     <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+
   </ion-nav-buttons>
+
   <ion-pane ng-controller="CardsCtrl">
+
       <td-cards>
-        <td-card ng-repeat="card in cards" on-destroy="cardDestroyed()" on-swipe-left="cardSwipedLeft(card.name)" on-swipe-right="cardSwipedRight(card.name)" on-partial-swipe="cardPartialSwipe(amt)"  ng-click="information()" ng-controller="CardCtrl">
+
+        <td-card
+          ng-repeat="card in cards"
+          on-destroy="cardDestroyed()"
+          on-swipe-left="cardSwipedLeft(card.name)"
+          on-swipe-right="cardSwipedRight(card.name)"
+          on-partial-swipe="cardPartialSwipe(amt)"
+          ng-click="information()"
+          ng-controller="CardCtrl">
+
           <div class="image">
+
             <div class="yes-text" ng-style="leftTextOpacity">LIKE</div>
+
             <img class="tdImage" ng-src="{{card.image}}">
+
             {{ card.name }}
+
             <div class="no-text" ng-style="rightTextOpacity">NOPE</div>
+
           </div>
+
         </td-card>
+
       </td-cards>
-      {{ decision }}
+
   </ion-pan>
+
 </ion-view>
