@@ -6,17 +6,47 @@
 
 // Don't fix what ain't broke.
 
-angular.module('CardCtrl', ['ionic.contrib.ui.tinderCards', 'LocalStorageModule', 'ionic'])
+angular.module('endevr.controllers')
 
-.controller('CardCtrl', function($scope, TDCardDelegate) {
-  $scope.cardSwipedLeft = function(index, id) {
-    console.log('Left swipe! UID: '+id);
-    //Ping our server telling them this IS NOT a match using id
-    $scope.addCard();
+.controller('CardCtrl', function($scope, TDCardDelegate, $ionicModal) {
+
+  $ionicModal.fromTemplateUrl('templates/cardInformation.html', {
+    scope: $scope
+  })
+  .then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.information = function() {
+    $scope.modal.show();
+  }
+
+  $scope.closeInformation = function() {
+    $scope.modal.hide();
+  }
+
+  $scope.name = $scope.$parent.cards[0].name;
+
+  $scope.clickReject = function() {
+    $scope.modal.hide();
+    $scope.$parent.cardDestroyed();
+    $scope.cardSwipedLeft($scope.name);
   };
-  $scope.cardSwipedRight = function(index, id) {
-    console.log('Right swipe! UID: '+id);
-    //Ping our server telling them this IS a possible match using id
-    $scope.addCard();
+
+  $scope.clickAccept = function() {
+    $scope.modal.hide();
+    $scope.$parent.cardDestroyed();
+    $scope.cardSwipedRight($scope.name);
+  };
+
+  $scope.cardSwipedLeft = function(name) {
+    // console.log('Left swipe! name: '+name);
+
+    //Ping our server telling them this IS NOT a match using name
+  };
+  $scope.cardSwipedRight = function(name) {
+    // console.log('Right swipe! name: '+name);
+
+    //Ping our server telling them this IS a possible match using name
   };
 });

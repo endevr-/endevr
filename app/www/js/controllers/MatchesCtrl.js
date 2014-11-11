@@ -1,4 +1,4 @@
-angular.module('MatchesCtrl', ['ionic.contrib.ui.tinderCards', 'LocalStorageModule', 'ionic'])
+angular.module('endevr.controllers')
 
 .controller('MatchesCtrl', function($scope, $location) {
   $scope.navigate = function(route) {

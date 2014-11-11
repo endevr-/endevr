@@ -1,4 +1,4 @@
-angular.module('BrowseCtrl', ['ionic.contrib.ui.tinderCards', 'LocalStorageModule', 'ionic'])
+angular.module('endevr.controllers')
 
 // The BrowseCtrl sets the heading on the main page.
 // Currently hardcoded for 'Browse Employers'

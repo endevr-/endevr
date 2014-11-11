@@ -1,28 +1,55 @@
 <ion-side-menus>
+
   <ion-pane ion-side-menu-content drag-content="false">
+
     <ion-nav-bar class="bar-light nav-title-slide-ios7">
+
       <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> Back</ion-nav-back-button>
+
     </ion-nav-bar>
+
     <ion-nav-view name="menuContent"></ion-nav-view>
+
   </ion-pane>
 
   <ion-side-menu side="left">
+
     <header class="bar bar-header bar-light">
-      <img style="display:inline-block;margin: 10% auto 0 auto;" 
- src="img/menu-logo-light.png" alt="enDEVr" height="20px" width="90px">
+
+      <img style="display:inline-block;margin: 10% auto 0 auto;"
+           src="img/menu-logo-light.png"
+           alt="enDEVr"
+           height="20px"
+           width="90px">
+
     </header>
+
     <ion-content class="has-header">
+
       <ion-list>
+
         <ion-item class="item-stable" nav-clear menu-close ng-click="login()">
+
           Login
+
         </ion-item>
+
         <ion-item class="item-stable" nav-clear menu-close ng-click="navigate('browse')">
+
           Browse
+
         </ion-item>
+
         <ion-item class="item-stable" nav-clear menu-close ng-click="navigate('matches')">
+
           Matches
+
         </ion-item>
+
       </ion-list>
+
     </ion-content>
+
   </ion-side-menu>
+
 </ion-side-menus>
