@@ -1,9 +1,9 @@
 angular.module('endevr.directives')
 
 .factory('GitHubService', function($location, localStorageService) {
-
+  var idUser = localStorageService.get('userId');
   // url matches the server route that uses passport
-  var url = 'http://localhost:9000/auth/github';
+  var url = 'http://localhost:9000/auth/github?userId='+idUser;
   var token, hasToken, userId, hasUserId;
 
   return {
