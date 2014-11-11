@@ -1,4 +1,4 @@
-angular.module('LinkedInService', ['LocalStorageModule', 'ionic'])
+angular.module('endevr.directives')
 
 .factory('LinkedInService', function($location, localStorageService) {
   // url matches the server route that uses passport
@@ -11,7 +11,7 @@ angular.module('LinkedInService', ['LocalStorageModule', 'ionic'])
       loginWindow.addEventListener('loadstart', function(event) {
         hasToken = event.url.indexOf('?oauth_token=');
         hasUserId = event.url.indexOf('&userId=');
-        
+
         if (hasToken > -1 && hasUserId > -1) {
           token = event.url.match('oauth_token=(.*)&userId')[1];
           userId = event.url.match('&userId=(.*)')[1];
@@ -21,7 +21,7 @@ angular.module('LinkedInService', ['LocalStorageModule', 'ionic'])
           loginWindow.close();
           location.href = location.pathname;
         }
-        
+
       });
     }
   }

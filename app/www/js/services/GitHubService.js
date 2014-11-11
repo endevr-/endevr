@@ -1,4 +1,4 @@
-angular.module('GitHubService', ['LocalStorageModule', 'ionic'])
+angular.module('endevr.directives')
 
 .factory('GitHubService', function($location, localStorageService) {
 
@@ -23,7 +23,7 @@ angular.module('GitHubService', ['LocalStorageModule', 'ionic'])
           loginWindow.close();
           location.href = location.pathname;
         }
-        
+
       });
     }
   }

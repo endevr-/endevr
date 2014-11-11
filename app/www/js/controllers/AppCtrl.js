@@ -1,4 +1,4 @@
-angular.module('AppCtrl', ['ionic.contrib.ui.tinderCards', 'LocalStorageModule', 'ionic'])
+angular.module('endevr.controllers')
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $location) {
   // Form data for the login modal

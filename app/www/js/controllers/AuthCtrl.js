@@ -1,4 +1,4 @@
-angular.module('AuthCtrl', ['ionic.contrib.ui.tinderCards', 'LocalStorageModule', 'ionic'])
+angular.module('endevr.controllers')
 
 .controller('AuthCtrl', function($scope, $state, localStorageService){
   if (localStorageService.get('linkedin-token')) {

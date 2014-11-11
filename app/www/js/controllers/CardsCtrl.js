@@ -1,4 +1,4 @@
-angular.module('CardsCtrl', ['ionic.contrib.ui.tinderCards', 'LocalStorageModule', 'ionic'])
+angular.module('endevr.controllers')
 
 .controller('CardsCtrl', function($scope, $http, TDCardDelegate, queueService) {
 

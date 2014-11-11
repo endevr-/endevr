@@ -1,7 +1,7 @@
-angular.module('QueueService', ['ionic'])
+angular.module('endevr.directives')
 
 .factory('queueService', function($http) {
-  
+
   var storage = [];
   var currentCard = [];
 

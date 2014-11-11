@@ -4,7 +4,14 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('endevr', ['ionic', 'AppCtrl', 'AuthCtrl', 'BrowseCtrl', 'MatchesCtrl', 'EmployerCtrl', 'CardsCtrl', 'CardCtrl', 'LoginCtrl', 'GitHubService', 'LinkedInService', 'ionic.contrib.ui.tinderCards', 'ngCordova', 'QueueService'])
+angular.module('endevr', [
+  'ionic',
+  'endevr.controllers',
+  'endevr.directives',
+  'ionic.contrib.ui.tinderCards',
+  'ngCordova',
+  'LocalStorageModule'
+])
 
 .run(function($ionicPlatform, $cordovaSplashscreen) {
   // Holds splash screen a set amount of time
@@ -69,3 +76,6 @@ angular.module('endevr', ['ionic', 'AppCtrl', 'AuthCtrl', 'BrowseCtrl', 'Matches
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/browse');
 });
+
+angular.module('endevr.controllers', []);
+angular.module('endevr.directives', []);

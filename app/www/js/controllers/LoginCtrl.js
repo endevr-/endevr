@@ -1,4 +1,4 @@
-angular.module('LoginCtrl', ['ionic.contrib.ui.tinderCards', 'LocalStorageModule', 'ionic'])
+angular.module('endevr.controllers')
 
 .controller('LoginCtrl', function($scope, LinkedInService, GitHubService, localStorageService){
   $scope.linkedinlogin = LinkedInService.login;

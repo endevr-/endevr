@@ -1,4 +1,4 @@
-angular.module('EmployerCtrl', ['ionic.contrib.ui.tinderCards', 'LocalStorageModule', 'ionic'])
+angular.module('endevr.controllers')
 
 .controller('EmployerCtrl', function($scope, $stateParams) {
 });
