@@ -43,14 +43,16 @@ ionic platform add android
 - This is an angular webapp powered by the Ionic / PhoneGap / Cordova.
 
 ###Testing
-To run Karma unit tests you'll need to start a Karma testing server. From the app/www/ directory run:
+To run Karma unit tests you might need to instal karma globally on your computer
+```
+npm install karma-jasmine -g
+```
+Then, from the app/www directory, run the tests:
 ```
 karma start
 ```
-Then, to run the tests you will need to run this from another terminal shell:
-```
-karma run
-```
-If you add tests to a directory other than tests/controllers/ be sure to add that directory to the karma.conf.js file in app/www/.
+To see reports open passFail.html in test/reports and index.html (coverage) in test/reports/coverage
+
+If you add tests to a directory other than tests/ be sure to add that directory to the karma.conf.js file in app/www/.
 
 ### Known Bugs

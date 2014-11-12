@@ -39,7 +39,9 @@ module.exports = function(config) {
     'js/services/*.js',
 
     //Test files
-    'test/controllers/*.js'
+    'test/*.js',
+    'test/controllers/*.js',
+    'test/services/*.js'
     ],
 
     // list of files to exclude
@@ -47,16 +49,28 @@ module.exports = function(config) {
       'karma.conf.js'
     ],
 
+    coverageReporter: {
+          dir: 'test/reports/coverage',
+          subdir: '.'
+        },
+
+        htmlReporter: {
+          outputFile: 'test/reports/passFail.html'
+        },
+
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+        'js/*.js': 'coverage',
+        'js/controllers/*.js': 'coverage',
+        'js/services/*.js': 'coverage'
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage', 'html'],
 
 
     // web server port
@@ -83,6 +97,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: true
   });
 };
