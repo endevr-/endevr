@@ -64,16 +64,6 @@ angular.module('endevr', [
       }
     })
 
-    .state('devlogin', {
-      url: '/devlogin',
-      views: {
-        'menuContent' :{
-          templateUrl: 'templates/devlogin.html',
-          controller: 'LoginCtrl'
-        }
-      }
-    })
-
     .state('app.single', {
       url: '/matches/:matchId',
       views: {
