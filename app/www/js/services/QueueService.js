@@ -26,66 +26,66 @@ angular.module('endevr.directives')
        *    This section is for rendering cards from the server.
        */
 
-      // var self = this;
-      // var url;
-      //
-      // if (interest === 'Employers') {
-      //   url = 'http://localhost:9000/api/developers/XX/cards';
-      // } else {
-      //   url = 'http://localhost:9000/api/employers/XX/cards';
-      // }
-      //
-      // $http.get(url)
-      //   .success(function(data) {
-      //     for (var card = 0; card < data.length; card++) {
-      //       storage.push( data[card] );
-      //     }
-      //     var card = self.setCurrentCard();
-      //     callback(card);
-      //   })
-      //   .error(function() {
-      //     console.log('Error getting matches');
-      //   });
+      var self = this;
+      var url;
+
+      if (interest === 'Employers') {
+        url = 'http://localhost:9000/api/developers/XX/cards?oauth_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE0MTU3NjczNjZ9.6Fs_iSm8dNV6KMh4Se--coE_G6vl-FtiWtdtDGZLsaQ&usertype=dev';
+      } else {
+        url = 'http://localhost:9000/api/employers/XX/cards';
+      }
+
+      $http.get(url)
+        .success(function(data) {
+          for (var card = 0; card < data.length; card++) {
+            storage.push( data[card] );
+          }
+          var card = self.setCurrentCard();
+          callback(card);
+        })
+        .error(function() {
+          console.log('Error getting matches');
+        });
 
       /*
        *    This section is for rendering cards locally until the server is up.
        */
 
-      if (interest === 'Employers') {
-
-        var possibleCards = [];
-
-        for (var index = 0; index < 50; index++) {
-
-          var company = {};
-          company.name = 'company #'+index;
-          company.image = 'http://www.farmvillefreak.com/farmville_images/facebook_farmville_freak_lobster_corgi_icon.png';
-          possibleCards.push(company);
-
-        }
-
-        storage = possibleCards;
-        var card = this.setCurrentCard();
-        callback(card);
-
-      } else {
-
-        var possibleCards = [];
-
-        for (var index = 0; index < 50; index++) {
-
-          var employee = {};
-          employee.name = 'employee #'+index;
-          employee.image = 'http://oi62.tinypic.com/nnw4tt.jpg';
-          possibleCards.push(employee);
-
-        }
-
-        storage = possibleCards;
-        var card = this.setCurrentCard();
-        callback(card);
-
-      }
+      // if (interest === 'Employers') {
+      //
+      //   var possibleCards = [];
+      //
+      //   for (var index = 0; index < 50; index++) {
+      //
+      //     var company = {};
+      //     company.name = 'company #'+index;
+      //     company.image = 'http://www.farmvillefreak.com/farmville_images/facebook_farmville_freak_lobster_corgi_icon.png';
+      //     possibleCards.push(company);
+      //
+      //   }
+      //
+      //   storage = possibleCards;
+      //   var card = this.setCurrentCard();
+      //   callback(card);
+      //
+      // } else {
+      //
+      //   var possibleCards = [];
+      //
+      //   for (var index = 0; index < 50; index++) {
+      //
+      //     var employee = {};
+      //     employee.name = 'employee #'+index;
+      //     employee.image = 'http://oi62.tinypic.com/nnw4tt.jpg';
+      //     possibleCards.push(employee);
+      //
+      //   }
+      //
+      //   storage = possibleCards;
+      //   var card = this.setCurrentCard();
+      //   callback(card);
+      //
+      // }
 
     },
     removeCard: function() {
