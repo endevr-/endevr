@@ -39,7 +39,9 @@ module.exports = function(config) {
     'js/services/*.js',
 
     //Test files
-    'test/controllers/*.js'
+    'test/*.js',
+    'test/controllers/*.js',
+    'test/services/*.js'
     ],
 
     // list of files to exclude
