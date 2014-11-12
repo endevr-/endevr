@@ -49,8 +49,8 @@
         </div>
 
         <div ng-show="needsAuthentication">
-            <ion-content>
-                <div ng-show="!usertype">
+            <ion-content class='login'>
+                <div ng-show="!usertype" class='padding'>
                     <ul>
                         <li class="helper-text">Select One:</li>
                         <li><a class="login" ng-click="assignDev()">I'm a developer.</a></li>
