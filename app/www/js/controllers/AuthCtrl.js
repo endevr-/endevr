@@ -1,6 +1,6 @@
 angular.module('endevr.controllers')
 
-.controller('AuthCtrl', function($scope, $state, $http, localStorageService){
+.controller('AuthCtrl', function($scope, $state, localStorageService){
   if (localStorageService.get('linkedin-token')) {
     $scope.LinkedInAuthenticated = true;
     $scope.usertype = 'dev';
