@@ -5,5 +5,5 @@ angular.module('endevr.controllers')
 // but should be variable for 'Browse Candidates'
 // in the future.
 .controller('BrowseCtrl', function($scope) {
-  $scope.userType = 'Employers';
+  $scope.interest = 'Employers';
 });
