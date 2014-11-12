@@ -1,5 +1,17 @@
+.helper-text {
+  color: #B8C9D5;
+  font-family: 'Londrina Solid', cursive;
+  text-align: center;
+}
+
 .login {
   font-family: 'Londrina Solid', cursive;
   color: #E3EAEF;
   background-color: #365E78;
+  font-size: 1.75em;
+  text-align: center;
+}
+
+a.login {
+  line-height: 2em;
 }

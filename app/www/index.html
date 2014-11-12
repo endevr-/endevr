@@ -51,8 +51,11 @@
         <div ng-show="needsAuthentication">
             <ion-content>
                 <div ng-show="!usertype">
-                    <button class="button button-block button-stable" ng-click="assignDev()">I'm a developer</button>
-                    <button class="button button-block button-stable" ng-click="assignEmp()">I'm hiring</button>
+                    <ul>
+                        <li class="helper-text">Select One:</li>
+                        <li><a class="login" ng-click="assignDev()">I'm a developer.</a></li>
+                        <li><a class="login" ng-click="assignEmp()">I'm hiring.</a></li>
+                    </ul>
                 </div>
                 <div ng-show="usertype=='dev'" ng-controller="LoginCtrl">
                     <div class="list">
