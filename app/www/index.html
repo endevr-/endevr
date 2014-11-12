@@ -47,31 +47,27 @@
         </div>
 
         <div ng-show="needsAuthentication">
-            <!-- <div ng-controller="LoginCtrl"> -->
-                <ion-content>
-                    <div ng-show="!usertype">
-                        <div class="list">
-                            <a class="item item-stable" ng-click="assignDev()">I'm a developer.</a>
-                            <a class="item item-stable" ng-click="assignEmp()">I'm hiring.</a>
-                        </div>
+            <ion-content>
+                <div ng-show="!usertype">
+                    <button class="button button-block button-stable" ng-click="assignDev()">I'm a developer</button>
+                    <button class="button button-block button-stable" ng-click="assignEmp()">I'm hiring</button>
+                </div>
+                <div ng-show="usertype=='dev'">
+                    <div class="list" ng-controller="LoginCtrl">
+                      <div ng-show="!LinkedInAuthenticated">
+                          <button class="button button-block button-stable" ng-click="linkedinlogin()">Log in with LinkedIn</button>
+                      </div>
+                      <div ng-show="!GitHubAuthenticated">
+                          <button class="button button-block button-stable" ng-click="githublogin()">Log in with GitHub</button>
+                      </div>
+                      <button class="button button-block button-stable" ng-click="logout()">Log out</button>
                     </div>
-                    <div ng-show="usertype=='dev'">
-                          <div class="list" ng-controller="LoginCtrl">
-                            <div ng-show="!LinkedInAuthenticated">
-                              <a class="item item-stable" href="#" ng-click="linkedinlogin()">Log in with LinkedIn</a>
-                            </div>
-                            <div ng-show="!GitHubAuthenticated">
-                              <a class="item item-stable" href="#" ng-click="githublogin()">Log in with GitHub</a>
-                            </div>
-                            <a class="item item-stable" href="#" ng-click="logout()">Log out</a>
-                          </div>
-                        {{ Authenticated }}
-                    </div>
-                    <div ng-show="usertype=='emp'">
-                        <a class="item item-stable" ng-click="">(EMP)YAAAAAY!</a>
-                    </div>
-                </ion-content>
-            <!-- </div> -->
+                    {{ Authenticated }}
+                </div>
+                <div ng-show="usertype=='emp'">
+                    <a class="item item-stable" ng-click="">(EMP)YAAAAAY!</a>
+                </div>
+            </ion-content>
         </div>
 
     </div>
