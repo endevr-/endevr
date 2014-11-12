@@ -6,3 +6,4 @@ platforms/
 .DS_Store
 .sass-cache
 npm-debug.log
+app/www/test/reports/
