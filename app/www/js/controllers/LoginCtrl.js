@@ -7,7 +7,7 @@ angular.module('endevr.controllers')
 
   $scope.employerLogin = function(employer) {
     console.log(employer)
-    $http.post('http://localhost:9000/empLogin', {email: employer.email, password: employer.password, company: employer.company});
+    $http.post('http://localhost:9000/empLogin', {email: employer.email, password: employer.password, company: employer.company})
     .success(function(data, status, headers, config){})
     .error(function(data, status, headers, config){});
   };
