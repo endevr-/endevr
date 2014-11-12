@@ -51,7 +51,7 @@ Then, from the app/www directory, run the tests:
 ```
 karma start
 ```
-To see reports open specRunner.html (pass/fail) in test/reports and index.html (coverage) in test/reports/coverage
+To see reports open passFail.html in test/reports and index.html (coverage) in test/reports/coverage
 
 If you add tests to a directory other than tests/ be sure to add that directory to the karma.conf.js file in app/www/.
 
