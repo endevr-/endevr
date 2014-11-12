@@ -10,9 +10,9 @@
 
     <ion-list>
 
-      <ion-item class="item-stable" ng-repeat="employer in matches" ng-click="navigate({{employer.id}})">
+      <ion-item class="item-stable" ng-repeat="match in matches" ng-click="navigate({{match.id}})">
 
-        {{employer.title}}
+        {{ match.title }}
 
       </ion-item>
 

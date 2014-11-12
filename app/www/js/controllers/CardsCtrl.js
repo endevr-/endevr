@@ -5,15 +5,15 @@ angular.module('endevr.controllers')
   var cardTypes = [];
   $scope.cards = Array.prototype.slice.call(cardTypes, 0);
 
-  var employersQueue = queueService;
+  var cardQueue = queueService;
 
-  employersQueue.storeTotalCards('http://localhost:9000/api/developers/XX/cards', function(card) {
+  cardQueue.storeTotalCards( $scope.$parent.interest, function(card) {
     $scope.cards = card;
   });
 
   $scope.cardDestroyed = function() {
     // console.log('destroyed');
-    employersQueue.removeCard();
+    cardQueue.removeCard();
   };
 
 });

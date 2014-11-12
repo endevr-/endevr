@@ -20,13 +20,21 @@ angular.module('endevr.directives')
       }
 
     },
-    storeTotalCards: function(url,callback) {
+    storeTotalCards: function(interest,callback) {
 
       /*
        *    This section is for rendering cards from the server.
        */
 
       // var self = this;
+      // var url;
+      //
+      // if (interest === 'Employers') {
+      //   url = 'http://localhost:9000/api/developers/XX/cards';
+      // } else {
+      //   url = 'http://localhost:9000/api/employers/XX/cards';
+      // }
+      //
       // $http.get(url)
       //   .success(function(data) {
       //     for (var card = 0; card < data.length; card++) {
@@ -43,20 +51,41 @@ angular.module('endevr.directives')
        *    This section is for rendering cards locally until the server is up.
        */
 
-      var possibleCards = [];
+      if (interest === 'Employers') {
 
-      for (var index = 0; index < 50; index++) {
+        var possibleCards = [];
 
-        var company = {};
-        company.name = 'company #'+index;
-        company.image = 'http://www.farmvillefreak.com/farmville_images/facebook_farmville_freak_lobster_corgi_icon.png';
-        possibleCards.push(company);
+        for (var index = 0; index < 50; index++) {
+
+          var company = {};
+          company.name = 'company #'+index;
+          company.image = 'http://www.farmvillefreak.com/farmville_images/facebook_farmville_freak_lobster_corgi_icon.png';
+          possibleCards.push(company);
+
+        }
+
+        storage = possibleCards;
+        var card = this.setCurrentCard();
+        callback(card);
+
+      } else {
+
+        var possibleCards = [];
+
+        for (var index = 0; index < 50; index++) {
+
+          var employee = {};
+          employee.name = 'employee #'+index;
+          employee.image = 'http://oi62.tinypic.com/nnw4tt.jpg';
+          possibleCards.push(employee);
+
+        }
+
+        storage = possibleCards;
+        var card = this.setCurrentCard();
+        callback(card);
 
       }
-
-      storage = possibleCards;
-      var card = this.setCurrentCard();
-      callback(card);
 
     },
     removeCard: function() {

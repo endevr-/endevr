@@ -41,12 +41,11 @@ angular.module('endevr.controllers')
 
   $scope.cardSwipedLeft = function(name) {
     // console.log('Left swipe! name: '+name);
-
     //Ping our server telling them this IS NOT a match using name
   };
+
   $scope.cardSwipedRight = function(name) {
     // console.log('Right swipe! name: '+name);
-
     //Ping our server telling them this IS a possible match using name
   };
 });

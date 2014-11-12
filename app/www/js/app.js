@@ -75,11 +75,11 @@ angular.module('endevr', [
     })
 
     .state('app.single', {
-      url: '/matches/:employerId',
+      url: '/matches/:matchId',
       views: {
         'menuContent' :{
-          templateUrl: 'templates/employer.html',
-          controller: 'EmployerCtrl'
+          templateUrl: 'templates/match.html',
+          controller: 'MatchCtrl'
         }
       }
     });
