@@ -5,17 +5,37 @@
 }
 
 .padding {
-  padding-top: 50%;
+  padding-top: 40%;
 }
 
 .login {
   font-family: 'Londrina Solid', cursive;
   color: #E3EAEF;
   background-color: #365E78;
-  font-size: 1.75em;
+  font-size: 12vw;
   text-align: center;
+
 }
 
 a.login {
   line-height: 2em;
 }
+
+/*@media (max-width: @screen-xs) {
+    body{font-size: 10px;}
+}
+
+@media (max-width: @screen-sm) {
+    body{font-size: 14px;}*/
+}
+
+/*@media screen and (max-width: 640px) {
+  .login {
+   font-size: 1.75em; 
+  }
+}
+@media screen and (max-width: 2048px) {
+  .login {
+   font-size: 4em; 
+  }
+}*/
