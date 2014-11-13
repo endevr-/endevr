@@ -46,7 +46,7 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-      'karma.conf.js'
+      'karma.conf.js',
     ],
 
     coverageReporter: {
@@ -61,7 +61,6 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        'js/*.js': 'coverage',
         'js/controllers/*.js': 'coverage',
         'js/services/*.js': 'coverage'
     },
