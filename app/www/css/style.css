@@ -26,3 +26,71 @@ a.login {
   font-weight: normal;
   font-style: normal;
 }
+
+form i.icon.error {
+  color: #ef4e3a;
+}
+
+form input + i.icon.error {
+  display: none;
+  margin-left: 8px;
+}
+
+form.ng-submitted input.ng-invalid + i.icon.error {
+  display: block;
+}
+
+form .has-error {
+  border-left: 3px solid #cc2511; 
+  border-right: 3px solid #cc2511; 
+}
+
+form .has-success {
+  border-left: 3px solid #3d8b3d; 
+  border-right: 3px solid #3d8b3d; 
+}
+
+form.ng-submitted input.ng-valid + i.icon.error {
+  display: none;
+}
+
+.validated {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0px;
+  width: 100%;
+}
+
+.validated .input-label {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 30%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 30%;
+  -ms-flex: 0 0 30%;
+  flex: 0 0 30%;
+  max-width: 30%; 
+}
+
+.validated input {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 60%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 60%;
+  -ms-flex: 0 0 60%;
+  flex: 0 0 60%;
+  max-width: 60%; 
+}
+
+.validated error {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 10%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 10%;
+  -ms-flex: 0 0 10%;
+  flex: 0 0 10%;
+  max-width: 10%; 
+}
