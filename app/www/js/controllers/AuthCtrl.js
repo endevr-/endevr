@@ -9,9 +9,17 @@ angular.module('endevr.controllers')
     $scope.GitHubAuthenticated = true;
     $scope.usertype = 'dev';
   }
+  if (localStorageService.get('employer-token')) {
+    $scope.EmployerAuthenticated = true;
+    $scope.usertype = 'emp';
+  }
+
   if ($scope.LinkedInAuthenticated === true && $scope.GitHubAuthenticated === true) {
     $scope.Authenticated = true;
     $scope.usertype = 'dev';
+  } else if ($scope.EmployerAuthenticated === true) {
+    $scope.Authenticated = true;
+    $scope.usertype = 'emp';
   } else {
     $scope.needsAuthentication = true;
   }

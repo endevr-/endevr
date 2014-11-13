@@ -6,7 +6,6 @@
     <title></title>
 
     <!-- <link href="lib/ionic/css/ionic.css" rel="stylesheet"> -->
-    <!-- <link href="css/style.css" rel="stylesheet"> -->
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above -->
     <link href="css/tdCards.css" rel="stylesheet">
@@ -36,6 +35,7 @@
     <script src="js/services/GitHubService.js"></script>
     <script src="js/services/LinkedInService.js"></script>
     <script src="js/services/QueueService.js"></script>
+    <script src="js/directives/Validation.js"></script>
     <script src="js/collide.js"></script>
     <script src="js/ionic.tdcards.js"></script>
   </head>
@@ -69,23 +69,39 @@
                     {{ Authenticated }}
                 </div>
                 <div ng-show="usertype=='emp'" ng-controller="LoginCtrl">
-                    <form ng-submit="employerLogin(employer)">
+                    <form novalidate="novalidate" on-valid-submit="employerLogin(employer)">
                         <div class="list">
-                          <label class="item item-input">
+                          <label class="item item-input validated">
                             <span class="input-label">Email</span>
-                            <input type="text" ng-model="employer.email">
+                            <input type="email" required="required" name="email" ng-model="employer.email">
+                            <i class="icon ion-alert-circled error"></i>
                           </label>
-                          <label class="item item-input">
+                          <label class="item item-input validated">
                             <span class="input-label">Password</span>
-                            <input type="password" ng-model="employer.password">
-                          </label>
-                          <label class="item item-input">
-                            <span class="input-label">Company</span>
-                            <input type="text" ng-model="employer.company">
+                            <input type="password" ng-model="employer.password" name="password" required="required">
+                            <i class="icon ion-alert-circled error"></i>
                           </label>
                         </div>
-                        <div class="padding">
-                            <button class="button button-block button-stable">Sign In / Sign Up</button>
+                        <div>
+                            <button type="submit" class="button button-block button-stable">Sign In</button>
+                        </div>
+                    </form>
+                    <form novalidate="novalidate" on-valid-submit="employerSignup(newEmployer)">
+                        <div class="list">
+                        <h3>New to endevr? Sign up.</h3>
+                          <label class="item item-input validated">
+                            <span class="input-label">Email</span>
+                            <input type="email" required="required" name="email" ng-model="newEmployer.email">
+                            <i class="icon ion-alert-circled error"></i>
+                          </label>
+                          <label class="item item-input validated">
+                            <span class="input-label">Password</span>
+                            <input type="password" ng-model="newEmployer.password" name="password" required="required">
+                            <i class="icon ion-alert-circled error"></i>
+                          </label>
+                        </div>
+                        <div>
+                            <button type="submit" class="button button-block button-stable">Sign Up</button>
                         </div>
                     </form>
                     <div>
