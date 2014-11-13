@@ -64,6 +64,16 @@ angular.module('endevr', [
       }
     })
 
+    .state('app.auth', {
+      url: '/auth',
+      views: {
+        'menuContent' :{
+          templateUrl: 'templates/auth.html',
+          controller: 'AuthCtrl'
+        }
+      }
+    })
+
     .state('app.single', {
       url: '/matches/:matchId',
       views: {
@@ -74,7 +84,7 @@ angular.module('endevr', [
       }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/browse');
+  $urlRouterProvider.otherwise('/app/auth');
 });
 
 angular.module('endevr.controllers', []);

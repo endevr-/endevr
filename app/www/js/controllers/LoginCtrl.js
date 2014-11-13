@@ -28,6 +28,7 @@ angular.module('endevr.controllers')
 
   $scope.logout = function () {
     localStorageService.clearAll();
+    //The line below is vital, I tried to use $location.path('/app/auth') and it broke
     location.href=location.pathname;
   };
 })
