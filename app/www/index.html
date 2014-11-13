@@ -9,8 +9,10 @@
     <!-- <link href="css/style.css" rel="stylesheet"> -->
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above -->
+    <link href='http://fonts.googleapis.com/css?family=Londrina+Solid' rel='stylesheet' type='text/css'>
     <link href="css/tdCards.css" rel="stylesheet">
     <link href="css/ionic.app.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -47,10 +49,13 @@
         </div>
 
         <div ng-show="needsAuthentication">
-            <ion-content>
-                <div ng-show="!usertype">
-                    <button class="button button-block button-stable" ng-click="assignDev()">I'm a developer</button>
-                    <button class="button button-block button-stable" ng-click="assignEmp()">I'm hiring</button>
+            <ion-content class='login'>
+                <div ng-show="!usertype" class='padding'>
+                    <ul>
+                        <li class="helper-text">Select One:</li>
+                        <li><a class="login" ng-click="assignDev()">I'm a developer.</a></li>
+                        <li><a class="login" ng-click="assignEmp()">I'm hiring.</a></li>
+                    </ul>
                 </div>
                 <div ng-show="usertype=='dev'" ng-controller="LoginCtrl">
                     <div class="list">
