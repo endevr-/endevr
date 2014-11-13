@@ -1,4 +1,4 @@
-describe("Unit Testing Examples", function () {
+describe("AuthCtrl", function () {
 
     var $scope, ctrl, $timeout, $timeout, $http; //, $location;
 
