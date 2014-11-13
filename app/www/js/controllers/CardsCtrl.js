@@ -7,7 +7,8 @@ angular.module('endevr.controllers')
 
   var cardQueue = queueService;
 
-  var userType = localStorageService.get('userType');
+  var userType = localStorageService.get('usertype');
+
   var jwt_token = localStorageService.get('jwt_token');
 
   cardQueue.storeTotalCards( jwt_token, userType, function(card) {
