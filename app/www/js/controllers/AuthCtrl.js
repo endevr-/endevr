@@ -1,6 +1,8 @@
 angular.module('endevr.controllers')
 
-.controller('AuthCtrl', function($scope, $state, localStorageService){
+.controller('AuthCtrl', function($scope, $state, $location, localStorageService){
+  //Logic below can be refactored and simplified a bunch
+  //Leave it for Jeff to do since he's the most familiar with it
   if (localStorageService.get('linkedin-token')) {
     $scope.LinkedInAuthenticated = true;
     $scope.usertype = 'dev';
@@ -18,6 +20,7 @@ angular.module('endevr.controllers')
     $scope.Authenticated = true;
     $scope.needsAuthentication = false;
     $scope.usertype = 'dev';
+    $location.path('/app/browse');
   } else if ($scope.EmployerAuthenticated === true) {
     $scope.Authenticated = true;
     $scope.usertype = 'emp';
