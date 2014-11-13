@@ -13,7 +13,7 @@ angular.module('endevr.directives')
         hasUserType = event.url.indexOf('&userType=');
 
         if (hasToken > -1 && hasUserType > -1) {
-          token = event.url.match('jwt_token=(.*)&userType')[1];
+          jwt_token = event.url.match('jwt_token=(.*)&userType')[1];
           userType = event.url.match('&userType=(.*)')[1];
           localStorageService.set('jwt_token', jwt_token);
           localStorageService.set('linkedin-token', true);

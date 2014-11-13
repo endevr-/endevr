@@ -58,15 +58,15 @@
                 </div>
                 <div ng-show="usertype=='dev'" ng-controller="LoginCtrl">
                     <div class="list">
-                      <div>
+                      <div ng-show='!LinkedInAuthenticated'>
                           <button class="button button-block button-stable" ng-click="linkedinlogin()">Log in with LinkedIn</button>
                       </div>
-                      <div>
+                      <div ng-show='!GitHubAuthenticated'>
                           <button class="button button-block button-stable" ng-click="githublogin()">Log in with GitHub</button>
                       </div>
                       <button class="button button-block button-stable" ng-click="logout()">Back</button>
                     </div>
-                    {{ Authenticated }}
+                    Authenticated: {{ Authenticated }} LinkedIn: {{ LinkedInAuthenticated }}
                 </div>
                 <div ng-show="usertype=='emp'" ng-controller="LoginCtrl">
                     <form novalidate="novalidate" on-valid-submit="employerLogin(employer)">
