@@ -1,6 +1,6 @@
-describe("Unit Testing Examples", function () {
+describe("AppCtrl", function () {
 
-    var $scope, ctrl, $timeout, $timeout, $http; //, $location;
+    var $scope, ctrl, $timeout, $http; //, $location;
 
     beforeEach(function () {
         module('endevr');
