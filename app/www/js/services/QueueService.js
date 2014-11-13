@@ -29,7 +29,7 @@ angular.module('endevr.directives')
       var self = this;
       var url;
 
-      if (interest === 'Employers') {
+      if (userType === 'dev') {
         url = 'http://localhost:9000/api/developers/XX/cards?jwt_token=' + jwt_token + '&usertype=' + userType;
       } else {
         url = 'http://localhost:9000/api/employers/XX/cards';

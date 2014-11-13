@@ -18,7 +18,7 @@ angular.module('endevr.directives')
           localStorageService.set('jwt_token', jwt_token);
           localStorageService.set('linkedin-token', true);
           localStorageService.set('token-date', JSON.stringify(new Date()));
-          localStorageService.set('userType', userType);
+          localStorageService.set('usertype', userType);
           loginWindow.close();
           location.href = location.pathname;
         }
