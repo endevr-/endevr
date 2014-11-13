@@ -1,6 +1,6 @@
-describe("AuthCtrl", function () {
+describe("BrowseCtrl", function () {
 
-    var $scope, ctrl, $timeout, $timeout, $http; //, $location;
+    var $scope, ctrl, $timeout; //, $location;
 
     beforeEach(function () {
         module('endevr');
@@ -25,7 +25,7 @@ describe("AuthCtrl", function () {
             // **NOTE**: this is the only time the controller function
             // will be run, so anything that occurs inside of that
             // will already be done before the first spec.
-            ctrl = $controller('AppCtrl', {
+            ctrl = $controller('BrowseCtrl', {
                 $scope: $scope
             });
         });
@@ -40,23 +40,12 @@ describe("AuthCtrl", function () {
         expect($scope).toBeDefined();
     });
 
-    // Test 2: The simplest of the simple.
-    // here we're going to make sure the $scope variable 
-    // has closeLogin defined.
-    it("closeLogin should be defined", function() {
-        expect($scope.closeLogin).toBeDefined();
+    it("interest should be defined", function() {
+        expect($scope.interest).toBeDefined();
     });
 
-    it("login should be defined", function() {
-        expect($scope.login).toBeDefined();
-    });
-
-    it("navigate should be defined", function() {
-        expect($scope.navigate).toBeDefined();
-    });
-
-    it("doLogin should be defined", function() {
-        expect($scope.doLogin).toBeDefined();
+    it('interest currently should be hard-coded to \'Employers\'', function() {
+      expect($scope.interest).toEqual('Employers');
     });
 
 });

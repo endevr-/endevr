@@ -1,6 +1,6 @@
 describe("AppCtrl", function () {
 
-    var $scope, ctrl, $timeout, $timeout, $http; //, $location;
+    var $scope, ctrl, $timeout, $http; //, $location;
 
     beforeEach(function () {
         module('endevr');
@@ -57,10 +57,6 @@ describe("AppCtrl", function () {
 
     it("doLogin should be defined", function() {
         expect($scope.doLogin).toBeDefined();
-    });
-
-    it('assignDev should be defined', function() {
-      expect($scope.assignDev).toBeDefined();
     });
 
 });
