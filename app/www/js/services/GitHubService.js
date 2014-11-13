@@ -1,25 +1,24 @@
 angular.module('endevr.directives')
 
 .factory('GitHubService', function($location, localStorageService) {
-  var idUser = localStorageService.get('userId');
+  var jwt_token = localStorageService.get('jwt_token');
   // url matches the server route that uses passport
-  var url = 'http://localhost:9000/auth/github?userId='+idUser;
-  var token, hasToken, userId, hasUserId;
+  var url = 'http://localhost:9000/auth/github?jwt_token='+jwt_token;
+  var token, hasToken, userType, hasUserType;
 
   return {
     login: function() {
       var loginWindow = window.open(url, '_blank', 'location=no');
 
       loginWindow.addEventListener('loadstart', function(event) {
-        hasToken = event.url.indexOf('?oauth_token=');
-        hasUserId = event.url.indexOf('&userId=');
+        hasUserType = event.url.indexOf('userType=');
 
-        if (hasToken > -1 && hasUserId > -1) {
-          token = event.url.match('oauth_token=(.*)&userId')[1];
-          userId = event.url.match('&userId=(.*)')[1];
-          localStorageService.set('github-token', token);
-          localStorageService.set('token-date', JSON.stringify(new Date()));
-          localStorageService.set('userId', userId);
+        if (hasUserType > -1) {
+          // token = event.url.match('oauth_token=(.*)&userType')[1];
+          // userType = event.url.match('&userType=(.*)')[1];
+          localStorageService.set('github-token', true);
+          // localStorageService.set('token-date', JSON.stringify(new Date()));
+          // localStorageService.set('userType', userType);
           loginWindow.close();
           location.href = location.pathname;
         }

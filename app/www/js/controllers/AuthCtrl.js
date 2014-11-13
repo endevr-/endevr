@@ -16,6 +16,7 @@ angular.module('endevr.controllers')
 
   if ($scope.LinkedInAuthenticated === true && $scope.GitHubAuthenticated === true) {
     $scope.Authenticated = true;
+    $scope.needsAuthentication = false;
     $scope.usertype = 'dev';
   } else if ($scope.EmployerAuthenticated === true) {
     $scope.Authenticated = true;
