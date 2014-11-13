@@ -1,13 +1,16 @@
 angular.module('endevr.controllers')
 
-.controller('CardsCtrl', function($scope, $http, TDCardDelegate, queueService) {
+.controller('CardsCtrl', function($scope, $http, TDCardDelegate, queueService, localStorageService) {
 
   var cardTypes = [];
   $scope.cards = Array.prototype.slice.call(cardTypes, 0);
 
   var cardQueue = queueService;
 
-  cardQueue.storeTotalCards( $scope.$parent.interest, function(card) {
+  var userType = localStorageService.get('userType');
+  var jwt_token = localStorageService.get('jwt_token');
+
+  cardQueue.storeTotalCards( jwt_token, userType, function(card) {
     $scope.cards = card;
   });
 

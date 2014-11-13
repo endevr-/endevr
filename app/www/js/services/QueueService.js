@@ -20,7 +20,7 @@ angular.module('endevr.directives')
       }
 
     },
-    storeTotalCards: function(interest,callback) {
+    storeTotalCards: function(jwt_token, userType,callback) {
 
       /*
        *    This section is for rendering cards from the server.
@@ -30,7 +30,7 @@ angular.module('endevr.directives')
       var url;
 
       if (interest === 'Employers') {
-        url = 'http://localhost:9000/api/developers/XX/cards?oauth_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE0MTU3NjczNjZ9.6Fs_iSm8dNV6KMh4Se--coE_G6vl-FtiWtdtDGZLsaQ&usertype=dev';
+        url = 'http://localhost:9000/api/developers/XX/cards?jwt_token=' + jwt_token + '&usertype=' + userType;
       } else {
         url = 'http://localhost:9000/api/employers/XX/cards';
       }

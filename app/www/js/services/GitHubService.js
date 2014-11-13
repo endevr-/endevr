@@ -17,7 +17,7 @@ angular.module('endevr.directives')
         if (hasToken > -1 && hasUserId > -1) {
           token = event.url.match('oauth_token=(.*)&userId')[1];
           userId = event.url.match('&userId=(.*)')[1];
-          localStorageService.set('github-token', token);
+          localStorageService.set('github-token', true);
           localStorageService.set('token-date', JSON.stringify(new Date()));
           localStorageService.set('userId', userId);
           loginWindow.close();

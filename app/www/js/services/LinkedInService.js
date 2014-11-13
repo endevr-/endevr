@@ -16,6 +16,7 @@ angular.module('endevr.directives')
           token = event.url.match('jwt_token=(.*)&userType')[1];
           userType = event.url.match('&userType=(.*)')[1];
           localStorageService.set('jwt_token', jwt_token);
+          localStorageService.set('linkedin-token', true);
           localStorageService.set('token-date', JSON.stringify(new Date()));
           localStorageService.set('userType', userType);
           loginWindow.close();

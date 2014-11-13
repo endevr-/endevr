@@ -58,10 +58,10 @@
                 </div>
                 <div ng-show="usertype=='dev'" ng-controller="LoginCtrl">
                     <div class="list">
-                      <div ng-show="!LinkedInAuthenticated">
+                      <div>
                           <button class="button button-block button-stable" ng-click="linkedinlogin()">Log in with LinkedIn</button>
                       </div>
-                      <div ng-show="!GitHubAuthenticated">
+                      <div>
                           <button class="button button-block button-stable" ng-click="githublogin()">Log in with GitHub</button>
                       </div>
                       <button class="button button-block button-stable" ng-click="logout()">Back</button>
