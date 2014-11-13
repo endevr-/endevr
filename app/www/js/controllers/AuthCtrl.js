@@ -5,15 +5,15 @@ angular.module('endevr.controllers')
   //Leave it for Jeff to do since he's the most familiar with it
   if (localStorageService.get('linkedin-token')) {
     $scope.LinkedInAuthenticated = true;
-    $scope.userType = 'dev';
+    $scope.usertype = 'dev';
   }
   if (localStorageService.get('github-token')) {
     $scope.GitHubAuthenticated = true;
-    $scope.userType = 'dev';
+    $scope.usertype = 'dev';
   }
   if (localStorageService.get('employer-token')) {
     $scope.EmployerAuthenticated = true;
-    $scope.userType = 'emp';
+    $scope.usertype = 'emp';
   }
 
   if ($scope.LinkedInAuthenticated === true && $scope.GitHubAuthenticated === true) {
@@ -23,20 +23,20 @@ angular.module('endevr.controllers')
     $location.path('/app/browse');
   } else if ($scope.EmployerAuthenticated === true) {
     $scope.Authenticated = true;
-    $scope.userType = 'emp';
+    $scope.usertype = 'emp';
   } else {
     $scope.needsAuthentication = true;
   }
 
   $scope.assignDev = function() {
     console.log("I'm a developer.");
-    $scope.userType = 'dev';
+    $scope.usertype = 'dev';
     localStorageService.set('usertype', 'dev');
   };
 
   $scope.assignEmp = function() {
     console.log("I'm an employer.");
-    $scope.userType = 'emp';
+    $scope.usertype = 'emp';
     localStorageService.set('usertype', 'emp');
   };
 
