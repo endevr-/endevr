@@ -14,11 +14,7 @@ angular.module('endevr.directives')
         hasUserType = event.url.indexOf('userType=');
 
         if (hasUserType > -1) {
-          // token = event.url.match('oauth_token=(.*)&userType')[1];
-          // userType = event.url.match('&userType=(.*)')[1];
           localStorageService.set('github-token', true);
-          // localStorageService.set('token-date', JSON.stringify(new Date()));
-          // localStorageService.set('userType', userType);
           loginWindow.close();
           location.href = location.pathname;
         }

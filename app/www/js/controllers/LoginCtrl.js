@@ -1,6 +1,6 @@
 angular.module('endevr.controllers')
 
-.controller('LoginCtrl', function($scope, $http, LinkedInService, GitHubService, localStorageService){
+.controller('LoginCtrl', function($scope, $http, $state, LinkedInService, GitHubService, localStorageService){
   $scope.linkedinlogin = LinkedInService.login;
   $scope.githublogin = GitHubService.login;
   $scope.employer = {};
@@ -28,7 +28,7 @@ angular.module('endevr.controllers')
 
   $scope.logout = function () {
     localStorageService.clearAll();
-    //The line below is vital, I tried to use $location.path('/app/auth') and it broke
-    location.href=location.pathname;
+    $state.go($state.current, {}, {reload: true});
+    $scope.closeLogin();
   };
-})
+});

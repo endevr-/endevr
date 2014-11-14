@@ -1,47 +1,46 @@
 angular.module('endevr.controllers')
 
 .controller('AuthCtrl', function($scope, $state, $location, localStorageService){
-  //Logic below can be refactored and simplified a bunch
-  //Leave it for Jeff to do since he's the most familiar with it
+  //If user has a linkedin-token they've passed LinkedIn Auth and are a Dev
   if (localStorageService.get('linkedin-token')) {
     $scope.LinkedInAuthenticated = true;
-    $scope.usertype = 'dev';
+    $scope.type = 'dev';
   }
+  //If user has a github-token they've passed GitHub Auth (& we already know they're a dev)
   if (localStorageService.get('github-token')) {
     $scope.GitHubAuthenticated = true;
-    $scope.usertype = 'dev';
   }
+  //If user has employer token, they've passed Employer Auth and are an employer
   if (localStorageService.get('employer-token')) {
     $scope.EmployerAuthenticated = true;
-    $scope.usertype = 'emp';
+    $scope.type = 'emp';
   }
-
+  //If user has been fully authenticated, send to browse
   if ($scope.LinkedInAuthenticated === true && $scope.GitHubAuthenticated === true) {
     $scope.Authenticated = true;
-    $scope.needsAuthentication = false;
-    $scope.usertype = 'dev';
     $location.path('/app/browse');
-  } else if ($scope.EmployerAuthenticated === true) {
+  } else if ($scope.EmployerAuthenticated === true) { //This route needs work after server is set up
     $scope.Authenticated = true;
-    $scope.usertype = 'emp';
-  } else {
+  } else { //User needs to be authenticated, show them the authentication flow
     $scope.needsAuthentication = true;
   }
 
+  $scope.showGitHub = function() {
+    return ($scope.LinkedInAuthenticated === true && $scope.GitHubAuthenticated !== true) ? true : false;
+  };
+
   $scope.assignDev = function() {
-    console.log("I'm a developer.");
-    $scope.usertype = 'dev';
+    $scope.type = 'dev';
     localStorageService.set('usertype', 'dev');
   };
 
   $scope.assignEmp = function() {
-    console.log("I'm an employer.");
-    $scope.usertype = 'emp';
+    $scope.type = 'emp';
     localStorageService.set('usertype', 'emp');
   };
 
-  $scope.logout = function () {
-    localStorageService.clearAll();
-    location.href=location.pathname;
+  $scope.skipGitHub = function() {
+    $scope.Authenticated = true;
+    $location.path('/app/browse');
   };
 });

@@ -1,6 +1,6 @@
 angular.module('endevr.controllers')
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $location) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $location, $state, localStorageService) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -22,22 +22,13 @@ angular.module('endevr.controllers')
     $scope.modal.show();
   };
 
+  $scope.logout = function() {
+    localStorageService.clearAll();
+    $location.path('/app/auth');
+    $scope.closeLogin();
+  };
+
   $scope.navigate = function(route) {
     $location.path('/app/'+route);
   };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
-
-  if (typeof String.prototype.startsWith !== 'function') {
-    String.prototype.startsWith = function(str) {
-      return this.indexOf(str) === 0;
-    };
-  }
 });
