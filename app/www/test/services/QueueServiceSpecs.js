@@ -74,18 +74,18 @@ describe("queueService", function () {
       });
     });
 
-    describe('removeCard', function() {
-      it('should have a removeCard function', function() {
-        expect(angular.isFunction(queueService.removeCard)).toBe(true);
+    describe('removeCurrentCard', function() {
+      it('should have a removeCurrentCard function', function() {
+        expect(angular.isFunction(queueService.removeCurrentCard)).toBe(true);
       });
 
       it('should remove the current card', function() {
         queueService.addCardToStorage(1);
-        expect(queueService.removeCard()).toBe(1);
+        expect(queueService.removeCurrentCard()).toBe(1);
       });
 
       it('should return false if no current card is set', function() {
-        expect(queueService.removeCard()).toBe(false);
+        expect(queueService.removeCurrentCard()).toBe(false);
       });
     });
 
