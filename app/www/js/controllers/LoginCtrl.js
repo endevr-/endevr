@@ -10,7 +10,8 @@ angular.module('endevr.controllers')
     console.log(employer)
     $http.post('http://localhost:9000/employers/login', {email: employer.email, password: employer.password})
       .success(function(data, status, headers, config){
-        localStorageService.set('employer-token', data);
+        localStorageService.set('employer-token', true);
+        localStorageService.set('jwt-token', data.jwt);
       })
       .error(function(data, status, headers, config){
       });
@@ -20,7 +21,8 @@ angular.module('endevr.controllers')
     console.log(employer)
     $http.post('http://localhost:9000/employers/new', {email: employer.email, password: employer.password})
       .success(function(data, status, headers, config){
-        localStorageService.set('employer-token', data);
+        localStorageService.set('employer-token', true);
+        localStorageService.set('jwt-token', data.jwt);
       })
       .error(function(data, status, headers, config){
       });
