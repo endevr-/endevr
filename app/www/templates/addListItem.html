@@ -1,14 +1,14 @@
 <div class="modal">
   <ion-header-bar>
     <div class="buttons">
-      <button class="button button-clear" ng-click="closeItemModal()">Close</button>
+      <button class="button button-clear" ng-click="closeNewItemModal();">Close</button>
     </div>
   </ion-header-bar>
   <ion-content>
-    <form ng-submit="saveItemModal(editItem)">
+    <form ng-submit="saveNewItemModal(newItem)">
       <div class="list">
         <label class="item item-stable item-input">
-          <input type="text" ng-model="editItem.value" name="editItem">
+          <input type="text" ng-model="newItem.value" name="newItem">
         </label>
         <label class="item item-stable">
           <button class="button button-block button-positive" type="submit">Save</button>
