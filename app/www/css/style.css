@@ -140,33 +140,34 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 /*Begin CSS for planets*/
 .wrapper {
-  width:250px;
-  height:250px;
+  display: inline-block;
+  width: 300px;
+  height: 300px;
   margin: 0 auto;
-  margin-top: 10%;
+  margin-top: 15%;
   position: relative;
   background-color: #365E78;
 }
 
 .planet {
-  width:100px;
-  height:100px;
+  width:150px;
+  height:150px;
   border-radius: 50%;
   position: relative;
+  /*make url local storage*/
   background-image: url('http://www.sernova.com/inc/nav_linkedin.png');
-  background-size: 100px 100px;
-  left:50%;
-  top:50%;
+  background-size: 150px 150px;
+  left:28%;
+  top:30%;
   box-shadow: -10px 10px 0 0px rgba(0,0,0,0.7);
-  transform:translate(-50%,-50%);
   z-index: 5;
   overflow: hidden;
 }
 
 .planet::before {
   content:"";
-  height:100px;
-  width:100px;
+  height:150px;
+  width:150px;
   border-radius: 50%;
   position: relative;
   left:10%;
@@ -175,8 +176,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 .planet::after {
   content:"";
-  height:100px;
-  width:100px;
+  height:150px;
+  width:150px;
   border-radius: 50%;
   position: relative;
   left:15%;
@@ -185,22 +186,22 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 
 .moon {
-  width:30px;
-  height:30px;
+  width:35px;
+  height:35px;
   border-radius: 50%;
   background-color: #FF6530;
   position: absolute;
   left:40%;
   bottom:30%;
   overflow: hidden;
-  -webkit-animation: moonMovement 3s linear infinite;
+  -webkit-animation: moonMovement 2.5s linear infinite;
   animation: moonMovement 3s linear infinite;
 }
 
 .moon::before {
   content:"";
-  height:30px;
-  width:30px;
+  height:35px;
+  width:35px;
   border-radius: 50%;
   position: absolute;
   left:10%;
