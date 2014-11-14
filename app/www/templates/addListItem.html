@@ -1,8 +1,9 @@
 <div class="modal">
   <ion-header-bar>
     <div class="buttons">
-      <button class="button button-clear" ng-click="closeNewItemModal();">Close</button>
+      <button class="button button-clear" ng-click="closeNewItemModal();">Cancel</button>
     </div>
+    <h1 class="title">Add New {{ category }}</h1>
   </ion-header-bar>
   <ion-content>
     <form ng-submit="saveNewItemModal(newItem)">

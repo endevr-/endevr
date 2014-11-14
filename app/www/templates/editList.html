@@ -1,28 +1,34 @@
 <div class="modal">
   <ion-header-bar>
     <div class="buttons">
-      <button class="button button-icon icon ion-ios7-minus-outline"
-        ng-click="toggleDelete()"></button>
-    <h1 class="title">PlaceHolder</h1>
-    <button class="button"
-        ng-click="toggleReOrder()">
-          Reorder
-        </button>
+      <button class="button button-clear" ng-click="cancelChanges()">Cancel</button>
     </div>
+    <h1 class="title">{{ category }} List</h1>
   </ion-header-bar>
 
-  <ion-content>
+  <div class="bar bar-subheader">
+    <div class="buttons">
+      <button class="button button-icon icon ion-ios7-minus-outline"
+        ng-click="toggleDelete()"></button>
+      <button class="button button-energized" ng-click="saveChanges()">Save!</button>
+      <!-- <button class="button button-royal" ng-click="cancelChanges()">Cancel!</button> -->
+      <button class="button button-energized" ng-click="openNewListItemModal()">Add New Item</button>
+      <button class="button"
+          ng-click="toggleReOrder()">
+            Reorder
+          </button>
+    </div>
+  </div>
 
-    <button class="button button-energized" ng-click="saveChanges()">Save!</button>
-    <button class="button button-royal" ng-click="cancelChanges()">Cancel!</button>
-    <button class="button button-energized" ng-click="openNewListItemModal()">Create New Item</button>
+  <ion-content class="has-subheader">
+
 
       <ion-list show-delete="showDelete" show-reorder="showReOrder">
 
         <ion-item ng-repeat="item in items"
                   item="item"
                   href="">
-          {{ item}}
+          {{ item }}
 
           <ion-delete-button class="ion-minus-circled"
                              ng-click="onItemDelete(item)">
