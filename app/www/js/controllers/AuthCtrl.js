@@ -25,6 +25,10 @@ angular.module('endevr.controllers')
     $scope.needsAuthentication = true;
   }
 
+  $scope.skip = function() {
+    return (LinkedInAuthenticated === true && !GitHubAuthenticated === true) ? true : false;
+  }
+
   $scope.showGitHub = function() {
     return ($scope.LinkedInAuthenticated === true && $scope.GitHubAuthenticated !== true) ? true : false;
   };

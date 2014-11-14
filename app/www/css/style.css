@@ -164,6 +164,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
   overflow: hidden;
 }
 
+.ghplanet {
+  background-image: url('../img/github_icon.png');
+}
+
 .planet::before {
   content:"";
   height:150px;

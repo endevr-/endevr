@@ -16,8 +16,18 @@
               </a>
           </div>
           <div ng-show="showGitHub()">
-              <button class="button button-block button-stable" ng-click="githublogin()">Improve your profile with GitHub</button>
-              <button class="button button-block login" ng-click="skipGitHub()">Skip this step</button>
+            <a class="wrapper" ng-click="githublogin()">
+                <div class="wrapper">
+                  <div class="planet ghplanet"></div>
+                  <div class="moon"></div>
+                  </div>
+            </a>
+            <div style="padding-top: 10%">
+              <ul>
+                <li><a class="login" style="font-size: 20px" ng-click="githublogin()">Improve your profile with GitHub</a></li>
+                <li><a class="login" style="font-size: 20px" ng-click="skipGitHub()">Skip this step</a></li>
+              </ul>
+            </div>
           </div>
           
         </div>
