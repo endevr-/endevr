@@ -17,12 +17,12 @@
         Location: {{ profile.location }}<br/><br/>
       </div>
 
-      <b>Skills</b><br/>
+      <b>Skills</b> - <a href='' ng-click='showModal("skills", profile.skills)'>Edit</a><br/>
       <div ng-repeat="skill in profile.skills">
         {{ skill }}
       </div><br/>
 
-      <b>Education</b><br/>
+      <b>Education</b> - <a href='' ng-click='showModal("education", profile.education)'>Edit</a><br/>
       <div ng-repeat="school in profile.education">
         {{ school }}
       </div><br/>
