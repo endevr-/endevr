@@ -17,7 +17,8 @@ angular.module('endevr.controllers')
 
   $scope.cardDestroyed = function() {
     // console.log('destroyed');
-    cardQueue.removeCard();
+    cardQueue.removeCurrentCard();
+    cardQueue.setCurrentCard();
   };
 
 });

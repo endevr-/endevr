@@ -55,8 +55,4 @@ describe("AppCtrl", function () {
         expect($scope.navigate).toBeDefined();
     });
 
-    it("doLogin should be defined", function() {
-        expect($scope.doLogin).toBeDefined();
-    });
-
 });
