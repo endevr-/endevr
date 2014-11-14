@@ -1,4 +1,4 @@
-angular.module('endevr.directives')
+angular.module('endevr.controllers')
 
 .factory('LinkedInService', function($location, localStorageService) {
   // url matches the server route that uses passport
