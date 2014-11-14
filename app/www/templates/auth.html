@@ -1,6 +1,6 @@
 <ion-view hide-back-button="true" title="Sign In" class='login'>
     <div ng-show="!type" class='login'>
-        <ul class="padding">
+        <ul style="padding-top: 60%">
             <li><a class="login" ng-click="assignDev()">I'm a developer</a></li>
             <li><a class="login" ng-click="assignEmp()">I'm hiring</a></li>
         </ul>
@@ -29,9 +29,7 @@
               </ul>
             </div>
           </div>
-          
         </div>
-        {{ Authenticated }}
     </div>
     <div ng-show="type=='emp'" ng-controller="LoginCtrl">
         <form novalidate="novalidate" on-valid-submit="employerLogin(employer)">
