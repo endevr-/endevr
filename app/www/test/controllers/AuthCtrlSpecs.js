@@ -69,15 +69,6 @@ describe("AuthCtrl", function () {
         $scope.assignDev();
         expect($scope.type).toEqual('dev');
       });      
-    
-      it('should set type to \'dev\' when the user is either logged in with Linkedin or GitHub', function() {
-        $scope.LinkedInAuthenticated = true;
-        $scope.GitHubAuthenticated = false;
-        expect($scope.type).toEqual('dev');
-        $scope.LinkedInAuthenticated = false;
-        $scope.GitHubAuthenticated = true;
-        expect($scope.type).toEqual('dev');
-      });
 
       it('should set needsAuthentication to true when devs not logged-in with LinkedIn and GitHub', function() {
         $scope.LinkedInAuthenticated = false;
