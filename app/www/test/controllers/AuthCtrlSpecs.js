@@ -42,55 +42,39 @@ describe("AuthCtrl", function () {
     it("should have a $scope variable", function() {
         expect($scope).toBeDefined();
     });
-
-    it("logout should be defined", function() {
-      expect($scope.logout).toBeDefined();
-    });
     
-    it('removeUserType should be defined', function() {
-      expect($scope.removeUserType).toBeDefined();
-    });
-    
-    it('removeUserType should change userType to null', function() {
-      $scope.assignEmp();
-      expect($scope.userType).toEqual('emp');
-      $scope.removeUserType();
-      expect($scope.userType).toEqual(null);
-    });
-    
-    it('should not set the userType when no user is authenticated', function() {
+    it('should not set the type when no user is authenticated', function() {
       $scope.LinkedInAuthenticated = false;    
       $scope.GitHubAuthenticated = false;
       $scope.EmployerAuthenticated = false;
-      expect($scope.userType).toEqual(null);
+      expect($scope.type).toEqual(undefined);
     });
 
     describe('Developer Auth', function() {
-      it("assignDev should be defined", function() {
-          expect($scope.assignDev).toBeDefined();
+      it("assignDev should be defined as a function", function() {
+          expect(angular.isFunction($scope.assignDev)).toBe(true);
+      });
+
+      it("showGitHub should be defined as a function", function() {
+          expect(angular.isFunction($scope.showGitHub)).toBe(true);
       });
     
-      it('assignDev should change userType to \'dev\'', function() {
-        $scope.userType = null;
-        expect($scope.userType).toEqual(null);
+      it("skipGitHub should be defined as a function", function() {
+          expect(angular.isFunction($scope.skipGitHub)).toBe(true);
+      });
+
+      it('assignDev should change type to \'dev\'', function() {
+        $scope.type = null;
+        expect($scope.type).toEqual(null);
         $scope.assignDev();
-        expect($scope.userType).toEqual('dev');
+        expect($scope.type).toEqual('dev');
       });      
-    
-      it('should set userType to \'dev\' when the user is either logged in with Linkedin or GitHub', function() {
-        $scope.LinkedInAuthenticated = true;
-        $scope.GitHubAuthenticated = false;
-        expect($scope.userType).toEqual('dev');
-        $scope.LinkedInAuthenticated = false;
-        $scope.GitHubAuthenticated = true;
-        expect($scope.userType).toEqual('dev');
-      });
 
       it('should set needsAuthentication to true when devs not logged-in with LinkedIn and GitHub', function() {
         $scope.LinkedInAuthenticated = false;
         $scope.GitHubAuthenticated = false;
-        if($scope.userType !== 'emp') {
-          expect($scope.userType).not.toEqual('dev');
+        if($scope.type !== 'emp') {
+          expect($scope.type).not.toEqual('dev');
           expect($scope.needsAuthentication).toBe(true);
         }
       });
@@ -112,25 +96,25 @@ describe("AuthCtrl", function () {
     });
 
     describe('Employer Auth', function() {
-      it("assignEmp should be defined", function() {
-          expect($scope.assignEmp).toBeDefined();
+      it("assignEmp should be defined as a function", function() {
+          expect(angular.isFunction($scope.assignEmp)).toBe(true);
       });
       
-      it('assignEmp should change userType to \'emp\'', function() {
-        $scope.userType = null;
-        expect($scope.userType).toEqual(null);
+      it('assignEmp should change type to \'emp\'', function() {
+        $scope.type = null;
+        expect($scope.type).toEqual(null);
         $scope.assignEmp();
-        expect($scope.userType).toEqual('emp');
+        expect($scope.type).toEqual('emp');
       });
 
-      it('userType should not be \'emp\' if employers aren\'t logged-in', function() {
-        $scope.userType = null;
-        expect($scope.userType).toEqual(null);
+      it('type should not be \'emp\' if employers aren\'t logged-in', function() {
+        $scope.type = null;
+        expect($scope.type).toEqual(null);
 
         $scope.EmployerAuthenticated = false;
         $scope.Authenticated = false;
 
-        expect($scope.userType).toEqual(null);
+        expect($scope.type).toEqual(null);
       });
       
       it('should set Authenticated to false when employers are not authenticated', function() {
