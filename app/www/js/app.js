@@ -54,15 +54,6 @@ angular.module('endevr', [
       }
     })
 
-    .state('app.matches', {
-      url: '/matches',
-      views: {
-        'menuContent' :{
-          templateUrl: 'templates/matches.html',
-          controller: 'MatchesCtrl'
-        }
-      }
-    })
 
     .state('app.auth', {
       url: '/auth',
@@ -70,6 +61,26 @@ angular.module('endevr', [
         'menuContent' :{
           templateUrl: 'templates/auth.html',
           controller: 'AuthCtrl'
+        }
+      }
+    })
+
+    .state('app.profile', {
+      url: '/profile',
+      views: {
+        'menuContent' : {
+          templateUrl: 'templates/profile.html',
+          controller: 'ProfileCtrl'
+        }
+      }
+    })
+
+    .state('app.matches', {
+      url: '/matches',
+      views: {
+        'menuContent' :{
+          templateUrl: 'templates/matches.html',
+          controller: 'MatchesCtrl'
         }
       }
     })
