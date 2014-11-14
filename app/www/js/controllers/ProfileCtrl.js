@@ -1,6 +1,6 @@
 angular.module('endevr.controllers')
 
-.controller('ProfileCtrl', function($scope, $ionicModal, $http, $location, localStorageService) {
+.controller('ProfileCtrl', function($scope, $ionicModal, $http, localStorageService, ModalService) {
 
   $scope.profile;
 
@@ -15,5 +15,5 @@ angular.module('endevr.controllers')
     .error(function() {
       console.log('Error getting profile');
     });
-    
+
 });
