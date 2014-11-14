@@ -23,6 +23,7 @@
     <div ng-show="type=='emp'" ng-controller="LoginCtrl">
         <form novalidate="novalidate" on-valid-submit="employerLogin(employer)">
             <div class="list">
+            <h2>placeholder REMOVE ME</h2>
               <label class="item item-input validated">
                 <span class="input-label">Email</span>
                 <input type="email" required="required" name="email" ng-model="employer.email">
@@ -36,6 +37,9 @@
             </div>
             <div>
                 <button type="submit" class="button button-block button-stable">Sign In</button>
+            </div>
+            <div ng-show="badlogin">
+              <span>Incorrect username or password, please double-check and try again</span>
             </div>
         </form>
         <form novalidate="novalidate" on-valid-submit="employerSignup(newEmployer)">
@@ -54,6 +58,9 @@
             </div>
             <div>
                 <button type="submit" class="button button-block button-stable">Sign Up</button>
+            </div>
+            <div ng-show="duplicate">
+              <span>This username already exists, please choose another or log in with your account</span>
             </div>
         </form>
         <div>

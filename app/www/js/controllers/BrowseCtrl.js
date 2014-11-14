@@ -4,6 +4,11 @@ angular.module('endevr.controllers')
 // Currently hardcoded for 'Browse Employers'
 // but should be variable for 'Browse Candidates'
 // in the future.
-.controller('BrowseCtrl', function($scope) {
-  $scope.interest = 'Employers';
+.controller('BrowseCtrl', function($scope, localStorageService) {
+  if (localStorageService.get('usertype') === 'dev') {
+    $scope.interest = 'Opportunities';
+  } else {
+    $scope.interest = 'Developers';
+  }
+
 });
