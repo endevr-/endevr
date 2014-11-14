@@ -41,6 +41,7 @@ angular.module('endevr.directives')
 
     setCurrentCard: function() {
       if ( storage.length > 0 ) {
+        this.removeCard();
         currentCard.push( storage.pop() );
         return currentCard;
       } else {
@@ -123,10 +124,6 @@ angular.module('endevr.directives')
 
       if (currentCard.length > 0) {
         removedCard = currentCard.pop();
-      }
-
-      if (currentCard.length === 0 && storage.length > 0) {
-        currentCard = this.setCurrentCard();
       }
 
       return removedCard;
