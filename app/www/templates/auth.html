@@ -19,7 +19,7 @@
               <button class="button button-block button-stable" ng-click="githublogin()">Improve your profile with GitHub</button>
               <button class="button button-block login" ng-click="skipGitHub()">Skip this step</button>
           </div>
-          <button class="button button-block button-stable" ng-click="logout()">Back</button>
+          
         </div>
         {{ Authenticated }}
     </div>
@@ -66,8 +66,10 @@
               <span>This username already exists, please choose another or log in with your account</span>
             </div>
         </form>
-        <div>
-            <button class="button button-block button-stable" ng-click="logout()">Back</button>
-        </div>
     </div>
+    <ion-footer-bar ng-show='type'>
+      <div ng-controller="LoginCtrl" class="wide-button">
+        <button class="button wide-button " ng-click="logout()">Back</button>
+      </div>
+    </ion-footer-bar>
 </ion-view>
