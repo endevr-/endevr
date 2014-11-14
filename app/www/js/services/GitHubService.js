@@ -1,4 +1,4 @@
-angular.module('endevr.directives')
+angular.module('endevr.controllers')
 
 .factory('GitHubService', function($location, localStorageService) {
   var jwt_token = localStorageService.get('jwt_token');
