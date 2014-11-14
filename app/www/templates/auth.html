@@ -1,26 +1,26 @@
-<ion-view title="Authentication">
-    <div ng-show="!usertype">
+<ion-view title="Sign In">
+    <div ng-show="!type">
     <h2>placeholder so i can see buttons REMOVE</h2>
         <ul>
-            <li class="helper-text">Select One:</li>
             <li><a class="login" ng-click="assignDev()">I'm a developer.</a></li>
             <li><a class="login" ng-click="assignEmp()">I'm hiring.</a></li>
         </ul>
     </div>
-    <div ng-show="usertype=='dev'" ng-controller="LoginCtrl">
+    <div ng-show="type=='dev'" ng-controller="LoginCtrl">
         <div class="list">
           <h2>placeholder so i can see button</h2>
           <div ng-show="!LinkedInAuthenticated">
               <button class="button button-block button-stable" ng-click="linkedinlogin()">Log in with LinkedIn</button>
           </div>
-          <div ng-show="!GitHubAuthenticated">
-              <button class="button button-block button-stable" ng-click="githublogin()">Log in with GitHub</button>
+          <div ng-show="showGitHub()">
+              <button class="button button-block button-stable" ng-click="githublogin()">Improve your profile with GitHub</button>
+              <button class="button button-block button-stable" ng-click="skipGitHub()">Skip this step</button>
           </div>
           <button class="button button-block button-stable" ng-click="logout()">Back</button>
         </div>
         {{ Authenticated }}
     </div>
-    <div ng-show="usertype=='emp'" ng-controller="LoginCtrl">
+    <div ng-show="type=='emp'" ng-controller="LoginCtrl">
         <form novalidate="novalidate" on-valid-submit="employerLogin(employer)">
             <div class="list">
               <label class="item item-input validated">
