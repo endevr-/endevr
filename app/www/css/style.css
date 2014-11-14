@@ -144,7 +144,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   width: 300px;
   height: 300px;
   margin: 0 auto;
-  margin-top: 15%;
+  margin-top: 12.5%;
   position: relative;
   background-color: #365E78;
 }
