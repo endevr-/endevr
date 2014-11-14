@@ -40,6 +40,7 @@ angular.module('endevr.controllers')
   };
 
   $scope.skipGitHub = function() {
+    localStorageService.set('github-token', true);
     $scope.Authenticated = true;
     $location.path('/app/browse');
   };
