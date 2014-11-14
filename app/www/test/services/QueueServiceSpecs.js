@@ -64,7 +64,7 @@ describe("queueService", function () {
         queueService.addCardToStorage(1);  
         queueService.addCardToStorage(2);
         queueService.addCardToStorage(3);
-        expect(queueService.setCurrentCard()).toBe(3);
+        expect(queueService.setCurrentCard()[0]).toBe(3);
       });
     });
 
@@ -82,14 +82,6 @@ describe("queueService", function () {
       it('should remove the current card', function() {
         queueService.addCardToStorage(1);
         expect(queueService.removeCard()).toBe(1);
-      });
-
-      it('should remove the current card, then update it with a new card from storage', function() {
-        queueService.addCardToStorage(1);
-        queueService.addCardToStorage(2);
-        queueService.addCardToStorage(3);
-        expect(queueService.removeCard()).toBe(1);
-        expect(queueService.removeCard()).toBe(3);
       });
 
       it('should return false if no current card is set', function() {
