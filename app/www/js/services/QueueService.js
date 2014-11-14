@@ -6,20 +6,48 @@ angular.module('endevr.directives')
   var currentCard = [];
 
   return {
-    setCurrentCard: function() {
+    addCardToStorage: function(card) {
+      var response;
 
-      if (storage.length > 0) {
-
-        currentCard.push( storage.pop() );
-        return currentCard;
-
+      if( card === undefined ) {
+        return false;
+      }
+      storage.push(card);
+      if( currentCard.length === 0) {
+        this.setCurrentCard();
+        response = "Current card set to " + card + ".\n " + storage.length + " card(s) in storage."; 
       } else {
+        response = storage.length + " card(s) in storage."
+      } 
+      return response;
+    },
 
-        return;
+    removeCardFromStorage: function(targetCard) {
+      var removedCard = false;
 
+      if( targetCard === undefined ) {
+        return removedCard;
       }
 
+      for(var card = 0; card < storage.length; card++) {
+        if( storage[card] === targetCard) {
+          removedCard = storage[card];
+          break;
+        }
+      }
+
+      return removedCard;
     },
+
+    setCurrentCard: function() {
+      if ( storage.length > 0 ) {
+        currentCard.push( storage.pop() );
+        return currentCard;
+      } else {
+        return false;
+      }
+    },
+
     storeTotalCards: function(jwt_token, userType,callback) {
 
       /*
@@ -88,19 +116,20 @@ angular.module('endevr.directives')
       // }
 
     },
+
+    //remove currentCard
     removeCard: function() {
+      var removedCard = false;
 
       if (currentCard.length > 0) {
-
-        currentCard.pop();
-
+        removedCard = currentCard.pop();
       }
 
-      if (currentCard.length === 0) {
-
+      if (currentCard.length === 0 && storage.length > 0) {
         currentCard = this.setCurrentCard();
-
       }
+
+      return removedCard;
     }
   }
 });
