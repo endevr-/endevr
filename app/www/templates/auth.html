@@ -7,9 +7,13 @@
     </div>
     <div ng-show="type=='dev'" ng-controller="LoginCtrl">
         <div class="list">
-          <h2>placeholder so i can see button</h2>
           <div ng-show="!LinkedInAuthenticated">
-              <button class="button button-block button-stable" ng-click="linkedinlogin()">Log in with LinkedIn</button>
+              <a class="wrapper" ng-click="linkedinlogin()">
+                <div class="wrapper">
+                  <div class="planet"></div>
+                  <div class="moon"></div>
+                  </div>
+                </a>
           </div>
           <div ng-show="showGitHub()">
               <button class="button button-block button-stable" ng-click="githublogin()">Improve your profile with GitHub</button>
