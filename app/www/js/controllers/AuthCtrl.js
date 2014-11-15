@@ -1,6 +1,7 @@
 angular.module('endevr.controllers')
 
 .controller('AuthCtrl', function($scope, $state, $location, localStorageService){
+
   //If user has a linkedin-token they've passed LinkedIn Auth and are a Dev
   if (localStorageService.get('linkedin-token')) {
     $scope.LinkedInAuthenticated = true;
@@ -48,4 +49,6 @@ angular.module('endevr.controllers')
     $scope.Authenticated = true;
     $location.path('/app/browse');
   };
+
+  
 });
