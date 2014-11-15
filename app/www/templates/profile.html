@@ -1,12 +1,15 @@
-<ion-view title="Profile">
+<ion-view title="">
 
   <ion-nav-buttons side="left">
 
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 
+    <button class="button button-energized" ng-click="viewProfile()">Full Profile</button>
+    <button class="button button-energized" ng-click="viewCard()">Card Profile</button>
+
   </ion-nav-buttons>
 
-  <ion-content class="has-header">
+  <ion-content class="has-header" ng-show="profileView">
 
     <div>
       <b>General Information</b><br/>
@@ -41,15 +44,33 @@
 
   </ion-content>
 
+  <ion-pane ng-show="!profileView">
+
+    <td-card>
+      <div class="image">
+        <b>Skills</b> - <a href='' ng-click='showModal("skills", profile.skills)'>Edit</a><br/>
+        <div ng-repeat="skill in profile.skills">
+          {{ skill }}
+        </div><br/>
+
+        <b>Education</b> - <a href='' ng-click='showModal("education", profile.education)'>Edit</a><br/>
+        <div ng-repeat="school in profile.education">
+          {{ school }}
+        </div><br/>
+
+        <b>GitHub Info</b><br/>
+        <div>
+            Public Repos: {{ profile.public_repos }}
+        </div><br/>
+
+        <b>Past Experience</b><br/>
+        <div>
+          {{ profile.positions }}
+        </div>
+      </div>
+
+    </td-card>
+
+  </ion-pane>
+
 </ion-view>
-
-
-<!--
-
-View Pre-Match Card
-Edit Skills
-Edit Education
-Edit Past Jobs
-Profile
-
--->
