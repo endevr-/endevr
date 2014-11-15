@@ -8,12 +8,25 @@
   padding-top: 40%;
 }
 
+#login {
+  font-family: 'Londrina Solid', cursive;
+  background-color: #365E78;
+  text-align: center;
+  color: #173d55;
+  border-radius: 10px;
+  border: 1px #B8C9D5 solid;
+  box-shadow: 12px 0px 15px -4px #173d55, -12px 0 15px -4px #173d55;
+  background-color: #C1E5FC;
+  font-size: 8vw;
+}
+
 .login {
   font-family: 'Londrina Solid', cursive;
   color: #FFC930;
   background-color: #365E78;
   font-size: 12vw;
   text-align: center;
+
 }
 
 a.login {
@@ -22,12 +35,12 @@ a.login {
   padding: 3px 8px;
   border-radius: 10px;
   border: 1px #B8C9D5 solid;
-  box-shadow: 2px 2px 5px #173d55;
+  box-shadow: 12px 0px 15px -4px #173d55, -12px 0 15px -4px #173d55;
   background-color: #C1E5FC;
 }
 
 button.wide-button {
-  width: 80%;
+  width: 65%;
 }
 
 div.wide-button {
