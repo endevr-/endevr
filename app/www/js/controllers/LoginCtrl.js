@@ -5,6 +5,8 @@ angular.module('endevr.controllers')
   $scope.githublogin = GitHubService.login;
   $scope.employer = {};
   $scope.newEmployer = {};
+  $scope.isNewEmployer = false;
+
 
   $scope.employerLogin = function(employer) {
     console.log(employer)
@@ -30,6 +32,7 @@ angular.module('endevr.controllers')
   };
 
   $scope.employerSignup = function(employer) {
+
     console.log(employer)
     $http.post('http://localhost:9000/api/employers/new', {email: employer.email, password: employer.password})
       .success(function(data, status, headers, config){
@@ -57,4 +60,8 @@ angular.module('endevr.controllers')
     $state.go($state.current, {}, {reload: true});
     $scope.closeLogin();
   };
+
+  $scope.changeEmployerStatus = function() {
+    $scope.isNewEmployer = true;
+  }
 });

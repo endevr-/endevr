@@ -1,29 +1,45 @@
-<ion-view hide-back-button="true" title="Sign In">
-    <div ng-show="!type">
-    <h2>placeholder so i can see buttons REMOVE</h2>
-        <ul>
-            <li><a class="login" ng-click="assignDev()">I'm a developer.</a></li>
-            <li><a class="login" ng-click="assignEmp()">I'm hiring.</a></li>
+<ion-view ng-controller='BrowseCtrl' hide-back-button="true" class='login' alt="Welcome to endevr!" title='<img class="title-image" src="img/header-logo.png" height="25px"
+           width="85px"/>'>
+    <div ng-show="!type" class='login'>
+        <ul style="padding-top: 60%">
+            <li><a class="login" ng-click="assignDev()">I'm a developer</a></li>
+            <li><a class="login" ng-click="assignEmp()">I'm hiring</a></li>
         </ul>
     </div>
     <div ng-show="type=='dev'" ng-controller="LoginCtrl">
         <div class="list">
-          <h2>placeholder so i can see button</h2>
           <div ng-show="!LinkedInAuthenticated">
-              <button class="button button-block button-stable" ng-click="linkedinlogin()">Log in with LinkedIn</button>
+              <a class="wrapper" ng-click="linkedinlogin()">
+                <div class="wrapper">
+                  <div class="planet"></div>
+                  <div class="moon"></div>
+                  </div>
+              </a>
+              <div style="padding-top: 10%">
+                <ul>
+                  <li><a class="login" style="font-size: 20px" ng-click="linkedinlogin()">Login with LinkedIn</a></li>
+                </ul>
+              </div>
           </div>
           <div ng-show="showGitHub()">
-              <button class="button button-block button-stable" ng-click="githublogin()">Improve your profile with GitHub</button>
-              <button class="button button-block button-stable" ng-click="skipGitHub()">Skip this step</button>
+            <a class="wrapper" ng-click="githublogin()">
+                <div class="wrapper">
+                  <div class="planet ghplanet"></div>
+                  <div class="moon"></div>
+                  </div>
+            </a>
+            <div style="padding-top: 10%">
+              <ul>
+                <li><a class="login" style="font-size: 20px" ng-click="githublogin()">Improve your profile with GitHub</a></li>
+                <li><a class="login" style="font-size: 20px" ng-click="skipGitHub()">Skip this step</a></li>
+              </ul>
+            </div>
           </div>
-          <button class="button button-block button-stable" ng-click="logout()">Back</button>
         </div>
-        {{ Authenticated }}
     </div>
     <div ng-show="type=='emp'" ng-controller="LoginCtrl">
-        <form novalidate="novalidate" on-valid-submit="employerLogin(employer)">
-            <div class="list">
-            <h2>placeholder REMOVE ME</h2>
+        <form novalidate="novalidate" class="padding" on-valid-submit="employerLogin(employer)">
+            <div ng-show="!isNewEmployer" class="list">
               <label class="item item-input validated">
                 <span class="input-label">Email</span>
                 <input type="email" required="required" name="email" ng-model="employer.email">
@@ -34,37 +50,45 @@
                 <input type="password" ng-model="employer.password" name="password" required="required">
                 <i class="icon ion-alert-circled error"></i>
               </label>
-            </div>
-            <div>
-                <button type="submit" class="button button-block button-stable">Sign In</button>
-            </div>
-            <div ng-show="badlogin">
-              <span>Incorrect username or password, please double-check and try again</span>
+              <div class="wide-button" style="padding-top: 10px">
+                  <button type="submit" id='login' class="button wide-button">Sign In</button>
+              </div>
+              <div ng-show="badlogin" style="padding-top: 10px" id="bad-login">
+                <span>Incorrect username or password</span>
+              </div>
             </div>
         </form>
         <form novalidate="novalidate" on-valid-submit="employerSignup(newEmployer)">
             <div class="list">
-            <h3>New to endevr? Sign up.</h3>
-              <label class="item item-input validated">
-                <span class="input-label">Email</span>
-                <input type="email" required="required" name="email" ng-model="newEmployer.email">
-                <i class="icon ion-alert-circled error"></i>
-              </label>
-              <label class="item item-input validated">
-                <span class="input-label">Password</span>
-                <input type="password" ng-model="newEmployer.password" name="password" required="required">
-                <i class="icon ion-alert-circled error"></i>
-              </label>
+            <div ng-show="!isNewEmployer">
+              <p class="signup">New to endevr?</p>
+              <u><a ng-click="changeEmployerStatus()" class='signup'>Sign up.</a></u>
             </div>
-            <div>
-                <button type="submit" class="button button-block button-stable">Sign Up</button>
-            </div>
-            <div ng-show="duplicate">
-              <span>This username already exists, please choose another or log in with your account</span>
+              <div ng-show="isNewEmployer">
+                <label class="item item-input validated">
+                  <span class="input-label">Email</span>
+                  <input type="email" required="required" name="email" ng-model="newEmployer.email">
+                  <i class="icon ion-alert-circled error"></i>
+                </label>
+                <label class="item item-input validated">
+                  <span class="input-label">Password</span>
+                  <input type="password" ng-model="newEmployer.password" name="password" required="required">
+                  <i class="icon ion-alert-circled error"></i>
+                </label>
+                <div class="wide-button" style="padding-top: 10px">
+                  <button type="submit" id='login' class="button wide-button">Sign Up</button>
+                </div>
+              </div>
+              <div ng-show="duplicate" id='bad-login' style="padding-top: 10px">
+                <p>This email is already registered</p>
+                <p>Please choose another</p>
+              </div>
             </div>
         </form>
-        <div>
-            <button class="button button-block button-stable" ng-click="logout()">Back</button>
-        </div>
     </div>
+    <ion-footer-bar ng-show='type'>
+      <div ng-controller="LoginCtrl" class="wide-button">
+        <button class="button wide-button" id="login" ng-click="logout()">Back</button>
+      </div>
+    </ion-footer-bar>
 </ion-view>
