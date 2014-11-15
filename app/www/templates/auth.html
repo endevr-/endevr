@@ -59,8 +59,10 @@
         </form>
         <form novalidate="novalidate" on-valid-submit="employerSignup(newEmployer)">
             <div class="list">
-            <p class="signup">New to endevr?</p>
-            <u><a ng-click="changeEmployerStatus()" class='signup'>Sign up.</a></u>
+            <div ng-show="!isNewEmployer">
+              <p class="signup">New to endevr?</p>
+              <u><a ng-click="changeEmployerStatus()" class='signup'>Sign up.</a></u>
+            </div>
               <div ng-show="isNewEmployer">
                 <label class="item item-input validated">
                   <span class="input-label">Email</span>
