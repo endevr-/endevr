@@ -121,6 +121,7 @@ try
       {"name": "icon",          "size":57},
       {"name": "icon@2x",       "size":114},
       
+      {"name": "icon-60",          "size":60},
       {"name": "icon-60@2x",       "size":120},
       {"name": "icon-60@3x",       "size":180},
  
