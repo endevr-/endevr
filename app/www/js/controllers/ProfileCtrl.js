@@ -10,12 +10,15 @@ angular.module('endevr.controllers')
 
   $scope.profileView = true;
 
-  $scope.viewCard = function() {
-    $scope.profileView = false;
-  }
+  $scope.title = 'Full Profile';
 
-  $scope.viewProfile = function() {
-    $scope.profileView = true;
+  $scope.toggleView = function() {
+    $scope.profileView = !$scope.profileView;
+    if ($scope.profileView) {
+      $scope.title = 'Full Profile';
+    } else {
+      $scope.title = 'Card Profile';
+    }
   }
 
   // Retrieve the profile from the database

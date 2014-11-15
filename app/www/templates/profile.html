@@ -1,17 +1,22 @@
-<ion-view title="">
+<ion-view title="{{ title }}">
 
   <ion-nav-buttons side="left">
 
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 
-    <button class="button button-energized" ng-click="viewProfile()">Full Profile</button>
-    <button class="button button-energized" ng-click="viewCard()">Card Profile</button>
+    <label menu-toggle="right" class="toggle toggle-assertive toggleLeft" ng-click="toggleView()">
+       <input type="checkbox">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
 
   </ion-nav-buttons>
 
   <ion-content class="has-header" ng-show="profileView">
 
     <div class="list card">
+
       <div class="item item-avatar item-text-wrap">
         <img ng-src="{{ profile.photo_url }}" >
         <b> {{ profile.fname }} {{ profile.lname }}</b>
@@ -19,85 +24,91 @@
             Location: {{ profile.location }} </p>
       </div>
 
-      <div class="item item-body">
-        <b>Skills</b> - <a href='' ng-click='showModal("skill", profile.skills)'>Edit</a><br/>
+      <div class="item item-divider">
+        <b>Skills</b> - <a href='' ng-click='showModal("skill", profile.skills)'><i class="icon ion-gear-b"></i></a>
+      </div>
+
+      <div class="item item-text-wrap">
         <div ng-repeat="skill in profile.skills">
           {{ skill }}
-        </div><br/>
+        </div>
+      </div>
 
-        <b>Education</b> - <a href='' ng-click='showModal("education", profile.education)'>Edit</a><br/>
+      <div class="item item-divider">
+        <b>GitHub Info</b><br/>
+      </div>
+
+      <div class="item item-text-wrap">
+          Public Repos: {{ profile.public_repos }}
+      </div>
+
+      <div class="item item-divider">
+        <b>Education</b> - <a href='' ng-click='showModal("education", profile.education)'><i class="icon ion-gear-b"></i></a>
+      </div>
+
+      <div class="item item-text-wrap">
         <div ng-repeat="school in profile.education">
           {{ school }}
-        </div><br/>
+        </div>
+      </div>
 
-        <b>GitHub Info</b><br/>
-        <div>
-            Public Repos: {{ profile.public_repos }}
-        </div><br/>
+      <div class="item item-divider">
+        <b>Past Experience</b> - <a href='' ng-click='showModal("position", profile.positions)'><i class="icon ion-gear-b"></i></a>
+      </div>
 
-        <b>Past Experience</b> - <a href='' ng-click='showModal("position", profile.positions)'>Edit</a><br/>
+      <div class="item item-text-wrap">
         <div ng-repeat="job in profile.positions">
           {{ job }}
         </div>
       </div>
+
     </div>
-
-    <!-- <div>
-      <b>General Information</b><br/>
-      <div>
-        <img ng-src="{{ profile.photo_url }}"/><br/>
-        {{ profile.fname }} {{ profile.lname }}<br/>
-        e-mail: dev@null.com<br/>
-        Location: {{ profile.location }}<br/><br/>
-      </div>
-
-      <b>Skills</b> - <a href='' ng-click='showModal("skill", profile.skills)'>Edit</a><br/>
-      <div ng-repeat="skill in profile.skills">
-        {{ skill }}
-      </div><br/>
-
-      <b>Education</b> - <a href='' ng-click='showModal("education", profile.education)'>Edit</a><br/>
-      <div ng-repeat="school in profile.education">
-        {{ school }}
-      </div><br/>
-
-      <b>GitHub Info</b><br/>
-      <div>
-          Public Repos: {{ profile.public_repos }}
-      </div><br/>
-
-      <b>Past Experience</b> - <a href='' ng-click='showModal("position", profile.positions)'>Edit</a><br/>
-      <div ng-repeat="job in profile.positions">
-        {{ job }}
-      </div><br/>
-
-    </div> -->
 
   </ion-content>
 
   <ion-pane ng-show="!profileView">
 
     <td-card>
-      <div class="image">
-        <b>Skills</b> - <a href='' ng-click='showModal("skills", profile.skills)'>Edit</a><br/>
-        <div ng-repeat="skill in profile.skills">
-          {{ skill }}
-        </div><br/>
+      <div class="list card">
 
-        <b>Education</b> - <a href='' ng-click='showModal("education", profile.education)'>Edit</a><br/>
-        <div ng-repeat="school in profile.education">
-          {{ school }}
-        </div><br/>
-
-        <b>GitHub Info</b><br/>
-        <div>
-            Public Repos: {{ profile.public_repos }}
-        </div><br/>
-
-        <b>Past Experience</b><br/>
-        <div>
-          {{ profile.positions }}
+        <div class="item item-divider">
+          <b>Skills</b>
         </div>
+
+        <div class="item item-text-wrap">
+          <span ng-repeat="skill in profile.skills">
+            {{ skill }}
+          </span>
+        </div>
+
+        <div class="item item-divider">
+          <b>GitHub Info</b><br/>
+        </div>
+        
+        <div class="item item-text-wrap">
+            Public Repos: {{ profile.public_repos }}
+        </div>
+
+        <div class="item item-divider">
+          <b>Education</b>
+        </div>
+
+        <div class="item item-text-wrap">
+          <span ng-repeat="school in profile.education">
+            {{ school }}
+          </span>
+        </div>
+
+        <div class="item item-divider">
+          <b>Past Experience</b>
+        </div>
+
+        <div class="item item-text-wrap">
+          <span ng-repeat="job in profile.positions">
+            {{ job }}
+          </span>
+        </div>
+
       </div>
 
     </td-card>
