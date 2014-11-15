@@ -53,8 +53,8 @@
                   <button type="submit" id='login' class="button wide-button">Sign In</button>
               </div>
             </div>
-            <div ng-show="badlogin">
-              <span>Incorrect username or password, please double-check and try again</span>
+            <div ng-show="badlogin" id="bad-login">
+              <span>Incorrect username or password</span>
             </div>
         </form>
         <form novalidate="novalidate" on-valid-submit="employerSignup(newEmployer)">

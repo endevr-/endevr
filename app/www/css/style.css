@@ -183,6 +183,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
   overflow: hidden;
 }
 
+#bad-login {
+  font-size: .5em;
+}
+
 .ghplanet {
   background-image: url('../img/github_icon.png');
 }
