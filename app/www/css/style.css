@@ -1,3 +1,8 @@
+.toggleLeft {
+  position: absolute;
+  right: 10px;
+}
+
 .helper-text {
   color: #B8C9D5;
   font-family: 'Londrina Solid', cursive;
@@ -73,13 +78,13 @@ form.ng-submitted input.ng-invalid + i.icon.error {
 }
 
 form .has-error {
-  border-left: 3px solid #cc2511; 
-  border-right: 3px solid #cc2511; 
+  border-left: 3px solid #cc2511;
+  border-right: 3px solid #cc2511;
 }
 
 form .has-success {
-  border-left: 3px solid #3d8b3d; 
-  border-right: 3px solid #3d8b3d; 
+  border-left: 3px solid #3d8b3d;
+  border-right: 3px solid #3d8b3d;
 }
 
 form.ng-submitted input.ng-valid + i.icon.error {
@@ -104,7 +109,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   -moz-flex: 0 0 30%;
   -ms-flex: 0 0 30%;
   flex: 0 0 30%;
-  max-width: 30%; 
+  max-width: 30%;
 }
 
 .validated input {
@@ -114,7 +119,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   -moz-flex: 0 0 60%;
   -ms-flex: 0 0 60%;
   flex: 0 0 60%;
-  max-width: 60%; 
+  max-width: 60%;
 }
 
 .validated error {
@@ -124,7 +129,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   -moz-flex: 0 0 10%;
   -ms-flex: 0 0 10%;
   flex: 0 0 10%;
-  max-width: 10%; 
+  max-width: 10%;
 }
 
 /*moon movement*/
