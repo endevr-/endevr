@@ -187,6 +187,9 @@ angular.module('endevr.controllers')
 
   // Add New List Item - Open the modal
   $scope.openNewListItemModal = function() {
+    $ionicListDelegate.closeOptionButtons();
+    $scope.showDelete = false;
+    $scope.showReOrder = false;
     $scope.newItem.value = '';
     $scope.newItemModal.show();
   };
