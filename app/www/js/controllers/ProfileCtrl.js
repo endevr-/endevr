@@ -1,11 +1,22 @@
 angular.module('endevr.controllers')
 
-.controller('ProfileCtrl', function($scope, $ionicModal, $http, localStorageService, $ionicListDelegate) {
+.controller('ProfileCtrl', function($scope, $ionicModal, $http, localStorageService, $ionicListDelegate, TDCardDelegate) {
 
   $scope.profile;
+
   var jwt_token = localStorageService.get('jwt_token');
   var userType = localStorageService.get('usertype');
   var profileUrl = 'http://localhost:9000/api/developers/profile?jwt_token=' + jwt_token + '&usertype=' + userType;
+
+  $scope.profileView = true;
+
+  $scope.viewCard = function() {
+    $scope.profileView = false;
+  }
+
+  $scope.viewProfile = function() {
+    $scope.profileView = true;
+  }
 
   // Retrieve the profile from the database
   $scope.getProfile = function() {
