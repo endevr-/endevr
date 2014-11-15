@@ -171,7 +171,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   /*make url local storage*/
   background-image: url('http://www.sernova.com/inc/nav_linkedin.png');
   background-size: 150px 150px;
-  left:28%;
+  left:26%;
   top:30%;
   box-shadow: -10px 10px 0 0px rgba(0,0,0,0.7);
   z-index: 5;
