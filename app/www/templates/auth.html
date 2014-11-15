@@ -49,8 +49,8 @@
                 <input type="password" ng-model="employer.password" name="password" required="required">
                 <i class="icon ion-alert-circled error"></i>
               </label>
-              <div>
-                  <button type="submit" class="button button-block button-stable">Sign In</button>
+              <div class="wide-button" style="padding-top: 10px">
+                  <button type="submit" id='login' class="button wide-button">Sign In</button>
               </div>
             </div>
             <div ng-show="badlogin">
@@ -59,7 +59,8 @@
         </form>
         <form novalidate="novalidate" on-valid-submit="employerSignup(newEmployer)">
             <div class="list">
-            <a ng-click="changeEmployerStatus()"<h3>New to endevr? Sign up.</h3></a>
+            <p class="signup">New to endevr?</p>
+            <u><a ng-click="changeEmployerStatus()" class='signup'>Sign up.</a></u>
               <div ng-show="isNewEmployer">
                 <label class="item item-input validated">
                   <span class="input-label">Email</span>

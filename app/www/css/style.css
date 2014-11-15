@@ -10,7 +10,6 @@
 
 #login {
   font-family: 'Londrina Solid', cursive;
-  background-color: #365E78;
   text-align: center;
   color: #173d55;
   border-radius: 10px;
@@ -26,7 +25,13 @@
   background-color: #365E78;
   font-size: 12vw;
   text-align: center;
+}
 
+.signup {
+  color: #173d55;
+  line-height: 1em;
+  padding-top: 10px;
+  font-size: 8vw;
 }
 
 a.login {
