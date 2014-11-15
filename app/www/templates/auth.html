@@ -78,9 +78,10 @@
                   <button type="submit" id='login' class="button wide-button">Sign Up</button>
                 </div>
               </div>
-            </div>
-            <div ng-show="duplicate">
-              <span>This username already exists, please choose another or log in with your account</span>
+              <div ng-show="duplicate" id='bad-login' style="padding-top: 10px">
+                <p>This email is already registered</p>
+                <p>Please choose another</p>
+              </div>
             </div>
         </form>
     </div>
