@@ -25,13 +25,15 @@
       </div>
 
       <div class="item item-divider">
-        <b>Skills</b> - <a href='' ng-click='showModal("skill", profile.skills)'><i class="icon ion-gear-b"></i></a>
+        <b>Skills</b> - <i ng-click='showModal("skills", profile.skills)' class="icon ion-gear-b"></i>
       </div>
 
       <div class="item item-text-wrap">
-        <div ng-repeat="skill in profile.skills">
-          {{ skill }}
-        </div>
+        <span ng-repeat="skill in profile.skills">
+          <span ng-if="!$last && $index < 5"><b>{{ skill }}</b>, </span>
+          <span ng-if="!$last && $index >= 5">{{ skill }}, </span>
+          <span ng-if="$last"> and {{ skill }}</span>
+        </span>
       </div>
 
       <div class="item item-divider">
@@ -43,22 +45,24 @@
       </div>
 
       <div class="item item-divider">
-        <b>Education</b> - <a href='' ng-click='showModal("education", profile.education)'><i class="icon ion-gear-b"></i></a>
+        <b>Education</b> - <i ng-click='showModal("education", profile.education)' class="icon ion-gear-b"></i>
       </div>
 
       <div class="item item-text-wrap">
         <div ng-repeat="school in profile.education">
-          {{ school }}
+          <span ng-if="$first"><b>{{ school }}</b></span>
+          <span ng-if="!$first">{{ school }}</span>
         </div>
       </div>
 
       <div class="item item-divider">
-        <b>Past Experience</b> - <a href='' ng-click='showModal("position", profile.positions)'><i class="icon ion-gear-b"></i></a>
+        <b>Past Experience</b> - <i ng-click='showModal("positions", profile.positions)' class="icon ion-gear-b"></i>
       </div>
 
       <div class="item item-text-wrap">
         <div ng-repeat="job in profile.positions">
-          {{ job }}
+          <span ng-if="$first"><b>{{ job }}</b></span>
+          <span ng-if="!$first">{{ job }}</span>
         </div>
       </div>
 
@@ -77,36 +81,33 @@
 
         <div class="item item-text-wrap">
           <span ng-repeat="skill in profile.skills">
-            {{ skill }}
+            <span ng-if="$index < 5">{{ skill }}, </span>
+            <span ng-if="$index === 5"> and {{ skill }}</span>
           </span>
         </div>
 
         <div class="item item-divider">
           <b>GitHub Info</b><br/>
         </div>
-        
+
         <div class="item item-text-wrap">
             Public Repos: {{ profile.public_repos }}
         </div>
 
         <div class="item item-divider">
-          <b>Education</b>
+          <b>Most Recent Education</b>
         </div>
 
         <div class="item item-text-wrap">
-          <span ng-repeat="school in profile.education">
-            {{ school }}
-          </span>
+          {{ profile.education[0] }}
         </div>
 
         <div class="item item-divider">
-          <b>Past Experience</b>
+          <b>Most Recent Past Experience</b>
         </div>
 
         <div class="item item-text-wrap">
-          <span ng-repeat="job in profile.positions">
-            {{ job }}
-          </span>
+          {{ profile.positions[0] }}
         </div>
 
       </div>

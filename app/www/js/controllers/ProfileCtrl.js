@@ -28,6 +28,7 @@ angular.module('endevr.controllers')
       .success(function(data) {
 
         var profile = data;
+
         // Change the skills object into an array so we can
         // display the data in order
         var skillsArray = [];
@@ -44,8 +45,17 @@ angular.module('endevr.controllers')
           educationArray[ parseInt(school) ] = profile.education[school];
         }
 
+        // Change the positions object into an array so we can
+        // display the data in order
+        var positionsArray = [];
+
+        for (var job in profile.positions) {
+          positionsArray[ parseInt(job) ] = profile.positions[job];
+        }
+
         profile.skills = skillsArray;
         profile.education = educationArray;
+        profile.positions = positionsArray;
         $scope.profile = profile;
 
       })
@@ -75,7 +85,7 @@ angular.module('endevr.controllers')
   $scope.showModal = function(category, items) {
 
     // Keeps track of what specific items we are editing
-    $scope.category = category.charAt(0).toUpperCase() + category.slice(1);;
+    $scope.category = category.charAt(0).toUpperCase() + category.slice(1);
     $scope.items = items;
     $scope.modal.show();
 
@@ -83,7 +93,6 @@ angular.module('endevr.controllers')
 
   // Editing List - Close modal and save changes to the database
   $scope.saveChanges = function() {
-    alert('saving');
     // Turn the items back into an object
     var updatedData = {};
     for (var index = 0; index < $scope.items.length; index++) {

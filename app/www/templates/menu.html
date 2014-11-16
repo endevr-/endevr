@@ -8,8 +8,8 @@
   <ion-side-menu side="left">
     <header alt="Menu"  class="bar bar-header bar-light">
     <div style="margin: 8% auto 0 auto">
-      <img class="title-image" 
-          src="img/header-logo.png" 
+      <img class="title-image"
+          src="img/header-logo.png"
           height="25px"
           width="85px"
           alt='endevr'/>
@@ -17,10 +17,22 @@
     </header>
     <ion-content class="has-header">
       <ion-list>
-        <ion-item class="item-stable" nav-clear menu-close ng-click="login()">Log Out</ion-item>
-        <ion-item class="item-stable" nav-clear menu-close ng-click="navigate('profile')">Profile</ion-item>
-        <ion-item class="item-stable" nav-clear menu-close ng-click="navigate('browse')">Browse</ion-item>
-        <ion-item class="item-stable" nav-clear menu-close ng-click="navigate('matches')">Matches</ion-item>
+        <ion-item class="item-stable item-icon-left" nav-clear menu-close ng-click="navigate('profile')">
+          <i class="icon ion-person"></i>
+          Profile
+        </ion-item>
+        <ion-item class="item-stable item-icon-left" nav-clear menu-close ng-click="navigate('browse')">
+          <i class="icon ion-ios7-albums"></i>
+          Browse
+        </ion-item>
+        <ion-item class="item-stable item-icon-left" nav-clear menu-close ng-click="navigate('matches')">
+          <i class="icon ion-person-stalker"></i>
+          Matches
+        </ion-item>
+        <ion-item class="item-stable item-icon-left" nav-clear menu-close ng-click="logout()">
+          <i class="icon ion-log-out"></i>
+          Log Out
+        </ion-item>
       </ion-list>
     </ion-content>
   </ion-side-menu>
