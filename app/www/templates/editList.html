@@ -3,23 +3,11 @@
     <div class="buttons">
       <button class="button button-clear" ng-click="cancelChanges()">Cancel</button>
     </div>
-    <h1 class="title">{{ category }} List</h1>
+    <h1 class="title">{{ category }}</h1>
   </ion-header-bar>
 
-  <div class="bar bar-subheader">
-    <div class="buttons">
-      <button class="button button-icon icon ion-ios7-minus-outline"
-        ng-click="toggleDelete()"></button>
-      <button class="button button-energized" ng-click="saveChanges()">Save!</button>
-      <button class="button button-energized" ng-click="openNewListItemModal()">Add New Item</button>
-      <button class="button"
-          ng-click="toggleReOrder()">
-            Reorder
-          </button>
-    </div>
-  </div>
 
-  <ion-content class="has-subheader">
+  <ion-content class="has-header">
 
 
       <ion-list show-delete="showDelete" show-reorder="showReOrder">
@@ -45,4 +33,24 @@
       </ion-list>
 
   </ion-content>
+
+  <div class="tabs tabs-icon-top tabs-light">
+    <a class="tab-item" ng-click="toggleDelete()">
+      <i class="icon ion-ios7-minus-outline"></i>
+      Delete
+    </a>
+    <a class="tab-item" ng-click="saveChanges()">
+      <i class="icon ion-locked"></i>
+      Save
+    </button>
+    <a class="tab-item" ng-click="openNewListItemModal()">
+      <i class="icon ion-compose"></i>
+      Add
+    </a>
+    <a class="tab-item"
+        ng-click="toggleReOrder()">
+      <i class="icon ion-android-storage"></i>
+      Reorder
+    </a>
+  </div>
 </div>
