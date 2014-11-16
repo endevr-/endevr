@@ -144,9 +144,13 @@ angular.module('endevr.controllers')
 
   // Editing List - Changes the order of the items in the array
   $scope.moveItem = function(item, fromIndex, toIndex) {
-
-    $scope.items.splice(fromIndex, 1);
-    $scope.items.splice(toIndex, 0, item);
+    if( (toIndex < $scope.items.length && toIndex >= 0) &&
+        fromIndex === $scope.items.indexOf(item) ) {
+      $scope.items.splice(fromIndex, 1);
+      $scope.items.splice(toIndex, 0, item);
+    } else {
+      return false;
+    }
 
   };
 
