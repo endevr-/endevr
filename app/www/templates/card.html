@@ -1,0 +1,62 @@
+<ion-view title="Card Profile">
+
+  <ion-nav-buttons side="left">
+
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+
+    <label menu-toggle="right" class="toggle toggle-assertive toggleLeft" ng-click="back()">
+       <input type="checkbox" checked>
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+
+  </ion-nav-buttons>
+
+  <ion-pane>
+
+    <td-card>
+      <div class="list card">
+
+        <div class="item item-divider">
+          <b>Skills</b>
+        </div>
+
+        <div class="item item-text-wrap">
+          <span ng-repeat="skill in profile.skills">
+            <span ng-if="$index < 5">{{ skill }}, </span>
+            <span ng-if="$index === 5"> and {{ skill }}</span>
+          </span>
+        </div>
+
+        <div class="item item-divider">
+          <b>GitHub Info</b><br/>
+        </div>
+
+        <div class="item item-text-wrap">
+            Public Repos: {{ profile.public_repos }}
+        </div>
+
+        <div class="item item-divider">
+          <b>Most Recent Education</b>
+        </div>
+
+        <div class="item item-text-wrap">
+          {{ profile.education[0] }}
+        </div>
+
+        <div class="item item-divider">
+          <b>Most Recent Past Experience</b>
+        </div>
+
+        <div class="item item-text-wrap">
+          {{ profile.positions[0] }}
+        </div>
+
+      </div>
+
+    </td-card>
+
+  </ion-pane>
+
+</ion-view>

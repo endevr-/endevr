@@ -1,6 +1,6 @@
 angular.module('endevr.controllers')
 
-.controller('AppCtrl', function($scope, $location, localStorageService) {
+.controller('AppCtrl', function($scope, $location, localStorageService, $ionicNavBarDelegate) {
 
   $scope.logout = function() {
     localStorageService.clearAll();
@@ -10,5 +10,9 @@ angular.module('endevr.controllers')
 
   $scope.navigate = function(route) {
     $location.path('/app/'+route);
+  };
+
+  $scope.back = function() {
+    $ionicNavBarDelegate.back();
   };
 });
