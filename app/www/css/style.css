@@ -17,7 +17,7 @@
   font-family: 'Londrina Solid', cursive;
   text-align: center;
   color: #173d55;
-  border-radius: 10px;
+  border-radius: 3.5px;
   border: 1px #B8C9D5 solid;
   box-shadow: 12px 0px 15px -4px #173d55, -12px 0 15px -4px #173d55;
   background-color: #C1E5FC;
@@ -43,7 +43,7 @@ a.login {
   color: #173d55;
   line-height: 3em;
   padding: 3px 8px;
-  border-radius: 10px;
+  border-radius: 3.5px;
   border: 1px #B8C9D5 solid;
   box-shadow: 12px 0px 15px -4px #173d55, -12px 0 15px -4px #173d55;
   background-color: #C1E5FC;
