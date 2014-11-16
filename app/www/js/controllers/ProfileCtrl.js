@@ -28,6 +28,7 @@ angular.module('endevr.controllers')
       .success(function(data) {
 
         var profile = data;
+
         // Change the skills object into an array so we can
         // display the data in order
         var skillsArray = [];
@@ -44,6 +45,8 @@ angular.module('endevr.controllers')
           educationArray[ parseInt(school) ] = profile.education[school];
         }
 
+        // Change the positions object into an array so we can
+        // display the data in order
         var positionsArray = [];
 
         for (var job in profile.positions) {
