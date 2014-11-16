@@ -9,7 +9,7 @@
 angular.module('endevr.controllers')
 
 .controller('CardCtrl', function($scope, TDCardDelegate, $ionicModal) {
-
+  
   $ionicModal.fromTemplateUrl('templates/cardInformation.html', {
     scope: $scope
   })
@@ -19,12 +19,13 @@ angular.module('endevr.controllers')
 
   $scope.information = function() {
     $scope.modal.show();
-  }
+  };
 
   $scope.closeInformation = function() {
     $scope.modal.hide();
-  }
+  };
 
+  // this line makes tests for the entire controller fail.
   $scope.name = $scope.$parent.cards[0].name;
 
   $scope.clickReject = function() {

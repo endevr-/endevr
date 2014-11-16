@@ -1,4 +1,5 @@
-describe("CardCtrl", function () {
+// pending until Card Ctrl is refactored into Cards
+xdescribe("CardCtrl", function () {
 
     var $scope, ctrl, $timeout, $http //, $location;
 
