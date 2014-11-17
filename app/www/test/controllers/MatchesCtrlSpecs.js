@@ -40,14 +40,44 @@ describe("MatchesCtrl", function () {
         expect($scope).toBeDefined();
     });
 
-    // Test 2: The simplest of the simple.
-    // here we're going to make sure the $scope variable 
-    // has closeLogin defined.
-    it('navigate should be defined', function() {
-      expect($scope.navigate).toBeDefined();
+    describe('navigate', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.navigate)).toBe(true);
+      });
     });
 
-    it('matches should be an array', function() {
-      expect(Array.isArray($scope.matches)).toEqual(true);
+
+    describe('getMatches', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.getMatches)).toBe(true);
+      });
+
+      it('matches should be an array', function() {
+        expect(Array.isArray($scope.matches)).toEqual(true);
+      });
+
+      it('should define a type and set interest based off local storage', function() {
+        expect($scope.type).toBeDefined();
+        expect($scope.interest).toBeDefined();
+      });
+
+      it('should contain objects with position IDs', function() {
+        $scope.matches = [{'positionID': 1}]
+        expect($scope.matches[0][id]).toBe(1);
+      });
+
+      xit('should make a GET request to */matches', function() {
+        expect(expecation).toBe(equal);
+      });
+
+      xit('should update the matches array', function() {
+        var oldMatchesArray = $scope.matches;
+        $scope.getMatches();
+        expect($scope.matches).not.toBe(oldMatchesArray);
+      });
+
+      xit('should call getMatches when the view is loaded', function() {
+        expect(expecation).toBe(equal);
+      });
     });
 });
