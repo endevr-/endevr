@@ -1,3 +1,16 @@
+.iconSize {
+  font-size: 6.5vw;
+}
+
+.splashTeal {
+  color: #365E78;
+}
+
+.splashOrange {
+  color: #EF4E3A;
+  font-weight: bold;
+}
+
 .toggleLeft {
   position: absolute;
   right: 10px;
