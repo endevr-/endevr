@@ -32,27 +32,26 @@ describe("AppCtrl", function () {
 
     });
 
-
-    // Test 1: The simplest of the simple.
-    // here we're going to make sure the $scope variable 
-    // exists evaluated.
     it("should have a $scope variable", function() {
         expect($scope).toBeDefined();
     });
 
-    // Test 2: The simplest of the simple.
-    // here we're going to make sure the $scope variable 
-    // has closeLogin defined.
-    it("closeLogin should be defined", function() {
-        expect($scope.closeLogin).toBeDefined();
+    describe('logout', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.logout)).toBe(true);
+      });
     });
 
-    it("login should be defined", function() {
-        expect($scope.login).toBeDefined();
+    describe('navigate', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.navigate)).toBe(true);
+      });
     });
 
-    it("navigate should be defined", function() {
-        expect($scope.navigate).toBeDefined();
+    describe('back', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.back)).toBe(true);
+      });
     });
 
 });

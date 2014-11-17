@@ -5,7 +5,6 @@ angular.module('endevr.controllers')
   $scope.logout = function() {
     localStorageService.clearAll();
     $location.path('/app/auth');
-    $scope.closeLogin();
   };
 
   $scope.navigate = function(route) {
