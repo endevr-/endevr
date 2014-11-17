@@ -57,8 +57,7 @@ angular.module('endevr.controllers')
 
   $scope.logout = function () {
     localStorageService.clearAll();
-    $state.go($state.current, {}, {reload: true});
-    $scope.closeLogin();
+    $state.go('app.auth', {}, {reload: true});
   };
 
   $scope.changeEmployerStatus = function() {
