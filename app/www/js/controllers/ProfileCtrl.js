@@ -1,70 +1,8 @@
 angular.module('endevr.controllers')
 
-.controller('ProfileCtrl', function($scope, $ionicModal, $http, localStorageService, $ionicListDelegate, TDCardDelegate) {
+.controller('ProfileCtrl', function($scope, $ionicModal, $http, localStorageService, $ionicListDelegate, TDCardDelegate, $location, profileService) {
 
   $scope.profile;
-
-  var jwt_token = localStorageService.get('jwt_token');
-  var userType = localStorageService.get('usertype');
-  var profileUrl = 'http://localhost:9000/api/developers/profile?jwt_token=' + jwt_token + '&usertype=' + userType;
-
-  $scope.profileView = true;
-
-  $scope.title = 'Full Profile';
-
-  $scope.toggleView = function() {
-    $scope.profileView = !$scope.profileView;
-    if ($scope.profileView) {
-      $scope.title = 'Full Profile';
-    } else {
-      $scope.title = 'Card Profile';
-    }
-  }
-
-  // Retrieve the profile from the database
-  $scope.getProfile = function() {
-
-    $http.get(profileUrl)
-      .success(function(data) {
-
-        var profile = data;
-
-        // Change the skills object into an array so we can
-        // display the data in order
-        var skillsArray = [];
-
-        for (var skill in profile.skills) {
-          skillsArray[ parseInt(skill) ] = profile.skills[skill];
-        }
-
-        // Change the education object into an array so we can
-        // display the data in order
-        var educationArray = [];
-
-        for (var school in profile.education) {
-          educationArray[ parseInt(school) ] = profile.education[school];
-        }
-
-        // Change the positions object into an array so we can
-        // display the data in order
-        var positionsArray = [];
-
-        for (var job in profile.positions) {
-          positionsArray[ parseInt(job) ] = profile.positions[job];
-        }
-
-        profile.skills = skillsArray;
-        profile.education = educationArray;
-        profile.positions = positionsArray;
-        $scope.profile = profile;
-
-      })
-      .error(function() {
-
-        console.log('Error getting profile');
-
-      });
-  };
 
   /*
    *    There are 3 different modals created in this section:
@@ -103,14 +41,11 @@ angular.module('endevr.controllers')
         category: $scope.category,
         data: updatedData
     };
-    // POST request to the database
-    $http.post(profileUrl, updatedInformation)
-      .success(function() {
-        $scope.getProfile();
-      })
-      .error(function() {
-        console.log('Error saving profile');
-      });
+
+    profileService.updateProfile(updatedInformation, function(profile) {
+      $scope.profile = profile;
+    });
+
     // Close modal and set the editing features to false
     $scope.modal.hide();
     $scope.showDelete = false;
@@ -121,7 +56,9 @@ angular.module('endevr.controllers')
   // Editing List - Closes the modal without updating changes
   $scope.cancelChanges = function() {
     delete $scope.items;
-    $scope.getProfile();
+    profileService.getProfile(function(profile) {
+      $scope.profile = profile;
+    });
     $scope.modal.hide();
     $scope.showDelete = false;
     $scope.showReOrder = false;
@@ -226,6 +163,8 @@ angular.module('endevr.controllers')
   $scope.showReOrder = false;
   $scope.editItem = {};
   $scope.newItem = {};
-  $scope.getProfile();
+  profileService.getProfile(function(profile) {
+    $scope.profile = profile;
+  });
 
 });

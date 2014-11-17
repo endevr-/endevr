@@ -75,6 +75,16 @@ angular.module('endevr', [
       }
     })
 
+    .state('app.card', {
+      url: '/card',
+      views: {
+        'menuContent' : {
+          templateUrl: 'templates/card.html',
+          controller: 'ProfileCtrl'
+        }
+      }
+    })
+
     .state('app.matches', {
       url: '/matches',
       views: {
