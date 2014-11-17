@@ -40,6 +40,11 @@ describe("MatchesCtrl", function () {
         expect($scope).toBeDefined();
     });
 
+    it('should define a type and set interest based off local storage', function() {
+      expect($scope.type).toBeDefined();
+      expect($scope.interest).toBeDefined();
+    });
+
     describe('navigate', function() {
       it('should be defined as a function', function() {
         expect(angular.isFunction($scope.navigate)).toBe(true);
@@ -56,10 +61,6 @@ describe("MatchesCtrl", function () {
         expect(Array.isArray($scope.matches)).toEqual(true);
       });
 
-      it('should define a type and set interest based off local storage', function() {
-        expect($scope.type).toBeDefined();
-        expect($scope.interest).toBeDefined();
-      });
 
       xit('should contain objects with position IDs', function() {
         $scope.matches = [{'positionID': 1}]

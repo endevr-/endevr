@@ -3,6 +3,11 @@ angular.module('endevr.controllers')
 .controller('MatchesCtrl', function($scope, $location, $http, localStorageService) {
   $scope.matches = [];
   $scope.type = localStorageService.get('usertype');
+  if($scope.type === 'dev') {
+    $scope.interest = 'Opportunities';
+  } else if($scope.type === 'emp') {
+    $scope.interest = 'Developers';
+  }
     
   // for testing employer matches
   // $scope.matches = [
@@ -31,7 +36,6 @@ angular.module('endevr.controllers')
     var jwt_token = localStorageService.get('jwt-token');
     // check local storage to get user type
     if ($scope.type === 'dev') {
-      $scope.interest = 'Opportunities';
       url = 'http://localhost:9000/api/developers/matches?jwt_token=' + jwt_token;
       // get matches from /developers/matches
       $http.get(url)
@@ -46,7 +50,6 @@ angular.module('endevr.controllers')
           console.log('Error getting matches');
         });
     } else if ($scope.type === 'emp') {
-      $scope.interest = 'Developers';
       url = 'http://localhost:9000/api/employers/matches?jwt_token=' + jwt_token;
       $http.get(url)
         .success(function(data) {
