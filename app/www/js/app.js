@@ -54,7 +54,6 @@ angular.module('endevr', [
       }
     })
 
-
     .state('app.auth', {
       url: '/auth',
       views: {
