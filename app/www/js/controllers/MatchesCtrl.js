@@ -1,16 +1,15 @@
 angular.module('endevr.controllers')
 
 .controller('MatchesCtrl', function($scope, $location, $http, localStorageService) {
-  // set matches variable
-  $scope.matches = [];
-  // $scope.matches = [
-  //   { title: 'Hack Reactor', id: 1 },
-  //   { title: 'Facebook', id: 2 },
-  //   { title: 'Google', id: 3 },
-  //   { title: 'Yahoo', id: 4 },
-  //   { title: 'Twitter', id: 5 },
-  //   { title: 'Airbnb', id: 6 }
-  // ];
+  // $scope.matches = [];
+  $scope.matches = [
+    { title: 'HIR', id: 1, employer: 'Hack Reactor' },
+    { title: 'Inside Sales', id: 2, employer: 'Facebook' },
+    { title: 'SEO Developer', id: 3, employer: 'Google' },
+    { title: 'Front-End Designer', id: 4, employer: 'Yahoo' },
+    { title: 'Senior Engineer', id: 5, employer: 'Twitter' },
+    { title: 'Customer Support', id: 6, employer: 'Airbnb' }
+  ];
 
   $scope.navigate = function(route) {
     $location.path('/app/matches/'+route);
@@ -53,5 +52,5 @@ angular.module('endevr.controllers')
   };
 
   // call matches on controller load
-  $scope.getMatches();
+  // $scope.getMatches();
 });

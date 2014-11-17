@@ -11,8 +11,14 @@
     <ion-list>
 
       <ion-item class="item-stable" ng-repeat="match in matches" ng-click="navigate({{match.id}})">
-
-        {{ match.title }}
+        <div class='split'>
+          <div class="left">
+            <b>{{ match.title }}</b>
+          </div>
+          <div class="right">
+            {{ match.employer }}
+          </div>
+        </div>
 
       </ion-item>
 

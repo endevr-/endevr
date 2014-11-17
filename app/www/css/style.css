@@ -6,6 +6,23 @@
   color: #365E78;
 }
 
+div.split {
+  overflow: hidden;
+  width: 100%;
+}
+
+div.left {
+  width: 45%;
+  float: left;
+  text-align: left;
+}
+
+div.right {
+  width: 45%;
+  float: right;
+  text-align: right;
+}
+
 .splashOrange {
   color: #EF4E3A;
   font-weight: bold;
