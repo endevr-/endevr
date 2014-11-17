@@ -24,46 +24,6 @@ describe("ProfileCtrl", function() {
         expect($scope).toBeDefined();
     });
 
-    describe('toggleView', function() {
-        it('should be defined as a function', function() {
-          expect(angular.isFunction($scope.toggleView)).toBe(true);
-        });
-
-        it('profileView should be true', function() {
-          expect($scope.profileView).toBe(true);
-        });
-
-        it('title should be "Full Profile"', function() {
-          expect($scope.title).toBe("Full Profile");
-        });
-
-        it('should change profileView to the opposite boolean', function() {
-          expect($scope.profileView).toBe(true);
-          $scope.toggleView();
-          expect($scope.profileView).toBe(false);
-        });
-
-        it('should change the title to "Card Profile"', function() {
-          expect($scope.title).toBe("Full Profile");
-          $scope.toggleView();
-          expect($scope.title).toBe("Card Profile");
-        });
-
-        it('should change the title to "Full Profile"', function() {
-          expect($scope.title).toBe("Full Profile");
-          $scope.toggleView();
-          expect($scope.title).toBe("Card Profile");
-          $scope.toggleView();
-          expect($scope.title).toBe("Full Profile");
-        });
-    });
-
-    describe('getProfile', function() {
-      it('should be defined as a function', function() {
-        expect(angular.isFunction($scope.getProfile)).toBe(true);
-      });
-    });
-
     describe('showModal', function() {
 
       it('should be defined as a function', function() {
