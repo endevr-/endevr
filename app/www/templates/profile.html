@@ -24,7 +24,7 @@
             Location: {{ profile.location }} </p>
       </div>
 
-      <div class="item item-divider">
+      <div class="item item-divider" ng-show='editable'>
         Skills <i ng-click='showModal("skills", profile.skills)' class="icon iconSize toggleLeft ion-gear-b"></i>
       </div>
 
@@ -44,7 +44,7 @@
           Public Repos: {{ profile.public_repos }}
       </div>
 
-      <div class="item item-divider">
+      <div class="item item-divider" ng-show='editable'>
         Education <i ng-click='showModal("education", profile.education)' class="icon iconSize toggleLeft ion-gear-b"></i>
       </div>
 
@@ -55,7 +55,7 @@
         </div>
       </div>
 
-      <div class="item item-divider">
+      <div class="item item-divider" ng-show='editable'>
         Past Experience <i ng-click='showModal("positions", profile.positions)' class="icon iconSize toggleLeft ion-gear-b"></i>
       </div>
 
