@@ -1,4 +1,4 @@
-<ion-view title="Matches">
+<ion-view title="Matched {{interest}}">
 
   <ion-nav-buttons side="left">
 
@@ -10,12 +10,29 @@
 
     <ion-list>
 
-      <ion-item class="item-stable" ng-repeat="match in matches" ng-click="navigate({{match.id}})">
-
-        {{ match.title }}
-
+      <ion-item ng-show="type === 'dev'" class="item-stable" ng-repeat="match in matches" ng-click="navigate({{match.id}})">
+        <div class='split'>
+          <div class="left">
+            <b>{{ match.title }}</b>
+          </div>
+          </br>
+          <div class="right">
+            {{ match.employer }}
+          </div>
+        </div>
       </ion-item>
 
+      <ion-item ng-show="type === 'emp'" class="item-stable" ng-repeat="match in matches" ng-click="navigate({{match.id}})">
+        <div class='split'>
+          <div class="left">
+            <b>{{ match.name }}</b>
+          </div>
+          </br>
+          <div class="right">
+            {{ match.title }}
+          </div>
+        </div>
+      </ion-item>
     </ion-list>
 
   </ion-content>

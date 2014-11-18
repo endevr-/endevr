@@ -108,8 +108,8 @@ angular.module('endevr', [
       url: '/matches/:matchId',
       views: {
         'menuContent' :{
-          templateUrl: 'templates/match.html',
-          controller: 'MatchCtrl'
+          templateUrl: 'templates/profile.html',
+          controller: 'ProfileCtrl'
         }
       }
     });

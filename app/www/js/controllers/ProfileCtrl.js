@@ -1,6 +1,12 @@
 angular.module('endevr.controllers')
 
 .controller('ProfileCtrl', function($scope, $ionicModal, $http, localStorageService, $ionicListDelegate, TDCardDelegate, $location, profileService) {
+  //check if you're at profile or matches to show/hide edit gear
+  if($location.path().search('profile') >= 0) {
+    $scope.editable = true;
+  } else if($location.path().search('matches') >= 0) {
+    $scope.editable = false;
+  }
 
   $scope.profile;
 

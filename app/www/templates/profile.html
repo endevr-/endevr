@@ -2,9 +2,11 @@
 
   <ion-nav-buttons side="left">
 
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    <button menu-toggle="left" ng-show='editable' class="button button-icon icon ion-navicon"></button>
 
-    <label menu-toggle="right" class="toggle toggle-assertive toggleLeft" ng-click="navigate('card')">
+    <button ng-show='!editable' class="button button-icon icon ion-ios7-arrow-back button-clear" ng-click="back()"></button>
+
+    <label menu-toggle="right" ng-show='editable' class="toggle toggle-assertive toggleLeft" ng-click="navigate('card')">
        <input type="checkbox" checked>
        <div class="track">
          <div class="handle"></div>
@@ -24,7 +26,7 @@
             Location: {{ profile.location }} </p>
       </div>
 
-      <div class="item item-divider">
+      <div class="item item-divider" ng-show='editable'>
         Skills <i ng-click='showModal("skills", profile.skills)' class="icon iconSize toggleLeft ion-gear-b"></i>
       </div>
 
@@ -44,7 +46,7 @@
           Public Repos: {{ profile.public_repos }}
       </div>
 
-      <div class="item item-divider">
+      <div class="item item-divider" ng-show='editable'>
         Education <i ng-click='showModal("education", profile.education)' class="icon iconSize toggleLeft ion-gear-b"></i>
       </div>
 
@@ -55,7 +57,7 @@
         </div>
       </div>
 
-      <div class="item item-divider">
+      <div class="item item-divider" ng-show='editable'>
         Past Experience <i ng-click='showModal("positions", profile.positions)' class="icon iconSize toggleLeft ion-gear-b"></i>
       </div>
 
