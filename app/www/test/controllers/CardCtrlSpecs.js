@@ -15,10 +15,7 @@ describe("CardCtrl", function () {
 
             // create a scope object for us to use.
             $scope = $rootScope.$new();
-            // $location = $injector.get('$location');
-            // assign $timeout to a scoped variable so we can use
-            // $timeout.flush() later. Notice the _underscore_ trick
-            // so we can keep our names clean in the tests.
+            $scope.$parent.cards = [{'name':'Adam'}, {'name':'Santa'}];
             $timeout = _$timeout_;
 
             // now run that scope through the controller function,
