@@ -8,7 +8,11 @@ angular.module('endevr.controllers')
   };
 
   $scope.navigate = function(route) {
-    $location.path('/app/'+route);
+    if (route === 'profile') {
+      $location.path('/app/'+localStorageService.get('usertype')+'profile');
+    } else {
+      $location.path('/app/'+route);
+    }
   };
 
   $scope.back = function() {

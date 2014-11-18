@@ -255,3 +255,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 
 /*End CSS for planets*/
+
+h2.empProfile {
+  color: #000000;
+  text-align: center;
+}

@@ -15,9 +15,8 @@ angular.module('endevr.controllers')
         if (data.jwt) {
           $scope.duplicate = false;
           $scope.badlogin = false;
-          console.log("success: ", data.jwt);
           localStorageService.set('employer-token', true);
-          localStorageService.set('jwt-token', data.jwt);
+          localStorageService.set('jwt_token', data.jwt);
           localStorageService.set('usertype', 'emp');
           $location.path('/app/browse');
         } else {
@@ -39,9 +38,8 @@ angular.module('endevr.controllers')
         if (data.jwt) {
           $scope.duplicate = false;
           $scope.badlogin = false;
-          console.log("success: ", data.jwt);
           localStorageService.set('employer-token', true);
-          localStorageService.set('jwt-token', data.jwt);
+          localStorageService.set('jwt_token', data.jwt);
           localStorageService.set('usertype', 'emp');
           $location.path('/app/browse');
         } else {
