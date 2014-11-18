@@ -22,6 +22,7 @@ angular.module('endevr.controllers')
     $location.path('/app/browse');
   } else if ($scope.EmployerAuthenticated === true) { //This route needs work after server is set up
     $scope.Authenticated = true;
+    $location.path('/app/browse');
   } else { //User needs to be authenticated, show them the authentication flow
     $scope.needsAuthentication = true;
   }
