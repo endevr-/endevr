@@ -1,6 +1,6 @@
 describe("LoginCtrl", function () {
 
-    var $scope, ctrl, $timeout, $http //, $location;
+    var $scope, ctrl, $timeout, $httpBackend; //, $location;
 
     beforeEach(function () {
         module('endevr');
@@ -10,26 +10,19 @@ describe("LoginCtrl", function () {
         // $controller - injected to create an instance of our controller.
         // $q - injected so we can create promises for our mocks.
         // _$timeout_ - injected to we can flush unresolved promises.
-        inject(function ($rootScope, $controller, $q, _$timeout_) {
+        inject(function ($rootScope, $controller, _$httpBackend_, $q, _$timeout_) {
 
             // create a scope object for us to use.
             $scope = $rootScope.$new();
-            // $location = $injector.get('$location');
-            // assign $timeout to a scoped variable so we can use
-            // $timeout.flush() later. Notice the _underscore_ trick
-            // so we can keep our names clean in the tests.
-            $timeout = _$timeout_;
 
-            // now run that scope through the controller function,
-            // injecting any services or other injectables we need.
-            // **NOTE**: this is the only time the controller function
-            // will be run, so anything that occurs inside of that
-            // will already be done before the first spec.
+            $timeout = _$timeout_;
+            $httpBackend = _$httpBackend_;
+
             ctrl = $controller('LoginCtrl', {
                 $scope: $scope
             });
-        });
 
+        });
     });
 
 
@@ -53,10 +46,45 @@ describe("LoginCtrl", function () {
       expect(typeof $scope.githublogin).toBe('function');
     });
 
-    it('employerLogin should be defined as a function', function() {
-      expect($scope.employerLogin).toBeDefined();
-      expect(typeof $scope.employerLogin).toBe('function');
+    describe('employerLogin', function() {
+      it('employerLogin should be defined as a function', function() {
+        expect(angular.isFunction($scope.employerLogin)).toBe(true);
+      });
+
+      xit('should not login with incorrect credentials', function() {
+          var employer = {};
+          employer['email'] = 'test@test.com';
+          employer['password'] = 'wrong';
+          $httpBackend.flush();
+          $scope.employerLogin(employer);
+          $timeout(function() {
+            expect($scope.badlogin).toBe(true);
+          }, 1000);
+      });
+
+      xdescribe('correct credentials', function() {
+        var employer; 
+        beforeEach(function() {
+          employer = {
+            email: 'test@test.com',
+            password: 'password'
+          };
+        })
+
+        xit('should set duplicate and badlogin to false', function() {
+          $scope.employerLogin(employer);
+          $httpBackend.flush();
+          expect($scope.duplicate).toBe(false);
+          expect($scope.badlogin).toBe(false);
+        });
+
+        xit('should return a JWT', function() {
+          expect(data.jwt).toBeDefined();
+        });
+      });
+
     });
+
 
     it('employerSignup should be defined as a function', function() {
       expect($scope.employerSignup).toBeDefined();
@@ -66,5 +94,17 @@ describe("LoginCtrl", function () {
     it('logout should be defined as a function', function() {
       expect($scope.logout).toBeDefined();
       expect(typeof $scope.logout).toBe('function');
+    });
+
+    describe('changeEmployerStatus', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.changeEmployerStatus)).toBe(true);
+      });
+
+      it('should change the employer status', function() {
+        expect($scope.isNewEmployer).toBe(false);
+        $scope.changeEmployerStatus();
+        expect($scope.isNewEmployer).toBe(true);
+      });
     });
 });

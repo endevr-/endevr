@@ -7,7 +7,6 @@ angular.module('endevr.controllers')
   $scope.newEmployer = {};
   $scope.isNewEmployer = false;
 
-
   $scope.employerLogin = function(employer) {
     console.log(employer)
     $http.post('http://localhost:9000/api/employers/login', {email: employer.email, password: employer.password})
@@ -19,7 +18,7 @@ angular.module('endevr.controllers')
           localStorageService.set('jwt_token', data.jwt);
           localStorageService.set('returning', true);
           localStorageService.set('usertype', 'emp');
-          $location.path('/app/browse');
+          // $location.path('/app/browse');
         } else {
           $scope.badlogin = true;
           console.log('Bad Username or Password');
