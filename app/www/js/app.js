@@ -64,12 +64,22 @@ angular.module('endevr', [
       }
     })
 
-    .state('app.profile', {
-      url: '/profile',
+    .state('app.devprofile', {
+      url: '/devprofile',
       views: {
         'menuContent' : {
           templateUrl: 'templates/profile.html',
           controller: 'ProfileCtrl'
+        }
+      }
+    })
+
+    .state('app.empprofile', {
+      url: '/empprofile',
+      views: {
+        'menuContent' : {
+          templateUrl: 'templates/empprofile.html',
+          controller: 'EmpProfileCtrl'
         }
       }
     })
