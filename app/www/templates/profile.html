@@ -2,7 +2,9 @@
 
   <ion-nav-buttons side="left">
 
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    <button menu-toggle="left" ng-show='editable' class="button button-icon icon ion-navicon"></button>
+
+    <button ng-show='!editable' class="button button-icon icon ion-ios7-arrow-back button-clear" ng-click="back()"></button>
 
     <label menu-toggle="right" ng-show='editable' class="toggle toggle-assertive toggleLeft" ng-click="navigate('card')">
        <input type="checkbox" checked>
