@@ -8,7 +8,11 @@ angular.module('endevr.controllers')
     $scope.editable = false;
   }
 
-  $scope.profile;
+  if (localStorageService.get('profile')) {
+    $scope.profile = localStorageService.get('profile');
+  } else {
+    $scope.profile;
+  }
 
   /*
    *    There are 3 different modals created in this section:
@@ -44,12 +48,13 @@ angular.module('endevr.controllers')
     }
     // Object we are passing back to the database
     var updatedInformation = {
-        category: $scope.category,
+        category: $scope.category.toLowerCase(),
         data: updatedData
     };
 
     profileService.updateProfile(updatedInformation, function(profile) {
       $scope.profile = profile;
+      localStorageService.set('profile', $scope.profile);
     });
 
     // Close modal and set the editing features to false
@@ -64,6 +69,7 @@ angular.module('endevr.controllers')
     delete $scope.items;
     profileService.getProfile(function(profile) {
       $scope.profile = profile;
+      localStorageService.set('profile', $scope.profile);
     });
     $scope.modal.hide();
     $scope.showDelete = false;
@@ -169,8 +175,12 @@ angular.module('endevr.controllers')
   $scope.showReOrder = false;
   $scope.editItem = {};
   $scope.newItem = {};
-  profileService.getProfile(function(profile) {
-    $scope.profile = profile;
-  });
+  //If profile doesn't exist in local storage, GET it
+  if (!localStorageService.get('profile')) {
+    profileService.getProfile(function(profile) {
+      $scope.profile = profile;
+      localStorageService.set('profile', profile);
+    });
+  }
 
 });
