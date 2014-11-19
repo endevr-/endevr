@@ -37,7 +37,12 @@
       </div>
 
       <div class="item item-text-wrap">
-        <span>Contact Name: {{ profile.contact_person }} <i ng-click='showModal("Contact Name", "contact_person", profile.contact_person)' class="icon iconSize toggleLeft ion-gear-b"></i></span>
+        <div class='split'>
+          <div class="right"><i ng-click='showModal("Contact Name", "contact_person", profile.contact_person)' class="icon iconSize toggleLeft ion-gear-b"></i></div>
+          <div class="left"><u>Contact Name</u></div>
+          </br>
+          <div class="left">{{ profile.contact_person }}</div>
+        </div>
       </div>
 
       <div class="item item-text-wrap">
