@@ -37,7 +37,7 @@ angular.module('endevr.controllers')
     // alert(url);
     if (usertype === 'dev') {
       //Remove the hardcoded value on line 29 for the real developer ID
-      fields.devid = 1;
+      // fields.devid = 1;
       fields.posid = card.id;
       fields.devint = interest;
 
@@ -50,9 +50,9 @@ angular.module('endevr.controllers')
         });
 
     } else {
-      fields.devid = card.developers_id;
+      fields.devid = card.id;
       //Remove the hardcoded value on line 37 for actual position ID
-      fields.posid = 1;
+      fields.posid = $scope.$parent.posid;
       fields.empint = interest;
 
       $http.post(url, fields)
