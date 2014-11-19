@@ -1,6 +1,6 @@
 angular.module('endevr.controllers')
 
-.controller('CardsCtrl', function($scope, $http, TDCardDelegate, queueService, localStorageService) {
+.controller('CardsCtrl', function($scope, $http, TDCardDelegate, queueService, localStorageService, $interval) {
 
   var cardTypes = [];
   $scope.cards = Array.prototype.slice.call(cardTypes, 0);
@@ -11,9 +11,25 @@ angular.module('endevr.controllers')
 
   var jwt_token = localStorageService.get('jwt_token');
 
-  cardQueue.storeTotalCards( jwt_token, userType, function(card) {
-    $scope.cards = card;
-  });
+  if (userType === 'dev') {
+    cardQueue.storeTotalCards( jwt_token, userType, null, function(card) {
+      $scope.cards = card;
+    });
+  }
+
+  var check = true;
+
+  $interval(function() {
+    if (check) {
+      if ($scope.$parent.posid !== undefined) {
+        cardQueue.storeTotalCards( jwt_token, userType, $scope.$parent.posid, function(card) {
+          $scope.cards = card;
+          check = false;
+        });
+      }
+
+    }
+  }, 1000)
 
   $scope.cardDestroyed = function() {
     // console.log('destroyed');

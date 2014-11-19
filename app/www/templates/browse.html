@@ -6,7 +6,19 @@
 
   </ion-nav-buttons>
 
-  <ion-pane ng-controller="CardsCtrl">
+  <ion-content class="has-header" ng-show="!chosen">
+    hello.
+    <ion-list>
+
+      <ion-item class="item-stable" ng-repeat="position in positions" ng-click="decide(position.id)">
+        {{ position.position }}
+      </ion-item>
+
+    </ion-list>
+
+  </ion-content>
+
+  <ion-pane ng-show="chosen" ng-controller="CardsCtrl">
 
       <td-cards>
 
@@ -20,7 +32,7 @@
           <!-- ng-click="information()" will be used in card when users can
           click to get more information -->
 
-          
+
           <!-- Show developer cards to employers -->
           <div ng-show="type=='emp'">
             <div class="list card">
