@@ -1,5 +1,5 @@
 // pending until Card Ctrl is refactored into Cards
-xdescribe("CardCtrl", function () {
+describe("CardCtrl", function () {
 
     var $scope, ctrl, $timeout, $http //, $location;
 
@@ -41,22 +41,21 @@ xdescribe("CardCtrl", function () {
         expect($scope).toBeDefined();
     });
 
-    // Test 2: The simplest of the simple.
-    // here we're going to make sure the $scope variable 
-    // has closeLogin defined.
-    it('information should be defined', function() {
+    // Tests are pending because functions are not used on this iteration
+    // Ability to click on card for more info is removed.
+    xit('information should be defined', function() {
       expect($scope.information).toBeDefined();
     });
 
-    it('closeInformation should be defined', function() {
+    xit('closeInformation should be defined', function() {
       expect($scope.closeInformation).toBeDefined();
     });
 
-    it('clickReject should be defined', function() {
+    xit('clickReject should be defined', function() {
       expect($scope.clickReject).toBeDefined();
     });
 
-    it('clickAccept should be defined', function() {
+    xit('clickAccept should be defined', function() {
       expect($scope.clickAccept).toBeDefined();
     });
 
