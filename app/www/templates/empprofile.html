@@ -25,11 +25,15 @@
           </br>
           <div class="left">{{ profile.name }}</div>
         </div>
-<!--         <span>Company Name: {{ profile.name }} <i ng-click='showModal("Company Name", "name", profile.name)' class="icon iconSize toggleLeft ion-gear-b"></i></span> -->
       </div>
 
       <div class="item item-text-wrap">
-        <span>Location: {{ profile.location }} <i ng-click='showModal("Location", "location", profile.location)' class="icon iconSize toggleLeft ion-gear-b"></i></span>
+        <div class='split'>
+          <div class="right"><i ng-click='showModal("Location", "location", profile.location)' class="icon iconSize toggleLeft ion-gear-b"></i></div>
+          <div class="left"><u>Location:</u></div>
+          </br>
+          <div class="left">{{ profile.location }}</div>
+        </div>
       </div>
 
       <div class="item item-text-wrap">
