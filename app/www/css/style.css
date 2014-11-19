@@ -277,3 +277,8 @@ h2.empProfile {
   color: #000000;
   text-align: center;
 }
+
+
+div.nocards {
+  padding-top: 50%;
+}

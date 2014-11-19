@@ -20,6 +20,12 @@
 
   <ion-pane ng-show="chosen" ng-controller="CardsCtrl">
 
+      <div ng-show="noCards" class="nocards" style="text-align: center;">
+        <i style="color: #365E78; font-size: 70px" class="ion-sad browse"></i>
+        <h1 style="color: #365E78;">No more cards</h1>
+        <h3 style="color: #365E78;">check again later</h3>
+      </div>
+
       <td-cards>
 
         <td-card
@@ -32,11 +38,9 @@
           <!-- ng-click="information()" will be used in card when users can
           click to get more information -->
 
-
           <!-- Show developer cards to employers -->
           <div ng-show="type=='emp'">
             <div class="list card">
-
               <div class="item item-divider">
                 Skills
               </div>
@@ -80,7 +84,6 @@
           <div ng-show="type=='dev'">
 
             <div class="list card">
-
               <img class="tdImage" ng-src="{{card.image}}">
 
               <div class="item item-divider">
