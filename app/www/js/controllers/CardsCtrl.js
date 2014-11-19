@@ -29,6 +29,11 @@ angular.module('endevr.controllers')
       cardQueue.storeTotalCards( jwt_token, userType, newVal, function(card) {
         $scope.cards = card;
         check = false;
+        if ($scope.cards.length === undefined) {
+          $scope.noCards = true;
+        } else {
+          $scope.noCards = false;
+        }
       });
     }
   });
