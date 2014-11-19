@@ -1,6 +1,6 @@
 angular.module('endevr.controllers')
 
-.controller('ProfileCtrl', function($scope, $ionicModal, $http, localStorageService, $ionicListDelegate, TDCardDelegate, $location, profileService) {
+.controller('ProfileCtrl', function($scope, $ionicModal, $http, localStorageService, $ionicNavBarDelegate, TDCardDelegate, $location, profileService) {
   //check if you're at profile or matches to show/hide edit gear
   if($location.path().search('profile') >= 0) {
     $scope.editable = true;
@@ -169,6 +169,10 @@ angular.module('endevr.controllers')
       $scope.items.push(newItem.value);
       $scope.newItemModal.hide();
   };
+
+  $scope.goBack = function() {
+    $ionicNavBarDelegate.back();
+  }
 
   // Initialize default values
   $scope.showDelete = false;

@@ -2,7 +2,6 @@ angular.module('endevr.controllers')
 
 .controller('MatchesCtrl', function($rootScope, $scope, $location, $http, localStorageService) {
   $scope.matches = [{fname: 'Adam', lname: 'Back'}, {fname:'Anna', lname:'Jaffe'}];
-  $scope.positions = {position: 'HIR', position: 'Teacher'};
   $scope.chosen = false;
   
   $scope.type = localStorageService.get('usertype');
@@ -39,6 +38,10 @@ angular.module('endevr.controllers')
   $scope.navigate = function(route) {
     $location.path('/app/matches/'+route);
   };
+
+  $scope.backToJobs = function() {
+    $scope.chosen = false;
+  }
 
   $scope.getMatches = function() {
     var url;

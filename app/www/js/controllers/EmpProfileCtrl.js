@@ -1,6 +1,6 @@
 angular.module('endevr.controllers')
 
-.controller('EmpProfileCtrl', function($scope, $ionicModal, $http, localStorageService, $ionicListDelegate, TDCardDelegate, $location, empProfileService, $window) {
+.controller('EmpProfileCtrl', function($scope, $ionicModal, $http, localStorageService, $ionicNavBarListDelegate, TDCardDelegate, $location, empProfileService, $window) {
 
   $scope.profile;
 
@@ -54,6 +54,10 @@ angular.module('endevr.controllers')
   empProfileService.getProfile(function(profile) {
     $scope.profile = profile;
   });
+
+  $scope.goBack = function() {
+    $ionicNavBarDelegate.back();
+  }
 
   $scope.emailEmployer = function(emailAddress) {
     $window.location.href = "mailto:" + emailAddress;    
