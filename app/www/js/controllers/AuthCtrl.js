@@ -7,8 +7,8 @@ angular.module('endevr.controllers')
     $scope.LinkedInAuthenticated = true;
     $scope.type = 'dev';
   }
-  //If user has a github-token they've passed GitHub Auth (& we already know they're a dev)
-  if (localStorageService.get('github-token')) {
+  //If user has a github-token they've passed GitHub Auth (& we already know they're a dev) or they're returning so don't ask
+  if (localStorageService.get('github-token') || localStorageService.get('returning')) {
     $scope.GitHubAuthenticated = true;
   }
   //If user has employer token, they've passed Employer Auth and are an employer
