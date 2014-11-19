@@ -1,0 +1,61 @@
+<div class="modal">
+
+    <ion-header-bar>
+      <div class="buttons">
+        <button class="button button-icon icon ion-ios7-arrow-back button-clear" ng-click="devProfileModal.hide()"></button>
+      </div>
+      <h1 class="title">Full Profile</h1>
+    </ion-header-bar>
+
+    <ion-content class="has-header">
+
+      <div class="list card">
+        <div class="item item-avatar item-text-wrap">
+          <img ng-src="{{ profile.photo_url }}" >
+          <b> {{ profile.fname }} {{ profile.lname }}</b>
+          <p> e-mail: dev@null.com<br/>
+              Location: {{ profile.location }} </p>
+        </div>
+
+        <div class="item item-divider">
+          Skills
+        </div>
+
+        <div class="item item-text-wrap">
+          <span ng-repeat="skill in profile.skills">
+            <span ng-if="!$last && $index < 5"><b>{{ skill }}</b>, </span>
+            <span ng-if="!$last && $index >= 5">{{ skill }}, </span>
+            <span ng-if="$last"> and {{ skill }}</span>
+          </span>
+        </div>
+
+        <div class="item item-divider"><b>GitHub Info</b><br/></div>
+
+        <div class="item item-text-wrap">Public Repos: {{ profile.public_repos }}</div>
+
+        <div class="item item-divider">Education</div>
+
+        <div class="item item-text-wrap">
+          <div ng-repeat="school in profile.education">
+            <span ng-if="$first"><b>{{ school }}</b></span>
+            <span ng-if="!$first">{{ school }}</span>
+          </div>
+        </div>
+
+        <div class="item item-divider">Past Experience</div>
+
+        <div class="item item-text-wrap">
+          <div ng-repeat="job in profile.positions">
+            <span ng-if="$first"><b>{{ job }}</b></span>
+            <span ng-if="!$first">{{ job }}</span>
+          </div>
+        </div>
+
+      </div>
+
+    </ion-content>
+
+  </ion-view>
+  
+</div>
+

@@ -10,7 +10,7 @@
   <ion-content class="has-header">
 
     <ion-list>
-      <ion-item ng-show="type === 'dev'" class="item-stable" ng-repeat="match in matches" ng-click="navigate({{match.employers_id}})">
+      <ion-item ng-show="type === 'dev'" class="item-stable" ng-repeat="match in matches" ng-click="showModal(match)">
         <div class='split'>
           <div class="left">
             <b>{{ match.position }}</b>
@@ -26,7 +26,7 @@
         {{ position.position }}
       </ion-item>
 
-      <ion-item ng-show="type === 'emp' && chosen === true" class="item-stable" ng-repeat="match in matches" ng-click="navigate({{match.id}})">
+      <ion-item ng-show="type === 'emp' && chosen === true" class="item-stable" ng-repeat="match in matches" ng-click="showModal(match)">
         <div class='split'>
           <div class="left">
             <b>{{ match.fname }} {{ match.lname }}</b>

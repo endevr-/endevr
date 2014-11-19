@@ -1,18 +1,18 @@
 angular.module('endevr.controllers')
 
-.controller('MatchesCtrl', function($rootScope, $scope, $location, $http, localStorageService) {
-  $scope.matches = [{fname: 'Adam', lname: 'Back'}, {fname:'Anna', lname:'Jaffe'}];
-  $scope.chosen = false;
-  
+.controller('MatchesCtrl', function($rootScope, $scope, $location, $http, localStorageService, $ionicModal) {
+  $scope.matches = [];
   $scope.type = localStorageService.get('usertype');
+
   if($scope.type === 'dev') {
     $scope.interest = 'Opportunities';
-    $scope.chosen = false;
+    $scope.getMatches();
   } else if($scope.type === 'emp') {
+    $scope.chosen = false;
     $scope.interest = 'Developers';
     var jwt_token = localStorageService.get('jwt_token');
+    //get positions to list on screen for selection
     var positionUrl = 'http://localhost:9000/api/employers/positions?jwt_token=' + jwt_token + '&usertype=emp';
-
     $http.get(positionUrl)
       .success(function(data) {
         $scope.positions = data;
@@ -21,19 +21,39 @@ angular.module('endevr.controllers')
         console.log('Error getting positions');
       });
 
-  } else {
-    $scope.chosen = true;
   }
   
-  ///
-
   $scope.decide = function(posid) {
     $rootScope.posid = posid;
     $scope.posid = posid;
-    $scope.chosen = true;
+    $scope.getMatches();
   }
 
-  ///
+  $ionicModal.fromTemplateUrl('templates/devProfileModal.html', {
+    scope: $scope
+    })
+    .then(function(modal) {
+      $scope.devProfileModal = modal;
+    });
+
+  $ionicModal.fromTemplateUrl('templates/empProfileModal.html', {
+    scope: $scope
+    })
+    .then(function(modal) {
+      $scope.empProfileModal = modal;
+    });
+
+  // View Profile - Show Modal
+  $scope.showModal = function(info) {
+    $scope.profile = info;
+
+    if($scope.type === 'dev') {
+      $scope.empProfileModal.show();
+    } else if($scope.type === 'emp') {
+      $scope.devProfileModal.show();
+    }
+
+  };
 
   $scope.navigate = function(route) {
     $location.path('/app/matches/'+route);
@@ -65,9 +85,12 @@ angular.module('endevr.controllers')
       url = 'http://localhost:9000/api/employers/matches?jwt_token=' + jwt_token + '&usertype=emp&posid=' + $rootScope.posid;
       $http.get(url)
         .success(function(data) {
+          // clear matches first
+          $scope.matches = [];
           for (var matchedDev = 0; matchedDev < data.length; matchedDev++) {
             $scope.matches.push( data[matchedDev] );
           }
+          $scope.chosen = true;
         })
         .error(function() {
           console.log('Error getting matches');
