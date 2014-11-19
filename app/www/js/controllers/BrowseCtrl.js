@@ -33,6 +33,12 @@ angular.module('endevr.controllers')
     $scope.chosen = true;
   }
 
+  $scope.$parent.$watch('current', function(newVal, oldVal) {
+    if (newVal !== oldVal && localStorageService.get('usertype') === 'emp') {
+      $scope.chosen = false;
+    }
+  });
+
   $scope.decide = function(posid) {
     $rootScope.posid = posid;
     $scope.posid = posid;
