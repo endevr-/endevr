@@ -4,7 +4,7 @@ angular.module('endevr.controllers')
 // Currently hardcoded for 'Browse Employers'
 // but should be variable for 'Browse Candidates'
 // in the future.
-.controller('BrowseCtrl', function($scope, localStorageService, $http) {
+.controller('BrowseCtrl', function($rootScope, $scope, localStorageService, $http) {
   $scope.chosen = false;
 
   if (localStorageService.get('usertype') === 'dev') {
@@ -34,7 +34,7 @@ angular.module('endevr.controllers')
   }
 
   $scope.decide = function(posid) {
-    $scope.posid = posid;
+    $rootScope.posid = posid;
     $scope.chosen = true;
   }
 

@@ -25,12 +25,11 @@
       <ion-item ng-show="type === 'emp'" class="item-stable" ng-repeat="match in matches" ng-click="navigate({{match.id}})">
         <div class='split'>
           <div class="left">
-            <b>{{ match.name }}</b>
+            <b>{{ match.fname }} {{ match.lname }}</b>
           </div>
           </br>
-          <div class="right">
-            {{ match.title }}
-          </div>
+          <!-- Decide what second piece of info to display -->
+          <div class="right"></div>
         </div>
       </ion-item>
     </ion-list>
