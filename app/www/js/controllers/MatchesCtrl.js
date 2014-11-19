@@ -1,6 +1,6 @@
 angular.module('endevr.controllers')
 
-.controller('MatchesCtrl', function($scope, $location, $http, localStorageService) {
+.controller('MatchesCtrl', function($rootScope, $scope, $location, $http, localStorageService) {
   $scope.matches = [];
   $scope.type = localStorageService.get('usertype');
   if($scope.type === 'dev') {
@@ -33,10 +33,10 @@ angular.module('endevr.controllers')
 
   $scope.getMatches = function() {
     var url;
-    var jwt_token = localStorageService.get('jwt-token');
+    var jwt_token = localStorageService.get('jwt_token');
     // check local storage to get user type
     if ($scope.type === 'dev') {
-      url = 'http://localhost:9000/api/developers/matches?jwt_token=' + jwt_token;
+      url = 'http://localhost:9000/api/developers/matches?jwt_token=' + jwt_token + '&usertype=dev';
       // get matches from /developers/matches
       $http.get(url)
         .success(function(data) {
@@ -47,10 +47,10 @@ angular.module('endevr.controllers')
           }
         })
         .error(function() {
-          console.log('Error getting matches');
+          alert("error");
         });
     } else if ($scope.type === 'emp') {
-      url = 'http://localhost:9000/api/employers/matches?jwt_token=' + jwt_token;
+      url = 'http://localhost:9000/api/employers/matches?jwt_token=' + jwt_token + '&usertype=emp&posid=' + $rootScope.posid;
       $http.get(url)
         .success(function(data) {
           for (var matchedDev = 0; matchedDev < data.length; matchedDev++) {
@@ -64,5 +64,5 @@ angular.module('endevr.controllers')
   };
 
   // call matches on controller load
-  // $scope.getMatches();
+  $scope.getMatches();
 });

@@ -10,10 +10,10 @@
 
     <ion-list>
 
-      <ion-item ng-show="type === 'dev'" class="item-stable" ng-repeat="match in matches" ng-click="navigate({{match.id}})">
+      <ion-item ng-show="type === 'dev'" class="item-stable" ng-repeat="match in matches" ng-click="navigate({{match.employers_id}})">
         <div class='split'>
           <div class="left">
-            <b>{{ match.title }}</b>
+            <b>{{ match.position }}</b>
           </div>
           </br>
           <div class="right">
@@ -25,12 +25,11 @@
       <ion-item ng-show="type === 'emp'" class="item-stable" ng-repeat="match in matches" ng-click="navigate({{match.id}})">
         <div class='split'>
           <div class="left">
-            <b>{{ match.name }}</b>
+            <b>{{ match.fname }} {{ match.lname }}</b>
           </div>
           </br>
-          <div class="right">
-            {{ match.title }}
-          </div>
+          <!-- Decide what second piece of info to display -->
+          <div class="right"></div>
         </div>
       </ion-item>
     </ion-list>
