@@ -1,31 +1,40 @@
 angular.module('endevr.controllers')
 
 .controller('MatchesCtrl', function($rootScope, $scope, $location, $http, localStorageService) {
-  $scope.matches = [];
+  $scope.matches = [{fname: 'Adam', lname: 'Back'}, {fname:'Anna', lname:'Jaffe'}];
+  $scope.positions = {position: 'HIR', position: 'Teacher'};
+  $scope.chosen = false;
+  
   $scope.type = localStorageService.get('usertype');
   if($scope.type === 'dev') {
     $scope.interest = 'Opportunities';
+    $scope.chosen = false;
   } else if($scope.type === 'emp') {
     $scope.interest = 'Developers';
-  }
-    
-  // for testing employer matches
-  // $scope.matches = [
-  //   { name: "Adam Back", title: 'HIR', id: 1 },
-  //   { name: "Josh Lankford", title: 'Backend Developer', id: 2 },
-  //   { name: "Justin Pinili", title: 'Grindosaurus Rex', id: 3 },
-  //   { name: "Jeff Gladchen", title: 'Window Jumper', id: 4 }
-  // ];
+    var jwt_token = localStorageService.get('jwt_token');
+    var positionUrl = 'http://localhost:9000/api/employers/positions?jwt_token=' + jwt_token + '&usertype=emp';
 
-  // for testing developer matches
-  // $scope.matches = [
-  //   { title: 'HIR', id: 1, employer: 'Hack Reactor' },
-  //   { title: 'Director of Inside Sales for Near-East Bandladesh', id: 2, employer: 'Facebook' },
-  //   { title: 'SEO Developer', id: 3, employer: 'Google' },
-  //   { title: 'Front-End Designer', id: 4, employer: 'Yahoo' },
-  //   { title: 'Senior Engineer', id: 5, employer: 'Twitter Incorporated, Owned By the Fair People of San Francisco' },
-  //   { title: 'Customer Support', id: 6, employer: 'Airbnb' }
-  // ];
+    $http.get(positionUrl)
+      .success(function(data) {
+        $scope.positions = data;
+      })
+      .error(function() {
+        console.log('Error getting positions');
+      });
+
+  } else {
+    $scope.chosen = true;
+  }
+  
+  ///
+
+  $scope.decide = function(posid) {
+    $rootScope.posid = posid;
+    $scope.posid = posid;
+    $scope.chosen = true;
+  }
+
+  ///
 
   $scope.navigate = function(route) {
     $location.path('/app/matches/'+route);
