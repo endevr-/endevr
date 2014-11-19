@@ -28,11 +28,6 @@ div.right {
   font-weight: bold;
 }
 
-.toggleLeft {
-  position: absolute;
-  right: 10px;
-}
-
 .helper-text {
   color: #B8C9D5;
   font-family: 'Londrina Solid', cursive;
