@@ -8,7 +8,16 @@
 
 angular.module('endevr.controllers')
 
-.controller('CardCtrl', function($scope, TDCardDelegate, $ionicModal) {
+.controller('CardCtrl', function($scope, TDCardDelegate, $ionicModal, localStorageService, $http) {
+  //Initialize controller variables
+  $scope.userType = localStorageService.get('usertype');
+  $scope.jwt_token = localStorageService.get('jwt_token')
+
+  if ($scope.userType === 'dev') {
+    $scope.url = 'http://localhost:9000/api/developers/matches?jwt_token='+$scope.jwt_token+'&usertype=dev';
+  } else {
+    $scope.url = 'http://localhost:9000/api/employers/matches?jwt_token='+$scope.jwt_token+'&usertype=emp';
+  }
   
   $ionicModal.fromTemplateUrl('templates/cardInformation.html', {
     scope: $scope
@@ -40,13 +49,11 @@ angular.module('endevr.controllers')
     $scope.cardSwipedRight($scope.name);
   };
 
-  $scope.cardSwipedLeft = function(name) {
-    // console.log('Left swipe! name: '+name);
-    //Ping our server telling them this IS NOT a match using name
+  $scope.cardSwipedLeft = function(id) {
+    $scope.$parent.request($scope.url);
   };
 
   $scope.cardSwipedRight = function(name) {
-    // console.log('Right swipe! name: '+name);
-    //Ping our server telling them this IS a possible match using name
+    $scope.$parent.request($scope.url);
   };
 });

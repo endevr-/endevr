@@ -21,4 +21,15 @@ angular.module('endevr.controllers')
     cardQueue.setCurrentCard();
   };
 
+  $scope.request = function(url) {
+    // alert(url);
+    $http.post(url, {devid: 1, posid: 1, devint: false})
+      .success(function(data, status, headers, config) {
+        alert('hit server with swipe');
+      })
+      .error(function(data, status, headers, config) {
+        alert('error pinging server');
+      });
+  };
+
 });

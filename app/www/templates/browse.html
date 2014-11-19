@@ -13,8 +13,8 @@
         <td-card
           ng-repeat="card in cards"
           on-destroy="cardDestroyed()"
-          on-swipe-left="cardSwipedLeft(card.name)"
-          on-swipe-right="cardSwipedRight(card.name)"
+          on-swipe-left="cardSwipedLeft(card.id)"
+          on-swipe-right="cardSwipedRight(card.id)"
           on-partial-swipe="cardPartialSwipe(amt)"
           ng-click="information()"
           ng-controller="CardCtrl">
@@ -75,11 +75,23 @@
               </div>
 
               <div class="item item-divider">
-                {{ card.name }}
+                {{ card.location }}
               </div>
 
               <div class="item item-text-wrap">
                   Salary: {{ card.salary }}
+              </div>
+
+              <div class="item item-text-wrap">
+                  {{ card.required }}
+              </div>
+
+              <div class="item item-text-wrap">
+                  {{ card.prefered }}
+              </div>
+
+              <div class="item item-text-wrap">
+                  {{ card.description }}
               </div>
 
               <div class="item item-text-wrap">
