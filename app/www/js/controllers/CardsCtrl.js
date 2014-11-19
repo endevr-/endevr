@@ -1,7 +1,6 @@
 angular.module('endevr.controllers')
 
 .controller('CardsCtrl', function($scope, $http, TDCardDelegate, queueService, localStorageService) {
-
   var cardTypes = [];
   $scope.cards = Array.prototype.slice.call(cardTypes, 0);
 
@@ -11,9 +10,17 @@ angular.module('endevr.controllers')
 
   var jwt_token = localStorageService.get('jwt_token');
 
+  //$scope.empty tracks if there are more cards in the deck
+  $scope.noCards = false;
+
   if (userType === 'dev') {
     cardQueue.storeTotalCards( jwt_token, userType, null, function(card) {
       $scope.cards = card;
+      if ($scope.cards.length === undefined) {
+        $scope.noCards = true;
+      } else {
+        $scope.noCards = false;
+      }
     });
   }
 
@@ -22,6 +29,11 @@ angular.module('endevr.controllers')
       cardQueue.storeTotalCards( jwt_token, userType, newVal, function(card) {
         $scope.cards = card;
         check = false;
+        if ($scope.cards.length === undefined) {
+          $scope.noCards = true;
+        } else {
+          $scope.noCards = false;
+        }
       });
     }
   });
@@ -30,9 +42,17 @@ angular.module('endevr.controllers')
     // console.log('destroyed');
     cardQueue.removeCurrentCard();
     cardQueue.setCurrentCard();
+
+    //If there are no cards in queue, tell the user
+    if ($scope.cards.length === 0) {
+      $scope.noCards = true;
+    } else {
+      $scope.noCards = false;
+    }
   };
 
   $scope.request = function(url, card, usertype, interest) {
+
     var fields = {};
     // alert(url);
     if (usertype === 'dev') {
