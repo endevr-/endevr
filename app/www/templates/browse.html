@@ -13,8 +13,8 @@
         <td-card
           ng-repeat="card in cards"
           on-destroy="cardDestroyed()"
-          on-swipe-left="cardSwipedLeft(card.id)"
-          on-swipe-right="cardSwipedRight(card.id)"
+          on-swipe-left="cardSwipedLeft(card)"
+          on-swipe-right="cardSwipedRight(card)"
           on-partial-swipe="cardPartialSwipe(amt)"
           ng-click="information()"
           ng-controller="CardCtrl">
