@@ -8,7 +8,7 @@
 
   <ion-content class="has-header">
 
-    <div class="list card">
+    <div class="list card" ng-controller='EmpProfileCtrl'>
 
       <div class="item item-text-wrap">
         <h2 class='empProfile'>{{ profile.email }}</h2>
@@ -45,12 +45,13 @@
         </div>
       </div>
 
+      <!-- Check to make sure the email and call features are working on click -->
       <div class="item item-text-wrap">
         <div class='split'>
           <div class="right"><i ng-click='showModal("Contact Email", "contact_email", profile.contact_email)' class="icon iconSize toggleLeft ion-gear-b"></i></div>
           <div class="left"><u>Email</u></div>
           </br>
-          <div class="left">{{ profile.contact_email }}</div>
+          <div class="left" ng-click="emailEmployer(profile.contact_email)">{{ profile.contact_email }}</div>
         </div>
       </div>
 
@@ -59,7 +60,7 @@
           <div class="right"><i ng-click='showModal("Contact Phone", "contact_phone", profile.contact_phone)' class="icon iconSize toggleLeft ion-gear-b"></i></div>
           <div class="left"><u>Phone</u></div>
           </br>
-          <div class="left">{{ profile.contact_phone }}</div>
+          <div class="left" ng-click="callNumber(profile.contact_phone)">{{ profile.contact_phone }}</div>
         </div>
       </div>
     </div>

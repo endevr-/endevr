@@ -1,6 +1,6 @@
 angular.module('endevr.controllers')
 
-.controller('EmpProfileCtrl', function($scope, $ionicModal, $http, localStorageService, $ionicListDelegate, TDCardDelegate, $location, empProfileService) {
+.controller('EmpProfileCtrl', function($scope, $ionicModal, $http, localStorageService, $ionicListDelegate, TDCardDelegate, $location, empProfileService, $window) {
 
   $scope.profile;
 
@@ -54,5 +54,14 @@ angular.module('endevr.controllers')
   empProfileService.getProfile(function(profile) {
     $scope.profile = profile;
   });
+
+  $scope.emailEmployer = function(emailAddress) {
+    $window.location.href = "mailto:" + emailAddress;    
+  }
+
+  $scope.callNumber = function(num) {
+    var numberWithoutDashes = num.replace(/\W/g, "")
+    $window.location.href = 'tel:'+ numberWithoutDashes;
+  }
 
 });
