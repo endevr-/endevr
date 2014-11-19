@@ -11,8 +11,19 @@ angular.module('endevr.controllers')
 
   var jwt_token = localStorageService.get('jwt_token');
 
-  cardQueue.storeTotalCards( jwt_token, userType, function(card) {
-    $scope.cards = card;
+  if (userType === 'dev') {
+    cardQueue.storeTotalCards( jwt_token, userType, null, function(card) {
+      $scope.cards = card;
+    });
+  }
+
+  $scope.$parent.$watch('posid', function(newVal, oldVal) {
+    if (newVal !== oldVal) {
+      cardQueue.storeTotalCards( jwt_token, userType, newVal, function(card) {
+        $scope.cards = card;
+        check = false;
+      });
+    }
   });
 
   $scope.cardDestroyed = function() {

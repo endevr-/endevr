@@ -6,7 +6,19 @@
 
   </ion-nav-buttons>
 
-  <ion-pane ng-controller="CardsCtrl">
+  <ion-content class="has-header" ng-show="!chosen">
+    hello.
+    <ion-list>
+
+      <ion-item class="item-stable" ng-repeat="position in positions" ng-click="decide(position.id)">
+        {{ position.position }}
+      </ion-item>
+
+    </ion-list>
+
+  </ion-content>
+
+  <ion-pane ng-show="chosen" ng-controller="CardsCtrl">
 
       <td-cards>
 
@@ -20,7 +32,7 @@
           <!-- ng-click="information()" will be used in card when users can
           click to get more information -->
 
-          
+
           <!-- Show developer cards to employers -->
           <div ng-show="type=='emp'">
             <div class="list card">
@@ -30,7 +42,7 @@
               </div>
 
               <div class="item item-text-wrap">
-                <span ng-repeat="skill in card.profile.skills">
+                <span ng-repeat="skill in card.skills">
                   <span ng-if="$index < 5">{{ skill }}, </span>
                   <span ng-if="$index === 5"> and {{ skill }}</span>
                 </span>
@@ -41,7 +53,7 @@
               </div>
 
               <div class="item item-text-wrap">
-                  Public Repos: {{ card.profile.public_repos }}
+                  Public Repos: {{ card.public_repos }}
               </div>
 
               <div class="item item-divider">
@@ -49,7 +61,7 @@
               </div>
 
               <div class="item item-text-wrap">
-                {{ card.profile.education[0] }}
+                {{ card.education[0] }}
               </div>
 
               <div class="item item-divider">
@@ -57,7 +69,7 @@
               </div>
 
               <div class="item item-text-wrap">
-                {{ card.profile.positions[0] }}
+                {{ card.positions[0] }}
               </div>
 
             </div>
