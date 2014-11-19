@@ -50,11 +50,11 @@ angular.module('endevr.controllers')
 
   $scope.name = $scope.$parent.cards[0].name;
 
-  $scope.cardSwipedLeft = function(id) {
-    $scope.$parent.request($scope.url);
+  $scope.cardSwipedLeft = function(card) {
+    $scope.$parent.request($scope.url, card, $scope.userType, false);
   };
 
-  $scope.cardSwipedRight = function(name) {
-    $scope.$parent.request($scope.url);
+  $scope.cardSwipedRight = function(card) {
+    $scope.$parent.request($scope.url, card, $scope.userType, true);
   };
 });
