@@ -35,6 +35,7 @@ angular.module('endevr.controllers')
 
   $scope.decide = function(posid) {
     $rootScope.posid = posid;
+    $scope.posid = posid;
     $scope.chosen = true;
   }
 
