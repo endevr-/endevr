@@ -66,6 +66,7 @@ angular.module('endevr.directives')
 
       $http.get(url)
         .success(function(data) {
+          alert('got cards: '+data.length);
           for (var card = 0; card < data.length; card++) {
             storage.push( data[card] );
           }
