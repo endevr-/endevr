@@ -72,6 +72,9 @@ angular.module('endevr.controllers')
       // get matches from /developers/matches
       $http.get(url)
         .success(function(data) {
+          alert("Pulling!");
+          // clear matches first
+          $scope.matches = [];
           // loop through data
           for (var matchedPosition = 0; matchedPosition < data.length; matchedPosition++) {
           // create array with objects containing position's title and company
@@ -97,7 +100,4 @@ angular.module('endevr.controllers')
         });
     }
   };
-
-  // call matches on controller load
-  $scope.getMatches();
 });
