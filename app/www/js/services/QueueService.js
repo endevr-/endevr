@@ -49,7 +49,7 @@ angular.module('endevr.directives')
       }
     },
 
-    storeTotalCards: function(jwt_token, userType,callback) {
+    storeTotalCards: function(jwt_token, userType, callback) {
 
       /*
        *    This section is for rendering cards from the server.
@@ -59,9 +59,9 @@ angular.module('endevr.directives')
       var url;
 
       if (userType === 'dev') {
-        url = 'http://localhost:9000/api/developers/XX/cards?jwt_token=' + jwt_token + '&usertype=' + userType;
+        url = 'http://localhost:9000/api/developers/cards?jwt_token=' + jwt_token + '&usertype=dev';
       } else {
-        url = 'http://localhost:9000/api/employers/XX/cards';
+        url = 'http://localhost:9000/api/employers/cards?jwt_token=' + jwt_token + '&usertype=emp';
       }
 
       $http.get(url)
@@ -73,7 +73,7 @@ angular.module('endevr.directives')
           callback(card);
         })
         .error(function() {
-          console.log('Error getting matches');
+          alert('Error getting cards');
         });
 
       /*
