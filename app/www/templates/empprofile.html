@@ -21,7 +21,7 @@
       <div class="item item-text-wrap">
         <div class='split'>
           <div class="right"><i ng-click='showModal("Company Name", "name", profile.name)' class="icon iconSize toggleLeft ion-gear-b"></i></div>
-          <div class="left"><u>Company Name:</u></div>
+          <div class="left"><u>Company Name</u></div>
           </br>
           <div class="left">{{ profile.name }}</div>
         </div>
@@ -30,7 +30,7 @@
       <div class="item item-text-wrap">
         <div class='split'>
           <div class="right"><i ng-click='showModal("Location", "location", profile.location)' class="icon iconSize toggleLeft ion-gear-b"></i></div>
-          <div class="left"><u>Location:</u></div>
+          <div class="left"><u>Location</u></div>
           </br>
           <div class="left">{{ profile.location }}</div>
         </div>
@@ -46,11 +46,21 @@
       </div>
 
       <div class="item item-text-wrap">
-        <span>Email: {{ profile.contact_email }} <i ng-click='showModal("Contact Email", "contact_email", profile.contact_email)' class="icon iconSize toggleLeft ion-gear-b"></i></span>
+        <div class='split'>
+          <div class="right"><i ng-click='showModal("Contact Email", "contact_email", profile.contact_email)' class="icon iconSize toggleLeft ion-gear-b"></i></div>
+          <div class="left"><u>Email</u></div>
+          </br>
+          <div class="left">{{ profile.contact_email }}</div>
+        </div>
       </div>
 
       <div class="item item-text-wrap">
-        <span>Phone: {{ profile.contact_phone }} <i ng-click='showModal("Contact Phone", "contact_phone", profile.contact_phone)' class="icon iconSize toggleLeft ion-gear-b"></i></span>
+        <div class='split'>
+          <div class="right"><i ng-click='showModal("Contact Phone", "contact_phone", profile.contact_phone)' class="icon iconSize toggleLeft ion-gear-b"></i></div>
+          <div class="left"><u>Phone</u></div>
+          </br>
+          <div class="left">{{ profile.contact_phone }}</div>
+        </div>
       </div>
     </div>
 
