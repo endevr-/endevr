@@ -26,6 +26,7 @@ angular.module('endevr.controllers')
     $scope.modal = modal;
   });
 
+  /* Kept for future use. When user clicks card, they should get more info.
   $scope.information = function() {
     $scope.modal.show();
   };
@@ -33,9 +34,6 @@ angular.module('endevr.controllers')
   $scope.closeInformation = function() {
     $scope.modal.hide();
   };
-
-  // this line makes tests for the entire controller fail.
-  $scope.name = $scope.$parent.cards[0].name;
 
   $scope.clickReject = function() {
     $scope.modal.hide();
@@ -48,6 +46,9 @@ angular.module('endevr.controllers')
     $scope.$parent.cardDestroyed();
     $scope.cardSwipedRight($scope.name);
   };
+*/
+
+  $scope.name = $scope.$parent.cards[0].name;
 
   $scope.cardSwipedLeft = function(id) {
     $scope.$parent.request($scope.url);
