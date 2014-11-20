@@ -3,25 +3,6 @@ angular.module('endevr.controllers')
 .controller('MatchesCtrl', function($rootScope, $scope, $location, $http, localStorageService, $ionicModal) {
   $scope.matches = [];
   $scope.type = localStorageService.get('usertype');
-
-  if($scope.type === 'dev') {
-    $scope.interest = 'Opportunities';
-    $scope.getMatches();
-  } else if($scope.type === 'emp') {
-    $scope.chosen = false;
-    $scope.interest = 'Developers';
-    var jwt_token = localStorageService.get('jwt_token');
-    //get positions to list on screen for selection
-    var positionUrl = 'http://localhost:9000/api/employers/positions?jwt_token=' + jwt_token + '&usertype=emp';
-    $http.get(positionUrl)
-      .success(function(data) {
-        $scope.positions = data;
-      })
-      .error(function() {
-        console.log('Error getting positions');
-      });
-
-  }
   
   $scope.decide = function(posid) {
     $rootScope.posid = posid;
@@ -72,14 +53,8 @@ angular.module('endevr.controllers')
       // get matches from /developers/matches
       $http.get(url)
         .success(function(data) {
-          alert("Pulling!");
-          // clear matches first
           $scope.matches = [];
-          // loop through data
-          for (var matchedPosition = 0; matchedPosition < data.length; matchedPosition++) {
-          // create array with objects containing position's title and company
-            $scope.matches.push( data[matchedPosition] );
-          }
+          $scope.matches = data;
         })
         .error(function() {
           alert("error");
@@ -100,4 +75,21 @@ angular.module('endevr.controllers')
         });
     }
   };
+
+  if($scope.type === 'dev') {
+    $scope.getMatches();
+  } else if($scope.type === 'emp') {
+    $scope.chosen = false;
+    $scope.interest = 'Developers';
+    var jwt_token = localStorageService.get('jwt_token');
+    //get positions to list on screen for selection
+    var positionUrl = 'http://localhost:9000/api/employers/positions?jwt_token=' + jwt_token + '&usertype=emp';
+    $http.get(positionUrl)
+      .success(function(data) {
+        $scope.positions = data;
+      })
+      .error(function() {
+        console.log('Error getting positions');
+      });
+  }
 });
