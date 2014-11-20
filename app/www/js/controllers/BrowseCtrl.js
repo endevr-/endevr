@@ -55,6 +55,12 @@ angular.module('endevr.controllers')
 
     $http.get(positionUrl)
       .success(function(data) {
+        if (data.length === 0) {
+          $scope.noJobs = true;
+        } else {
+          $scope.noJobs = false;
+        }
+        alert($scope.noJobs);
         $scope.positions = data;
       })
       .error(function() {
