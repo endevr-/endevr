@@ -17,6 +17,7 @@ angular.module('endevr.controllers')
           $scope.badlogin = false;
           localStorageService.set('employer-token', true);
           localStorageService.set('jwt_token', data.jwt);
+          localStorageService.set('returning', true);
           localStorageService.set('usertype', 'emp');
           $location.path('/app/browse');
         } else {
