@@ -1,6 +1,6 @@
 angular.module('endevr.controllers')
 
-.controller('CardsCtrl', function($scope, $http, TDCardDelegate, queueService, localStorageService) {
+.controller('CardsCtrl', function($scope, $http, TDCardDelegate, queueService, localStorageService, $ionicPopup) {
   var cardTypes = [];
   $scope.cards = Array.prototype.slice.call(cardTypes, 0);
 
@@ -66,7 +66,12 @@ angular.module('endevr.controllers')
           // alert("" + data.id + " " + data.match);
 
           if (data.match === true) {
-            alert('You have a new match!');
+            $ionicPopup.alert({
+              title: '<h2 class="empProfile">Congratulations!</h2>',
+              template: '<center>You have a new match!</center>'
+            }).then(function(res) {
+              // nothing to do.
+            });
           }
         })
         .error(function(data, status, headers, config) {
@@ -83,7 +88,12 @@ angular.module('endevr.controllers')
           // alert("" + data.id + " " + data.match);
 
           if (data.match === true) {
-            alert('You have a new match!');
+            $ionicPopup.alert({
+              title: '<h2 class="empProfile">Congratulations!</h2>',
+              template: '<center>You have a new match!</center>'
+            }).then(function(res) {
+              // nothing to do.
+            });
           }
         })
         .error(function(data, status, headers, config) {
