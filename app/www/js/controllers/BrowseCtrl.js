@@ -4,8 +4,40 @@ angular.module('endevr.controllers')
 // Currently hardcoded for 'Browse Employers'
 // but should be variable for 'Browse Candidates'
 // in the future.
-.controller('BrowseCtrl', function($rootScope, $scope, localStorageService, $http) {
+.controller('BrowseCtrl', function($rootScope, $scope, localStorageService, $http, $ionicModal) {
   $scope.chosen = false;
+
+  $scope.decide = function(posid) {
+    $rootScope.posid = posid;
+    $scope.posid = posid;
+    $scope.chosen = true;
+  };
+
+  $scope.employer = function() {
+    if(localStorageService.get('usertype') === 'emp') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  $scope.evaluateModal = function() {
+    if(!localStorageService.get('returning')) {
+      $scope.modal.show()
+    }
+  }
+
+  $scope.completedTutorial = function() {
+    $scope.modal.hide();
+  };
+
+  $ionicModal.fromTemplateUrl('templates/tutorialModal.html', {
+    scope: $scope
+    })
+    .then(function(modal) {
+      $scope.modal = modal;
+      $scope.evaluateModal();
+    });
 
   if (localStorageService.get('usertype') === 'dev') {
     $scope.type = 'dev';
@@ -39,10 +71,5 @@ angular.module('endevr.controllers')
     }
   });
 
-  $scope.decide = function(posid) {
-    $rootScope.posid = posid;
-    $scope.posid = posid;
-    $scope.chosen = true;
-  }
 
 });
