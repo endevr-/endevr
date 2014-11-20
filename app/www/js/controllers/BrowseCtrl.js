@@ -28,6 +28,7 @@ angular.module('endevr.controllers')
   }
 
   $scope.completedTutorial = function() {
+    localStorageService.set('returning', true);
     $scope.modal.hide();
   };
 
