@@ -1,0 +1,33 @@
+<div class="modal">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-icon icon ion-close button-clear" ng-click="completedTutorial()"></button>
+    </div>
+    <h1 class="title">Welcome!</h1>
+  </ion-header-bar>
+
+  <ion-content class="has-header">
+
+    <div class="list card">
+      <img ng-src="img/header-logo.png" alt="endevr">
+      
+      <div ng-if="employer()">
+        <div class="item item-divider">Create a Job</div>
+        <div class="item item-text-wrap">
+          <p center>Typing in a whole job description on your phone would be difficult.<p>
+          <p center><em>Sore thumbs...</em><p>
+          <p center>Visit <a href="http://www.endevr.io/">endevr.io</a> to create a job today!<p>
+        </div>
+      </div>
+
+      <div class="item item-divider">Making Selections</div>
+      <div class="item item-text-wrap">
+        <p center>It's simple!<p>
+        <p center>Swipe cards <em>right</em> to pass.<p>
+        <p center>Swipe cards <em>left</em> to show interest.<p>
+      </div>
+
+    </div>
+
+  </ion-content>
+</div>
