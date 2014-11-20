@@ -18,6 +18,7 @@ angular.module('endevr.controllers')
           userType = event.url.match('&userType=(.*)&isReturning')[1];
           returning = event.url.match('&isReturning=(.*)')[1];
           localStorageService.set('jwt_token', jwt_token);
+          localStorageService.set('LIreturning', true);
           localStorageService.set('returning', true);
           localStorageService.set('linkedin-token', true);
           localStorageService.set('token-date', JSON.stringify(new Date()));
