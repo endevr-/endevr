@@ -16,6 +16,12 @@
     </ion-list>
 
   </ion-content>
+      
+  <div ng-show="noJobs" class="nocards" style="text-align: center;">
+    <i style="color: #365E78; font-size: 70px" class="ion-sad browse"></i>
+    <h1 style="color: #365E78;">No jobs</h1>
+    <h3 style="color: #365E78;">visit endevr.io to create</h3>
+  </div>
 
   <ion-pane ng-show="chosen" ng-controller="CardsCtrl">
 
@@ -24,6 +30,7 @@
         <h1 style="color: #365E78;">No more cards</h1>
         <h3 style="color: #365E78;">check again later</h3>
       </div>
+
 
       <td-cards>
 
