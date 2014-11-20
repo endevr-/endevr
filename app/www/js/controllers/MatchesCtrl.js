@@ -1,35 +1,55 @@
 angular.module('endevr.controllers')
 
-.controller('MatchesCtrl', function($rootScope, $scope, $location, $http, localStorageService) {
+.controller('MatchesCtrl', function($rootScope, $scope, $location, $http, localStorageService, $ionicModal) {
   $scope.matches = [];
   $scope.type = localStorageService.get('usertype');
-  if($scope.type === 'dev') {
-    $scope.interest = 'Opportunities';
-  } else if($scope.type === 'emp') {
-    $scope.interest = 'Developers';
+  
+  $scope.decide = function(posid) {
+    $rootScope.posid = posid;
+    $scope.posid = posid;
+    $scope.getMatches();
   }
-    
-  // for testing employer matches
-  // $scope.matches = [
-  //   { name: "Adam Back", title: 'HIR', id: 1 },
-  //   { name: "Josh Lankford", title: 'Backend Developer', id: 2 },
-  //   { name: "Justin Pinili", title: 'Grindosaurus Rex', id: 3 },
-  //   { name: "Jeff Gladchen", title: 'Window Jumper', id: 4 }
-  // ];
 
-  // for testing developer matches
-  // $scope.matches = [
-  //   { title: 'HIR', id: 1, employer: 'Hack Reactor' },
-  //   { title: 'Director of Inside Sales for Near-East Bandladesh', id: 2, employer: 'Facebook' },
-  //   { title: 'SEO Developer', id: 3, employer: 'Google' },
-  //   { title: 'Front-End Designer', id: 4, employer: 'Yahoo' },
-  //   { title: 'Senior Engineer', id: 5, employer: 'Twitter Incorporated, Owned By the Fair People of San Francisco' },
-  //   { title: 'Customer Support', id: 6, employer: 'Airbnb' }
-  // ];
+  $ionicModal.fromTemplateUrl('templates/devProfileModal.html', {
+    scope: $scope
+    })
+    .then(function(modal) {
+      $scope.devProfileModal = modal;
+    });
+
+  $ionicModal.fromTemplateUrl('templates/empProfileModal.html', {
+    scope: $scope
+    })
+    .then(function(modal) {
+      $scope.empProfileModal = modal;
+    });
+
+  // View Profile - Show Modal
+  $scope.showModal = function(info) {
+    $scope.profile = info;
+
+    if($scope.type === 'dev') {
+      $scope.empProfileModal.show();
+    } else if($scope.type === 'emp') {
+      $scope.devProfileModal.show();
+    }
+  };
+
+  $scope.checkIfExists = function(el) {
+    if(el === null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   $scope.navigate = function(route) {
     $location.path('/app/matches/'+route);
   };
+
+  $scope.backToJobs = function() {
+    $scope.chosen = false;
+  }
 
   $scope.getMatches = function() {
     var url;
@@ -40,11 +60,8 @@ angular.module('endevr.controllers')
       // get matches from /developers/matches
       $http.get(url)
         .success(function(data) {
-          // loop through data
-          for (var matchedPosition = 0; matchedPosition < data.length; matchedPosition++) {
-          // create array with objects containing position's title and company
-            $scope.matches.push( data[matchedPosition] );
-          }
+          $scope.matches = [];
+          $scope.matches = data;
         })
         .error(function() {
           alert("error");
@@ -53,9 +70,12 @@ angular.module('endevr.controllers')
       url = 'http://localhost:9000/api/employers/matches?jwt_token=' + jwt_token + '&usertype=emp&posid=' + $rootScope.posid;
       $http.get(url)
         .success(function(data) {
+          // clear matches first
+          $scope.matches = [];
           for (var matchedDev = 0; matchedDev < data.length; matchedDev++) {
             $scope.matches.push( data[matchedDev] );
           }
+          $scope.chosen = true;
         })
         .error(function() {
           console.log('Error getting matches');
@@ -63,6 +83,20 @@ angular.module('endevr.controllers')
     }
   };
 
-  // call matches on controller load
-  $scope.getMatches();
+  if($scope.type === 'dev') {
+    $scope.getMatches();
+  } else if($scope.type === 'emp') {
+    $scope.chosen = false;
+    $scope.interest = 'Developers';
+    var jwt_token = localStorageService.get('jwt_token');
+    //get positions to list on screen for selection
+    var positionUrl = 'http://localhost:9000/api/employers/positions?jwt_token=' + jwt_token + '&usertype=emp';
+    $http.get(positionUrl)
+      .success(function(data) {
+        $scope.positions = data;
+      })
+      .error(function() {
+        console.log('Error getting positions');
+      });
+  }
 });

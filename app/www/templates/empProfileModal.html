@@ -1,0 +1,107 @@
+<div class="modal">
+
+    <ion-header-bar>
+      <div class="buttons">
+        <button class="button button-icon icon ion-ios7-arrow-back button-clear" ng-click="empProfileModal.hide()"></button>
+      </div>
+      <h1 class="title">Match Info</h1>
+    </ion-header-bar>
+
+    <ion-content class="has-header">
+
+      <div class="list card">
+        <div class="item item-text-wrap">
+          <h2 class='empProfile'>{{ profile.position }}</h2>
+          <img ng-if="!checkIfExists(profile.employerInfo.image)" class="tdImage" ng-src="profile.employerInfo.image">
+        </div>
+
+        <div class="item item-divider">Contact Info</div>
+
+        <div class="item item-text-wrap" ng-if="checkIfExists(profile.employerInfo.name)">
+          <div class='split'>
+            <div class="left"><u>Company Name</u></div>
+            </br>
+            <div class="left">{{ profile.employerInfo.name }}</div>
+          </div>
+        </div>
+
+        <div class="item item-text-wrap" ng-if="checkIfExists(profile.location)">
+          <div class='split'>
+            <div class="left"><u>Location</u></div>
+            </br>
+            <div class="left">{{ profile.location }}</div>
+          </div>
+        </div>
+
+        <div class="item item-text-wrap" ng-if="checkIfExists(profile.employerInfo.contact_person)">
+          <div class='split'>
+            <div class="left"><u>Contact Name</u></div>
+            </br>
+            <div class="left">{{ profile.employerInfo.contact_person }}</div>
+          </div>
+        </div>
+
+        <!-- Check to make sure the email and call features are working on click -->
+        <div class="item item-text-wrap" ng-if="checkIfExists(profile.employerInfo.contact_email)">
+          <div class='split'>
+            <div class="left"><u>Email</u></div>
+            </br>
+            <div class="left" ng-click="emailEmployer(profile.contact_email)">{{ profile.employerInfo.contact_email }}</div>
+          </div>
+        </div>
+
+        <div class="item item-text-wrap" ng-if="checkIfExists(profile.employerInfo.contact_phone)">
+          <div class='split'>
+            <div class="left"><u>Phone</u></div>
+            </br>
+            <div class="left" ng-click="callNumber(profile.contact_phone)">{{ profile.employerInfo.contact_phone }}</div>
+          </div>
+        </div>
+
+        <div class="item item-divider">Position Info</div>
+
+          <div class="item item-text-wrap" ng-if="checkIfExists(profile.salary)">
+            <div class='split'>
+              <div class="left"><u>Salary</u></div>
+              </br>
+              <div class="left">{{ profile.salary }}</div>
+            </div>
+          </div>
+
+          <div class="item item-text-wrap" ng-if="checkIfExists(profile.required)">
+            <div class='split'>
+              <div class="left"><u>Required</u></div>
+              </br>
+              <div class="left">{{ profile.required }}</div>
+            </div>
+          </div>
+
+          <div class="item item-text-wrap" ng-if="checkIfExists(profile.preferred)">
+            <div class='split'>
+              <div class="left"><u>Preferred</u></div>
+              </br>
+              <div class="left">{{ profile.preferred }}</div>
+            </div>
+          </div>
+
+          <div class="item item-text-wrap" ng-if="checkIfExists(profile.description)">
+            <div class='split'>
+              <div class="left"><u>Description</u></div>
+              </br>
+              <div class="left">{{ profile.description }}</div>
+            </div>
+          </div>
+
+          <div class="item item-text-wrap" ng-if="checkIfExists(profile.company_size)">
+            <div class='split'>
+              <div class="left"><u>Company Size</u></div>
+              </br>
+              <div class="left">{{ profile.company_size }}</div>
+            </div>
+          </div>
+        </div>
+
+    </ion-content>
+
+  </ion-view>
+</div>

@@ -1,28 +1,32 @@
-<ion-view title="Matched {{interest}}">
+<ion-view title="Matches">
 
-  <ion-nav-buttons side="left">
+  <ion-nav-buttons side="left" class="bar-light nav-title-slide-ios7">
 
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    <button ng-show="type === 'dev' || (type === 'emp' && !chosen)" menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 
+    <button ng-show="type === 'emp' && chosen" class="button button-icon icon ion-ios7-arrow-back button-clear" ng-click="backToJobs()"></button>
   </ion-nav-buttons>
 
   <ion-content class="has-header">
 
     <ion-list>
-
-      <ion-item ng-show="type === 'dev'" class="item-stable" ng-repeat="match in matches" ng-click="navigate({{match.employers_id}})">
+      <ion-item ng-show="type === 'dev'" class="item-stable" ng-repeat="match in matches" ng-click="showModal(match)">
         <div class='split'>
           <div class="left">
             <b>{{ match.position }}</b>
           </div>
           </br>
           <div class="right">
-            {{ match.employer }}
+            {{ match.employerInfo.name }}
           </div>
         </div>
       </ion-item>
 
-      <ion-item ng-show="type === 'emp'" class="item-stable" ng-repeat="match in matches" ng-click="navigate({{match.id}})">
+      <ion-item ng-show="type === 'emp' && chosen === false" class="item-stable" ng-repeat="position in positions" ng-click="decide(position.id)">
+        {{ position.position }}
+      </ion-item>
+
+      <ion-item ng-show="type === 'emp' && chosen === true" class="item-stable" ng-repeat="match in matches" ng-click="showModal(match)">
         <div class='split'>
           <div class="left">
             <b>{{ match.fname }} {{ match.lname }}</b>
@@ -32,6 +36,7 @@
           <div class="right"></div>
         </div>
       </ion-item>
+
     </ion-list>
 
   </ion-content>
