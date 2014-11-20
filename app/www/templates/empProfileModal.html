@@ -9,7 +9,7 @@
 
       <div class="list card">
         <div class="item item-text-wrap">
-          <h2 class='empProfile'>{{ profile.email }}</h2>
+          <h2 class='empProfile'>{{ profile.employerInfo.email }}</h2>
         </div>
 
         <div class="item item-divider">Contact Info</div>
@@ -18,7 +18,7 @@
           <div class='split'>
             <div class="left"><u>Company Name</u></div>
             </br>
-            <div class="left">{{ profile.name }}</div>
+            <div class="left">{{ profile.employerInfo.name }}</div>
           </div>
         </div>
 
@@ -34,7 +34,7 @@
           <div class='split'>
             <div class="left"><u>Contact Name</u></div>
             </br>
-            <div class="left">{{ profile.contact_person }}</div>
+            <div class="left">{{ profile.employerInfo.contact_person }}</div>
           </div>
         </div>
 
@@ -43,7 +43,7 @@
           <div class='split'>
             <div class="left"><u>Email</u></div>
             </br>
-            <div class="left" ng-click="emailEmployer(profile.contact_email)">{{ profile.contact_email }}</div>
+            <div class="left" ng-click="emailEmployer(profile.contact_email)">{{ profile.employerInfo.contact_email }}</div>
           </div>
         </div>
 
@@ -51,7 +51,7 @@
           <div class='split'>
             <div class="left"><u>Phone</u></div>
             </br>
-            <div class="left" ng-click="callNumber(profile.contact_phone)">{{ profile.contact_phone }}</div>
+            <div class="left" ng-click="callNumber(profile.contact_phone)">{{ profile.employerInfo.contact_phone }}</div>
           </div>
         </div>
       </div>
