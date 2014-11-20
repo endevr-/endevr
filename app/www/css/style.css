@@ -6,6 +6,11 @@
   color: #365E78;
 }
 
+.toggleLeft {
+  position: absolute;
+  right: 10px;
+}
+
 div.split {
   overflow: hidden;
   width: 100%;
