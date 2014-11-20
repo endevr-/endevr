@@ -2,9 +2,11 @@
 
   <ion-nav-buttons side="left" class="bar-light nav-title-slide-ios7">
 
-    <button ng-if="type === 'dev' || (type === 'emp' && !chosen)" menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    <button  menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 
-    <button ng-if="type === 'emp' && chosen" class="button button-icon icon ion-ios7-arrow-back button-clear" ng-click="backToJobs()"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button ng-if="type === 'emp' && chosen" class="button button-assertive" ng-click="backToJobs()">Back to Jobs</button>
   </ion-nav-buttons>
 
   <ion-content class="has-header">
@@ -46,5 +48,11 @@
     </ion-list>
 
   </ion-content>
+
+  <!-- <ion-footer-bar ng-if="type === 'emp' && chosen" class="bar-light">
+    <div class="buttons">
+      <button ng-click="backToJobs()" class="button button-assertive">Back to Job Choices</button>
+    </div>
+  </ion-footer-bar> -->
 
 </ion-view>
