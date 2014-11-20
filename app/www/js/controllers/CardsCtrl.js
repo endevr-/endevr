@@ -63,6 +63,11 @@ angular.module('endevr.controllers')
 
       $http.post(url, fields)
         .success(function(data, status, headers, config) {
+          // alert("" + data.id + " " + data.match);
+
+          if (data.match === true) {
+            alert('You have a new match!');
+          }
         })
         .error(function(data, status, headers, config) {
         });
@@ -75,6 +80,11 @@ angular.module('endevr.controllers')
 
       $http.post(url, fields)
         .success(function(data, status, headers, config) {
+          // alert("" + data.id + " " + data.match);
+
+          if (data.match === true) {
+            alert('You have a new match!');
+          }
         })
         .error(function(data, status, headers, config) {
         });
