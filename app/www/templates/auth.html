@@ -38,32 +38,34 @@
         </div>
     </div>
     <div ng-show="type=='emp'" ng-controller="LoginCtrl">
-        <form novalidate="novalidate" class="padding" on-valid-submit="employerLogin(employer)">
-            <div ng-show="!isNewEmployer" class="list">
-              <label class="item item-input validated">
-                <span class="input-label">Email</span>
-                <input type="email" required="required" name="email" ng-model="employer.email">
-                <i class="icon ion-alert-circled error"></i>
-              </label>
-              <label class="item item-input validated">
-                <span class="input-label">Password</span>
-                <input type="password" ng-model="employer.password" name="password" required="required">
-                <i class="icon ion-alert-circled error"></i>
-              </label>
-              <div class="wide-button" style="padding-top: 10px">
-                  <button type="submit" id='login' class="button wide-button">Sign In</button>
-              </div>
-              <div ng-show="badlogin" style="padding-top: 10px" id="bad-login">
-                <span>Incorrect username or password</span>
+        <form novalidate="novalidate" ng-if="!isNewEmployer" class="padding" on-valid-submit="employerLogin(employer)">
+            <div class="list">
+              <div ng-show="!isNewEmployer">
+                <label class="item item-input validated">
+                  <span class="input-label">Email</span>
+                  <input type="email" required="required" name="email" ng-model="employer.email">
+                  <i class="icon ion-alert-circled error"></i>
+                </label>
+                <label class="item item-input validated">
+                  <span class="input-label">Password</span>
+                  <input type="password" ng-model="employer.password" name="password" required="required">
+                  <i class="icon ion-alert-circled error"></i>
+                </label>
+                <div class="wide-button" style="padding-top: 10px">
+                    <button type="submit" id='login' class="button wide-button">Sign In</button>
+                </div>
+                <div ng-show="badlogin" style="padding-top: 10px" id="bad-login">
+                  <span>Incorrect username or password</span>
+                </div>
+                <div ng-show="!isNewEmployer">
+                  <p class="signup">New to endevr?</p>
+                  <u><a ng-click="changeEmployerStatus()" class='signup'>Sign up.</a></u>
+                </div>
               </div>
             </div>
         </form>
-        <form novalidate="novalidate" on-valid-submit="employerSignup(newEmployer)">
+        <form novalidate="novalidate" ng-if="isNewEmployer" class="padding" on-valid-submit="employerSignup(newEmployer)">
             <div class="list">
-            <div ng-show="!isNewEmployer">
-              <p class="signup">New to endevr?</p>
-              <u><a ng-click="changeEmployerStatus()" class='signup'>Sign up.</a></u>
-            </div>
               <div ng-show="isNewEmployer">
                 <label class="item item-input validated">
                   <span class="input-label">Email</span>
@@ -82,6 +84,10 @@
               <div ng-show="duplicate" id='bad-login' style="padding-top: 10px">
                 <p>This email is already registered</p>
                 <p>Please choose another</p>
+              </div>
+              <div ng-show="isNewEmployer">
+                <p class="signup">Already on endevr?</p>
+                <u><a ng-click="changeEmployerStatus()" class='signup'>Sign in.</a></u>
               </div>
             </div>
         </form>

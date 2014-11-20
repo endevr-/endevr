@@ -28,11 +28,6 @@ div.right {
   font-weight: bold;
 }
 
-.toggleLeft {
-  position: absolute;
-  right: 10px;
-}
-
 .helper-text {
   color: #B8C9D5;
   font-family: 'Londrina Solid', cursive;
@@ -41,6 +36,10 @@ div.right {
 
 .padding {
   padding-top: 40%;
+}
+
+.paddingOther {
+  padding-top: 0%;
 }
 
 #login {
