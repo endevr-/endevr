@@ -61,7 +61,6 @@ angular.module('endevr.controllers')
         } else {
           $scope.noJobs = false;
         }
-        alert($scope.noJobs);
         $scope.positions = data;
       })
       .error(function() {
