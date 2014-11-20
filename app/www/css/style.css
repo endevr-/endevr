@@ -286,3 +286,7 @@ h2.empProfile {
 div.nocards {
   padding-top: 50%;
 }
+
+.item-content { /* keeps item list */
+  margin-left: 38px;
+}
