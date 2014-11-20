@@ -38,6 +38,10 @@ div.right {
   padding-top: 40%;
 }
 
+.paddingOther {
+  padding-top: 0%;
+}
+
 #login {
   font-family: 'Londrina Solid', cursive;
   text-align: center;

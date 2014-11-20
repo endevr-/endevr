@@ -59,6 +59,6 @@ angular.module('endevr.controllers')
   };
 
   $scope.changeEmployerStatus = function() {
-    $scope.isNewEmployer = true;
+    $scope.isNewEmployer = !$scope.isNewEmployer;
   }
 });
