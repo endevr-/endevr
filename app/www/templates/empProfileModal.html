@@ -12,13 +12,12 @@
       <div class="list card">
         <div class="item item-text-wrap">
           <h2 class='empProfile'>{{ profile.position }}</h2>
+          <img ng-if="!checkIfExists(profile.employerInfo.image)" class="tdImage" ng-src="profile.employerInfo.image">
         </div>
-
-        <img class="tdImage" ng-src="profile.employerInfo.image">
 
         <div class="item item-divider">Contact Info</div>
 
-        <div class="item item-text-wrap">
+        <div class="item item-text-wrap" ng-if="checkIfExists(profile.employerInfo.name)">
           <div class='split'>
             <div class="left"><u>Company Name</u></div>
             </br>
@@ -26,7 +25,7 @@
           </div>
         </div>
 
-        <div class="item item-text-wrap">
+        <div class="item item-text-wrap" ng-if="checkIfExists(profile.location)">
           <div class='split'>
             <div class="left"><u>Location</u></div>
             </br>
@@ -34,7 +33,7 @@
           </div>
         </div>
 
-        <div class="item item-text-wrap">
+        <div class="item item-text-wrap" ng-if="checkIfExists(profile.employerInfo.contact_person)">
           <div class='split'>
             <div class="left"><u>Contact Name</u></div>
             </br>
@@ -43,7 +42,7 @@
         </div>
 
         <!-- Check to make sure the email and call features are working on click -->
-        <div class="item item-text-wrap">
+        <div class="item item-text-wrap" ng-if="checkIfExists(profile.employerInfo.contact_email)">
           <div class='split'>
             <div class="left"><u>Email</u></div>
             </br>
@@ -51,7 +50,7 @@
           </div>
         </div>
 
-        <div class="item item-text-wrap">
+        <div class="item item-text-wrap" ng-if="checkIfExists(profile.employerInfo.contact_phone)">
           <div class='split'>
             <div class="left"><u>Phone</u></div>
             </br>
@@ -61,7 +60,7 @@
 
         <div class="item item-divider">Position Info</div>
 
-          <div class="item item-text-wrap">
+          <div class="item item-text-wrap" ng-if="checkIfExists(profile.salary)">
             <div class='split'>
               <div class="left"><u>Salary</u></div>
               </br>
@@ -69,23 +68,15 @@
             </div>
           </div>
 
-          <div class="item item-text-wrap">
+          <div class="item item-text-wrap" ng-if="checkIfExists(profile.required)">
             <div class='split'>
-              <div class="left"><u>Salary</u></div>
+              <div class="left"><u>Required</u></div>
               </br>
               <div class="left">{{ profile.required }}</div>
             </div>
           </div>
 
-          <div class="item item-text-wrap">
-            <div class='split'>
-              <div class="left"><u>Prefered</u></div>
-              </br>
-              <div class="left">{{ profile.prefered }}</div>
-            </div>
-          </div>
-
-          <div class="item item-text-wrap">
+          <div class="item item-text-wrap" ng-if="checkIfExists(profile.preferred)">
             <div class='split'>
               <div class="left"><u>Preferred</u></div>
               </br>
@@ -93,7 +84,7 @@
             </div>
           </div>
 
-          <div class="item item-text-wrap">
+          <div class="item item-text-wrap" ng-if="checkIfExists(profile.description)">
             <div class='split'>
               <div class="left"><u>Description</u></div>
               </br>
@@ -101,7 +92,7 @@
             </div>
           </div>
 
-          <div class="item item-text-wrap">
+          <div class="item item-text-wrap" ng-if="checkIfExists(profile.company_size)">
             <div class='split'>
               <div class="left"><u>Company Size</u></div>
               </br>

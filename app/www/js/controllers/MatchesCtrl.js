@@ -33,8 +33,15 @@ angular.module('endevr.controllers')
     } else if($scope.type === 'emp') {
       $scope.devProfileModal.show();
     }
-
   };
+
+  $scope.checkIfExists = function(el) {
+    if(el === null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   $scope.navigate = function(route) {
     $location.path('/app/matches/'+route);
