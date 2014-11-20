@@ -1,16 +1,20 @@
 <div class="modal">
-  <ion-view title="Full Profile">
 
-    <ion-nav-buttons side="left">
-      <button class="button button-icon icon ion-ios7-arrow-back button-clear" ng-click="empProfileModal.hide()"></button>
-    </ion-nav-buttons>
+    <ion-header-bar>
+      <div class="buttons">
+        <button class="button button-icon icon ion-ios7-arrow-back button-clear" ng-click="empProfileModal.hide()"></button>
+      </div>
+      <h1 class="title">Match Info</h1>
+    </ion-header-bar>
 
     <ion-content class="has-header">
 
       <div class="list card">
         <div class="item item-text-wrap">
-          <h2 class='empProfile'>{{ profile.employerInfo.email }}</h2>
+          <h2 class='empProfile'>{{ profile.position }}</h2>
         </div>
+
+        <img class="tdImage" ng-src="profile.employerInfo.image">
 
         <div class="item item-divider">Contact Info</div>
 
@@ -54,7 +58,57 @@
             <div class="left" ng-click="callNumber(profile.contact_phone)">{{ profile.employerInfo.contact_phone }}</div>
           </div>
         </div>
-      </div>
+
+        <div class="item item-divider">Position Info</div>
+
+          <div class="item item-text-wrap">
+            <div class='split'>
+              <div class="left"><u>Salary</u></div>
+              </br>
+              <div class="left">{{ profile.salary }}</div>
+            </div>
+          </div>
+
+          <div class="item item-text-wrap">
+            <div class='split'>
+              <div class="left"><u>Salary</u></div>
+              </br>
+              <div class="left">{{ profile.required }}</div>
+            </div>
+          </div>
+
+          <div class="item item-text-wrap">
+            <div class='split'>
+              <div class="left"><u>Prefered</u></div>
+              </br>
+              <div class="left">{{ profile.prefered }}</div>
+            </div>
+          </div>
+
+          <div class="item item-text-wrap">
+            <div class='split'>
+              <div class="left"><u>Preferred</u></div>
+              </br>
+              <div class="left">{{ profile.preferred }}</div>
+            </div>
+          </div>
+
+          <div class="item item-text-wrap">
+            <div class='split'>
+              <div class="left"><u>Description</u></div>
+              </br>
+              <div class="left">{{ profile.description }}</div>
+            </div>
+          </div>
+
+          <div class="item item-text-wrap">
+            <div class='split'>
+              <div class="left"><u>Company Size</u></div>
+              </br>
+              <div class="left">{{ profile.company_size }}</div>
+            </div>
+          </div>
+        </div>
 
     </ion-content>
 
