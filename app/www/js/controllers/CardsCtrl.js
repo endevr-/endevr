@@ -63,10 +63,8 @@ angular.module('endevr.controllers')
 
       $http.post(url, fields)
         .success(function(data, status, headers, config) {
-          alert('hit server with swipe');
         })
         .error(function(data, status, headers, config) {
-          alert('error pinging server');
         });
 
     } else {
@@ -77,10 +75,8 @@ angular.module('endevr.controllers')
 
       $http.post(url, fields)
         .success(function(data, status, headers, config) {
-          alert('hit server with swipe');
         })
         .error(function(data, status, headers, config) {
-          alert('error pinging server');
         });
     }
   };
