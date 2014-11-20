@@ -213,7 +213,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   border-radius: 50%;
   position: relative;
   /*make url local storage*/
-  background-image: url('http://www.sernova.com/inc/nav_linkedin.png');
+  background-image: url('../img/linkedin_icon.png');
   background-size: 150px 150px;
   left:26%;
   top:30%;
