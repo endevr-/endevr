@@ -48,6 +48,7 @@ angular.module('endevr.controllers')
   };
 
   $scope.backToJobs = function() {
+    $scope.noMatches = false;
     $scope.chosen = false;
   }
 
@@ -62,6 +63,11 @@ angular.module('endevr.controllers')
         .success(function(data) {
           $scope.matches = [];
           $scope.matches = data;
+          if (data.length === 0) {
+            $scope.noMatches = true;
+          } else {
+            $scope.noMatches = false;
+          }
         })
         .error(function() {
           alert("error");
@@ -70,6 +76,11 @@ angular.module('endevr.controllers')
       url = 'http://localhost:9000/api/employers/matches?jwt_token=' + jwt_token + '&usertype=emp&posid=' + $rootScope.posid;
       $http.get(url)
         .success(function(data) {
+          if (data.length === 0) {
+            $scope.noMatches = true;
+          } else {
+            $scope.noMatches = false;
+          }
           // clear matches first
           $scope.matches = [];
           for (var matchedDev = 0; matchedDev < data.length; matchedDev++) {
@@ -93,6 +104,11 @@ angular.module('endevr.controllers')
     var positionUrl = 'http://localhost:9000/api/employers/positions?jwt_token=' + jwt_token + '&usertype=emp';
     $http.get(positionUrl)
       .success(function(data) {
+        if (data.length === 0) {
+          $scope.noMatches = true;
+        } else {
+          $scope.noMatches = false;
+        }
         $scope.positions = data;
       })
       .error(function() {
