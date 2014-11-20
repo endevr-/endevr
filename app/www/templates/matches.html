@@ -2,9 +2,9 @@
 
   <ion-nav-buttons side="left" class="bar-light nav-title-slide-ios7">
 
-    <button ng-show="type === 'dev' || (type === 'emp' && !chosen)" menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    <button ng-if="type === 'dev' || (type === 'emp' && !chosen)" menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 
-    <button ng-show="type === 'emp' && chosen" class="button button-icon icon ion-ios7-arrow-back button-clear" ng-click="backToJobs()"></button>
+    <button ng-if="type === 'emp' && chosen" class="button button-icon icon ion-ios7-arrow-back button-clear" ng-click="backToJobs()"></button>
   </ion-nav-buttons>
 
   <ion-content class="has-header">
