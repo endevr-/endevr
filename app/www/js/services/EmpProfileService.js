@@ -4,7 +4,7 @@ angular.module('endevr.directives')
 
   var jwt_token = localStorageService.get('jwt_token');
   var userType = localStorageService.get('usertype');
-  var profileUrl = 'http://localhost:9000/api/employers/profile?jwt_token=' + jwt_token + '&usertype=' + userType;
+  var profileUrl = 'https://endevr.herokuapp.com/api/employers/profile?jwt_token=' + jwt_token + '&usertype=' + userType;
 
   var getProfile = function(callback) {
     $http.get(profileUrl)

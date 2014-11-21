@@ -10,7 +10,7 @@ angular.module('endevr.controllers')
 
   $scope.employerLogin = function(employer) {
     console.log(employer)
-    $http.post('http://localhost:9000/api/employers/login', {email: employer.email, password: employer.password})
+    $http.post('https://endevr.herokuapp.com/api/employers/login', {email: employer.email, password: employer.password})
       .success(function(data, status, headers, config){
         if (data.jwt) {
           $scope.duplicate = false;
@@ -34,7 +34,7 @@ angular.module('endevr.controllers')
   $scope.employerSignup = function(employer) {
 
     console.log(employer)
-    $http.post('http://localhost:9000/api/employers/new', {email: employer.email, password: employer.password})
+    $http.post('https://endevr.herokuapp.com/api/employers/new', {email: employer.email, password: employer.password})
       .success(function(data, status, headers, config){
         if (data.jwt) {
           $scope.duplicate = false;

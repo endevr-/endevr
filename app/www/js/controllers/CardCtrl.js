@@ -14,9 +14,9 @@ angular.module('endevr.controllers')
   $scope.jwt_token = localStorageService.get('jwt_token')
 
   if ($scope.userType === 'dev') {
-    $scope.url = 'http://localhost:9000/api/developers/matches?jwt_token='+$scope.jwt_token+'&usertype=dev';
+    $scope.url = 'https://endevr.herokuapp.com/api/developers/matches?jwt_token='+$scope.jwt_token+'&usertype=dev';
   } else {
-    $scope.url = 'http://localhost:9000/api/employers/matches?jwt_token='+$scope.jwt_token+'&usertype=emp';
+    $scope.url = 'https://endevr.herokuapp.com/api/employers/matches?jwt_token='+$scope.jwt_token+'&usertype=emp';
   }
   
   $ionicModal.fromTemplateUrl('templates/cardInformation.html', {

@@ -3,7 +3,7 @@ angular.module('endevr.controllers')
 .factory('GitHubService', function($location, localStorageService) {
   var jwt_token = localStorageService.get('jwt_token');
   // url matches the server route that uses passport
-  var url = 'http://localhost:9000/auth/github?jwt_token='+jwt_token;
+  var url = 'https://endevr.herokuapp.com/auth/github?jwt_token='+jwt_token;
   var token, hasToken, userType, hasUserType;
 
   return {

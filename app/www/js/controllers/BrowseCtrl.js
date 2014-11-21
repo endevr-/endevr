@@ -52,7 +52,7 @@ angular.module('endevr.controllers')
     $scope.chosen = false;
     var jwt = localStorageService.get('jwt_token');
     var usertype = localStorageService.get('usertype');
-    var positionUrl = 'http://localhost:9000/api/employers/positions?jwt_token=' + jwt + '&usertype=' + usertype;
+    var positionUrl = 'https://endevr.herokuapp.com/api/employers/positions?jwt_token=' + jwt + '&usertype=' + usertype;
 
     $http.get(positionUrl)
       .success(function(data) {

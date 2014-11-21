@@ -58,9 +58,9 @@ angular.module('endevr.directives')
       var url;
 
       if (userType === 'dev') {
-        url = 'http://localhost:9000/api/developers/cards?jwt_token=' + jwt_token + '&usertype=dev';
+        url = 'https://endevr.herokuapp.com/api/developers/cards?jwt_token=' + jwt_token + '&usertype=dev';
       } else {
-        url = 'http://localhost:9000/api/employers/cards?jwt_token=' + jwt_token + '&usertype=emp' + '&posid=' + posid;
+        url = 'https://endevr.herokuapp.com/api/employers/cards?jwt_token=' + jwt_token + '&usertype=emp' + '&posid=' + posid;
       }
 
       $http.get(url)

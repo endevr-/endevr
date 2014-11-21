@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.mobileapp365924" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.endevr.endevr" version="1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>endevr</name>
   <description>
-        endevr is a job recruiting platform for developers.
+        A mobile recruiting platform that streamlines the process of matching software engineers with career opportunities.
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Covert Lobster
+  <author email="hi@ionicframework" href="http://endevr.io/">
+      endevr
     </author>
   <content src="index.html"/>
   <access origin="*"/>
@@ -17,8 +17,8 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
-  <feature name="SplashScreen"> 
-    <param name="ios-package" value="CDVSplashScreen" onload="true"/> 
+  <feature name="SplashScreen">
+    <param name="ios-package" value="CDVSplashScreen" onload="true"/>
   </feature>
   <platform name="ios">
     <!-- iOS 7.0+ -->

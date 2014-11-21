@@ -57,7 +57,7 @@ angular.module('endevr.controllers')
     var jwt_token = localStorageService.get('jwt_token');
     // check local storage to get user type
     if ($scope.type === 'dev') {
-      url = 'http://localhost:9000/api/developers/matches?jwt_token=' + jwt_token + '&usertype=dev';
+      url = 'https://endevr.herokuapp.com/api/developers/matches?jwt_token=' + jwt_token + '&usertype=dev';
       // get matches from /developers/matches
       $http.get(url)
         .success(function(data) {
@@ -73,7 +73,7 @@ angular.module('endevr.controllers')
           alert("error");
         });
     } else if ($scope.type === 'emp') {
-      url = 'http://localhost:9000/api/employers/matches?jwt_token=' + jwt_token + '&usertype=emp&posid=' + $rootScope.posid;
+      url = 'https://endevr.herokuapp.com/api/employers/matches?jwt_token=' + jwt_token + '&usertype=emp&posid=' + $rootScope.posid;
       $http.get(url)
         .success(function(data) {
           if (data.length === 0) {
@@ -101,7 +101,7 @@ angular.module('endevr.controllers')
     $scope.interest = 'Developers';
     var jwt_token = localStorageService.get('jwt_token');
     //get positions to list on screen for selection
-    var positionUrl = 'http://localhost:9000/api/employers/positions?jwt_token=' + jwt_token + '&usertype=emp';
+    var positionUrl = 'https://endevr.herokuapp.com/api/employers/positions?jwt_token=' + jwt_token + '&usertype=emp';
     $http.get(positionUrl)
       .success(function(data) {
         if (data.length === 0) {

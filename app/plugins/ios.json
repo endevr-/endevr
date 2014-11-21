@@ -33,10 +33,10 @@
     },
     "installed_plugins": {
         "org.apache.cordova.inappbrowser": {
-            "PACKAGE_NAME": "com.ionicframework.mobileapp365924"
+            "PACKAGE_NAME": "io.endevr.endevr"
         },
         "org.apache.cordova.splashscreen": {
-            "PACKAGE_NAME": "com.ionicframework.mobileapp365924"
+            "PACKAGE_NAME": "io.endevr.endevr"
         }
     },
     "dependent_plugins": {}

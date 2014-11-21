@@ -2,7 +2,7 @@ angular.module('endevr.controllers')
 
 .factory('LinkedInService', function($location, localStorageService) {
   // url matches the server route that uses passport
-  var url = 'http://localhost:9000/auth/linkedin';
+  var url = 'https://endevr.herokuapp.com/auth/linkedin';
   var jwt_token, hasToken, userType, hasUserType;
 
   return {
