@@ -45,12 +45,88 @@ describe("MatchesCtrl", function () {
       expect($scope.interest).toBeDefined();
     });
 
+    describe('decide', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.decide)).toBe(true);
+      });
+
+      it('should set the posid on scope', function() {
+        $scope.posid = 1;
+        $scope.decide(2);
+        expect($scope.posid).toBe(2);
+      });
+
+      it('should set the posid on rootScope', function() {
+        inject(function($rootScope) {
+          $rootScope.posid = 1;
+          $scope.decide(2);
+          expect($rootScope.posid).toBe(2);
+        });
+      });
+
+      it('should have called getMatches', function() {
+        spyOn($scope, 'getMatches');
+        $scope.decide(1);
+        expect($scope.getMatches).toHaveBeenCalled();
+      });
+    });
+
+    describe('Modals', function() {
+      describe('showModal', function() {
+        it('should be defined as a function', function() {
+          expect(angular.isFunction($scope.showModal)).toBe(true);
+        });
+
+        // Tests fail due to the asynch-like-nature of creating a modal
+        xit('should set the profile variable', function() {
+          $scope.showModal("Adam");
+          expect($scope.profile).toBe("Adam");
+        });
+
+        xit('should show the employer\'s profile modal', function() {
+          $scope.type = 'dev';
+          $scope.showModal();
+          expect($scope.empProfileModal.show).toHaveBeenCalled();
+        });
+
+        xit('should show the developer\'s profile modal', function() {
+          $scope.type = 'emp';
+          $scope.showModal();
+          expect($scope.devProfileModal.show).toHaveBeenCalled();
+        });
+      });
+    });
+
+    describe('checkIfExists', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.checkIfExists)).toBe(true);
+      });
+
+      it('should return false if element doesn\'t exist', function() {
+        expect($scope.checkIfExists(null)).toBe(false);
+      });
+
+      it('should return true if element exists', function() {
+        expect($scope.checkIfExists(true)).toBe(true);
+      });
+    });
     describe('navigate', function() {
       it('should be defined as a function', function() {
         expect(angular.isFunction($scope.navigate)).toBe(true);
       });
     });
 
+    describe('backToJobs', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.backToJobs)).toBe(true);
+      });
+
+      it('should set noMatches and chose to false', function() {
+        $scope.backToJobs();
+        expect($scope.noMatches).toBe(false);
+        expect($scope.chosen).toBe(false);
+      });
+    });
 
     describe('getMatches', function() {
       it('should be defined as a function', function() {
@@ -61,12 +137,6 @@ describe("MatchesCtrl", function () {
         expect(Array.isArray($scope.matches)).toEqual(true);
       });
 
-
-      xit('should contain objects with position IDs', function() {
-        $scope.matches = [{'positionID': 1}]
-        expect($scope.matches[0][id]).toBe(1);
-      });
-
       xit('should make a GET request to */matches', function() {
         expect(expecation).toBe(equal);
       });
@@ -75,10 +145,6 @@ describe("MatchesCtrl", function () {
         var oldMatchesArray = $scope.matches;
         $scope.getMatches();
         expect($scope.matches).not.toBe(oldMatchesArray);
-      });
-
-      xit('should call getMatches when the view is loaded', function() {
-        expect(expecation).toBe(equal);
       });
     });
 });
