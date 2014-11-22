@@ -1,50 +1,81 @@
 describe("CardsCtrl", function () {
-
-    var $scope, ctrl, $timeout, $http //, $location;
+    var queueService, $scope, $http, localStorageService, userType, jwt_token, $timeout, ctrl; //, $location;{
 
     beforeEach(function () {
         module('endevr');
 
-        // INJECT! This part is critical
-        // $rootScope - injected to create a new $scope instance.
-        // $controller - injected to create an instance of our controller.
-        // $q - injected so we can create promises for our mocks.
-        // _$timeout_ - injected to we can flush unresolved promises.
-        inject(function ($rootScope, $controller, $q, _$timeout_) {
+        inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_, _$http_) {
+            // Mock service
+
+            queueService = {};
+            queueService.storeTotalCards = function(jwt_token, userType, posid, callback) {void(0)};
+            queueService.removeCurrentCard = function() {void(0)};    
+            queueService.setCurrentCard = function() {void(0)};
+            spyOn(queueService, 'storeTotalCards');
+            
+            $http = _$http_;
 
             // create a scope object for us to use.
             $scope = $rootScope.$new();
-            // $location = $injector.get('$location');
-            // assign $timeout to a scoped variable so we can use
-            // $timeout.flush() later. Notice the _underscore_ trick
-            // so we can keep our names clean in the tests.
+            localStorageService = _localStorageService_;
+            localStorageService.set('usertype', 'dev');
+            localStorageService.set('jwt_token', '123');
+            userType = localStorageService.get('usertype');
+            jwt_token = localStorageService.get('jwt_token');
+
             $timeout = _$timeout_;
 
-            // now run that scope through the controller function,
-            // injecting any services or other injectables we need.
-            // **NOTE**: this is the only time the controller function
-            // will be run, so anything that occurs inside of that
-            // will already be done before the first spec.
             ctrl = $controller('CardsCtrl', {
-                $scope: $scope
+                $scope: $scope,
+                queueService: queueService
             });
         });
 
     });
 
-
-    // Test 1: The simplest of the simple.
-    // here we're going to make sure the $scope variable 
-    // exists evaluated.
     it("should have a $scope variable", function() {
         expect($scope).toBeDefined();
     });
 
-    // Test 2: The simplest of the simple.
-    // here we're going to make sure the $scope variable 
-    // has closeLogin defined.
-    it('cardDestroyed should be defined', function() {
-      expect($scope.cardDestroyed).toBeDefined();
+    it('should store cards for developers on initialization', function() {
+      expect(queueService.storeTotalCards).toHaveBeenCalled();
     });
 
+    describe('cardDestroyed', function() {
+      it('should be definded as a function', function() {
+        expect(angular.isFunction($scope.cardDestroyed)).toBe(true);
+      });
+
+      it('should removeCurrentCard and setCurrentCard', function() {
+        spyOn(queueService, 'removeCurrentCard');
+        spyOn(queueService, 'setCurrentCard');
+        $scope.cardDestroyed();
+        expect(queueService.removeCurrentCard).toHaveBeenCalled();
+        expect(queueService.setCurrentCard).toHaveBeenCalled();
+      });
+
+      it('should set noCards to true', function() {
+        $scope.cards = [];
+        $scope.cardDestroyed();
+        expect($scope.noCards).toBe(true);
+      });
+
+      it('should set noCards to false', function() {
+        $scope.cards = [0, 1, 2];
+        $scope.cardDestroyed();
+        expect($scope.noCards).toBe(false);
+      });
+    });
+
+    describe('request', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.request)).toBe(true);
+      });
+
+      xit('should make a post request', function() {
+        spyOn($http, 'post');
+        $scope.request('www.google.com', "{'id': 1}", 'dev', 'Opportunities')
+        expect($http.post).toHaveBeenCalled();
+      });
+    });
 });

@@ -5,8 +5,12 @@ describe("BrowseCtrl Functions", function () {
     beforeEach(function () {
         module('endevr');
 
-        inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_) {
+        inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_, $httpBackend) {
             $scope = $rootScope.$new();
+            
+            // Mock parent
+            $scope.$parent.current = 'browse';
+
             $timeout = _$timeout_;
             localStorageService = _localStorageService_;
 
@@ -23,6 +27,8 @@ describe("BrowseCtrl Functions", function () {
             $scope.modal.hide = function() {
                 void(0);
             };
+
+            $http = $httpBackend;
         });
     });
 
@@ -103,6 +109,12 @@ describe("BrowseCtrl Functions", function () {
         expect($scope.modal.hide).toHaveBeenCalled;
       });
     });
+
+    describe('$watch', function() {
+      it('should be defined', function() {
+        expect($scope.$parent.$watch).toBeDefined();
+      });
+    });
 });
 
 describe('BrowseCtrl for Developers', function() {
@@ -144,6 +156,7 @@ describe('BrowseCtrl for Employers', function() {
 
       inject(function ($rootScope, $controller,_localStorageService_, $httpBackend) {
           $scope = $rootScope.$new();
+
           localStorageService = _localStorageService_;
 
           // When an employer navigates to browse, they should be
