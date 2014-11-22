@@ -1,28 +1,25 @@
 // pending until Card Ctrl is refactored into Cards
-describe("CardCtrl", function () {
+describe("CardCtrl: Employer", function () {
 
-    var $scope, ctrl, $timeout, $http //, $location;
+    var $scope, ctrl, $timeout, $http, localStorageService;
 
     beforeEach(function () {
         module('endevr');
 
-        // INJECT! This part is critical
-        // $rootScope - injected to create a new $scope instance.
-        // $controller - injected to create an instance of our controller.
-        // $q - injected so we can create promises for our mocks.
-        // _$timeout_ - injected to we can flush unresolved promises.
-        inject(function ($rootScope, $controller, $q, _$timeout_) {
+        inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_) {
 
             // create a scope object for us to use.
             $scope = $rootScope.$new();
             $scope.$parent.cards = [{'name':'Adam'}, {'name':'Santa'}];
+            $scope.$parent.request = function() {
+                void(0);
+            };
+            localStorageService = _localStorageService_;
+            localStorageService.set('usertype', 'emp');
+            localStorageService.set('jwt_token', 123);
+
             $timeout = _$timeout_;
 
-            // now run that scope through the controller function,
-            // injecting any services or other injectables we need.
-            // **NOTE**: this is the only time the controller function
-            // will be run, so anything that occurs inside of that
-            // will already be done before the first spec.
             ctrl = $controller('CardCtrl', {
                 $scope: $scope
             });
@@ -30,38 +27,84 @@ describe("CardCtrl", function () {
 
     });
 
-
-    // Test 1: The simplest of the simple.
-    // here we're going to make sure the $scope variable 
-    // exists evaluated.
     it("should have a $scope variable", function() {
         expect($scope).toBeDefined();
     });
 
-    // Tests are pending because functions are not used on this iteration
-    // Ability to click on card for more info is removed.
-    xit('information should be defined', function() {
-      expect($scope.information).toBeDefined();
+    /*
+    Tests are commented because functions are not used on this iteration.
+    Ability to click on card for more info is removed.
+
+    it('information should be defined', function() {
+       expect(angular.isFunction($scope.information)).toBe(true);
     });
 
-    xit('closeInformation should be defined', function() {
-      expect($scope.closeInformation).toBeDefined();
+    it('closeInformation should be defined', function() {
+       expect(angular.isFunction($scope.closeInformation)).toBe(true);
     });
 
-    xit('clickReject should be defined', function() {
+    it('clickReject should be defined', function() {
       expect($scope.clickReject).toBeDefined();
     });
 
-    xit('clickAccept should be defined', function() {
+    it('clickAccept should be defined', function() {
       expect($scope.clickAccept).toBeDefined();
     });
+    */
 
-    it('cardSwipedLeft should be defined', function() {
-      expect($scope.cardSwipedLeft).toBeDefined();
+    describe('cardSwipedLeft', function() {
+      it('cardSwipedLeft should be defined', function() {
+        expect(angular.isFunction($scope.cardSwipedLeft)).toBe(true);
+      });
+
+      it('should make a request on swipe', function() {
+        spyOn($scope.$parent, 'request');
+        $scope.cardSwipedLeft(['card']);
+        expect($scope.$parent.request).toHaveBeenCalled();
+        expect($scope.$parent.request).toHaveBeenCalledWith('http://localhost:9000/api/employers/matches?jwt_token=123&usertype=emp', ['card'], 'emp', false);
+      });
     });
 
-    it('cardSwipedRight should be defined', function() {
-      expect($scope.cardSwipedRight).toBeDefined();
+});
+
+describe("CardCtrl: Developer", function () {
+
+    var $scope, ctrl, $timeout, $http, localStorageService;
+
+    beforeEach(function () {
+        module('endevr');
+
+        inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_) {
+
+            // create a scope object for us to use.
+            $scope = $rootScope.$new();
+            $scope.$parent.cards = [{'name':'Adam'}, {'name':'Santa'}];
+            $scope.$parent.request = function() {
+                void(0);
+            };
+            localStorageService = _localStorageService_;
+            localStorageService.set('usertype', 'dev');
+            localStorageService.set('jwt_token', 456);
+
+            $timeout = _$timeout_;
+
+            ctrl = $controller('CardCtrl', {
+                $scope: $scope
+            });
+        });
+
     });
 
+    describe('cardSwipedRight', function() {
+      it('cardSwipedRight should be defined', function() {
+        expect(angular.isFunction($scope.cardSwipedRight)).toBe(true);
+      });
+
+      it('should make a request on swipe ', function() {
+        spyOn($scope.$parent, 'request');
+        $scope.cardSwipedRight(['card']);
+        expect($scope.$parent.request).toHaveBeenCalled();
+        expect($scope.$parent.request).toHaveBeenCalledWith('http://localhost:9000/api/developers/matches?jwt_token=456&usertype=dev', ['card'], 'dev', true);
+      });
+    });
 });
