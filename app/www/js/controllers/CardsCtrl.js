@@ -4,8 +4,6 @@ angular.module('endevr.controllers')
   var cardTypes = [];
   $scope.cards = Array.prototype.slice.call(cardTypes, 0);
 
-  var cardQueue = queueService;
-
   var userType = localStorageService.get('usertype');
 
   var jwt_token = localStorageService.get('jwt_token');
@@ -14,7 +12,7 @@ angular.module('endevr.controllers')
   $scope.noCards = false;
 
   if (userType === 'dev') {
-    cardQueue.storeTotalCards( jwt_token, userType, null, function(card) {
+    queueService.storeTotalCards( jwt_token, userType, null, function(card) {
       $scope.cards = card;
       if ($scope.cards.length === undefined) {
         $scope.noCards = true;
@@ -26,7 +24,7 @@ angular.module('endevr.controllers')
 
   $scope.$parent.$watch('posid', function(newVal, oldVal) {
     if (newVal !== oldVal) {
-      cardQueue.storeTotalCards( jwt_token, userType, newVal, function(card) {
+      queueService.storeTotalCards( jwt_token, userType, newVal, function(card) {
         $scope.cards = card;
         check = false;
         if ($scope.cards.length === undefined) {
@@ -39,9 +37,8 @@ angular.module('endevr.controllers')
   });
 
   $scope.cardDestroyed = function() {
-    // console.log('destroyed');
-    cardQueue.removeCurrentCard();
-    cardQueue.setCurrentCard();
+    queueService.removeCurrentCard();
+    queueService.setCurrentCard();
 
     //If there are no cards in queue, tell the user
     if ($scope.cards.length === 0) {
