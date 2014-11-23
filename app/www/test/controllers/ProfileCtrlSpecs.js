@@ -108,7 +108,7 @@ describe("ProfileCtrl", function() {
       });
 
       it('should call the profileService', function() {
-        expect(profileService.getProfile).toHaveBeenCalled();;
+        expect(profileService.getProfile).toHaveBeenCalled();
       });
 
       it('should hide the modal', function() {
