@@ -1,30 +1,18 @@
 describe("LoginCtrl", function () {
 
-    var $scope, ctrl, $timeout, $http //, $location;
+    var $scope, ctrl, $timeout, $httpBackend, localStorageService; //, $location;
 
     beforeEach(function () {
         module('endevr');
 
-        // INJECT! This part is critical
-        // $rootScope - injected to create a new $scope instance.
-        // $controller - injected to create an instance of our controller.
-        // $q - injected so we can create promises for our mocks.
-        // _$timeout_ - injected to we can flush unresolved promises.
-        inject(function ($rootScope, $controller, $q, _$timeout_) {
+        inject(function ($rootScope, $controller, _$httpBackend_, $q, _$timeout_, _localStorageService_) {
 
-            // create a scope object for us to use.
             $scope = $rootScope.$new();
-            // $location = $injector.get('$location');
-            // assign $timeout to a scoped variable so we can use
-            // $timeout.flush() later. Notice the _underscore_ trick
-            // so we can keep our names clean in the tests.
-            $timeout = _$timeout_;
 
-            // now run that scope through the controller function,
-            // injecting any services or other injectables we need.
-            // **NOTE**: this is the only time the controller function
-            // will be run, so anything that occurs inside of that
-            // will already be done before the first spec.
+            $timeout = _$timeout_;
+            $httpBackend = _$httpBackend_;
+            localStorageService = _localStorageService_;
+
             ctrl = $controller('LoginCtrl', {
                 $scope: $scope
             });
@@ -32,39 +20,88 @@ describe("LoginCtrl", function () {
 
     });
 
-
-    // Test 1: The simplest of the simple.
-    // here we're going to make sure the $scope variable 
-    // exists evaluated.
     it("should have a $scope variable", function() {
         expect($scope).toBeDefined();
     });
 
-    // Test 2: The simplest of the simple.
-    // here we're going to make sure the $scope variable 
-    // has closeLogin defined.
-    it('linkedinlogin should be defined as a function', function() {
-      expect($scope.linkedinlogin).toBeDefined();
-      expect(typeof $scope.linkedinlogin).toBe('function');
+    describe('employerLogin', function() {
+      it('employerLogin should be defined as a function', function() {
+        expect(angular.isFunction($scope.employerLogin)).toBe(true);
+      });
+
+      xit('should not login with incorrect credentials', function() {
+          var employer = {};
+          employer['email'] = 'test@test.com';
+          employer['password'] = 'wrong';
+          $httpBackend.flush();
+          $scope.employerLogin(employer);
+          $timeout(function() {
+            expect($scope.badlogin).toBe(true);
+          }, 1000);
+      });
+
+      xdescribe('correct credentials', function() {
+        var employer; 
+        beforeEach(function() {
+          employer = {
+            email: 'test@test.com',
+            password: 'password'
+          };
+        })
+
+        xit('should set duplicate and badlogin to false', function() {
+          $scope.employerLogin(employer);
+          $httpBackend.flush();
+          expect($scope.duplicate).toBe(false);
+          expect($scope.badlogin).toBe(false);
+        });
+
+        xit('should return a JWT', function() {
+          expect(data.jwt).toBeDefined();
+        });
+      });
     });
 
-    it('githublogin should be defined as a function', function() {
-      expect($scope.githublogin).toBeDefined();
-      expect(typeof $scope.githublogin).toBe('function');
+    describe('employerSignup', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.employerSignup)).toBe(true);
+      });
+
+      xit('should make a post request', function() {
+        var data = {'jwt': 123};
+        var employer = {
+          'email': 'test@test.com',
+          'password': '1234abcd'
+        }
+        $httpBackend.whenPOST('http://localhost:9000/api/employers/new')
+          .respond(data);
+        $scope.employerSignup(employer);
+        expect($scope.duplicate).toBe(false);
+      });
     });
 
-    it('employerLogin should be defined as a function', function() {
-      expect($scope.employerLogin).toBeDefined();
-      expect(typeof $scope.employerLogin).toBe('function');
+    describe('logout', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.logout)).toBe(true);
+      });
+
+      it('should clear local storage', function() {
+        localStorageService.set('usertype', 'emp');
+        expect(localStorageService.get('usertype')).toBe('emp');
+        $scope.logout();
+        expect(localStorageService.get('usertype')).toBe(null);
+      });
     });
 
-    it('employerSignup should be defined as a function', function() {
-      expect($scope.employerSignup).toBeDefined();
-      expect(typeof $scope.employerSignup).toBe('function');
-    });
+    describe('changeEmployerStatus', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.changeEmployerStatus)).toBe(true);
+      });
 
-    it('logout should be defined as a function', function() {
-      expect($scope.logout).toBeDefined();
-      expect(typeof $scope.logout).toBe('function');
+      it('should change the employer status', function() {
+        expect($scope.isNewEmployer).toBe(false);
+        $scope.changeEmployerStatus();
+        expect($scope.isNewEmployer).toBe(true);
+      });
     });
 });

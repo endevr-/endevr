@@ -1,14 +1,16 @@
 describe("AuthCtrl", function () {
 
-    var $scope, ctrl, $timeout; //, $location;
+    var $scope, ctrl, $timeout, localStorageService, $location;
 
     beforeEach(function () {
         module('endevr');
-        inject(function ($rootScope, $controller, $q, _$timeout_) {
+        inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_, _$location_) {
 
             $scope = $rootScope.$new();
-
+            localStorageService = _localStorageService_;
+            $location = _$location_;
             $timeout = _$timeout_;
+
             ctrl = $controller('AuthCtrl', {
                 $scope: $scope
             });
@@ -29,25 +31,6 @@ describe("AuthCtrl", function () {
     });
 
     describe('Developer Auth', function() {
-      it("assignDev should be defined as a function", function() {
-          expect(angular.isFunction($scope.assignDev)).toBe(true);
-      });
-
-      it("showGitHub should be defined as a function", function() {
-          expect(angular.isFunction($scope.showGitHub)).toBe(true);
-      });
-    
-      it("skipGitHub should be defined as a function", function() {
-          expect(angular.isFunction($scope.skipGitHub)).toBe(true);
-      });
-
-      it('assignDev should change type to \'dev\'', function() {
-        $scope.type = null;
-        expect($scope.type).toEqual(null);
-        $scope.assignDev();
-        expect($scope.type).toEqual('dev');
-      });      
-
       it('should set needsAuthentication to true when devs not logged-in with LinkedIn and GitHub', function() {
         $scope.LinkedInAuthenticated = false;
         $scope.GitHubAuthenticated = false;
@@ -67,46 +50,149 @@ describe("AuthCtrl", function () {
         expect($scope.needsAuthentication).toBe(true);
       });
 
-      xit('should set needsAuthentication to false when devs are logged-in with BOTH LinkedIn and GitHub', function() {
-        $scope.LinkedInAuthenticated = true;
-        $scope.GitHubAuthenticated = true;
-        expect($scope.needsAuthentication).toBe(false);
+      describe('showGitHub', function() {
+        it("showGitHub should be defined as a function", function() {
+            expect(angular.isFunction($scope.showGitHub)).toBe(true);
+        });
+
+        it('should return true if GitHub isn\'t authenticated', function() {
+          $scope.LinkedInAuthenticated = true;
+          expect($scope.showGitHub()).toBe(true);
+        });
+
+        it('should return false if both LinkedIn and GitHub are authenticated', function() {
+          $scope.LinkedInAuthenticated = true;
+          $scope.GitHubAuthenticated = true;
+          expect($scope.showGitHub()).toBe(false);
+        });
+      });
+
+      describe('assignDev', function() {
+        beforeEach(function() {
+          $scope.assignDev();
+        });
+
+        it("assignDev should be defined as a function", function() {
+            expect(angular.isFunction($scope.assignDev)).toBe(true);
+        });
+
+        it('should set type to dev', function() {
+          expect($scope.type).toBe('dev');
+        });
+
+        it('should set local storage usertype type to dev', function() {
+          expect(localStorageService.get('usertype')).toBe('dev');
+        });
+      });
+
+      describe('skipGitHub', function() {
+        beforeEach(function() {
+          spyOn($location, 'path');
+          $scope.skipGitHub()
+        });
+
+        it("skipGitHub should be defined as a function", function() {
+            expect(angular.isFunction($scope.skipGitHub)).toBe(true);
+        });
+
+        it('should set local storage to have a GitHub token', function() {
+          expect(localStorageService.get('github-token')).toBe('true');
+        });
+
+        it('should set Authenticated to true', function() {
+          expect($scope.Authenticated).toBe(true);
+        });
+
+        it('should navigate to browse', function() {
+          expect($location.path).toHaveBeenCalled();
+          expect($location.path).toHaveBeenCalledWith('/app/browse');
+        });
       });
     });
 
     describe('Employer Auth', function() {
-      it("assignEmp should be defined as a function", function() {
-          expect(angular.isFunction($scope.assignEmp)).toBe(true);
-      });
-      
-      it('assignEmp should change type to \'emp\'', function() {
-        $scope.type = null;
-        expect($scope.type).toEqual(null);
-        $scope.assignEmp();
-        expect($scope.type).toEqual('emp');
-      });
+      //see true cases below lines 136
+      describe('assignEmp', function() {
+        beforeEach(function() {
+          $scope.assignEmp();
+        });
 
-      it('type should not be \'emp\' if employers aren\'t logged-in', function() {
-        $scope.type = null;
-        expect($scope.type).toEqual(null);
+        it("assignEmp should be defined as a function", function() {
+            expect(angular.isFunction($scope.assignEmp)).toBe(true);
+        });
 
-        $scope.EmployerAuthenticated = false;
-        $scope.Authenticated = false;
+        it('should set type to emp', function() {
+          expect($scope.type).toBe('emp');
+        });
 
-        expect($scope.type).toEqual(null);
+        it('should set local storage usertype type to emp', function() {
+          expect(localStorageService.get('usertype')).toBe('emp');
+        });
+        
       });
-      
-      // Controller logic is not being evaluated correctly be the test
-      xit('should set Authenticated to false when employers are not authenticated', function() {
-        $scope.EmployerAuthenticated = false;
-        expect($scope.Authenticated).toBe(false);
-      });
-
-      xit('should set Authenticated to true when employers are authenticated', function() {
-        $scope.EmployerAuthenticated = true;
-        expect($scope.Authenticated).toBe(true);
-      });
-
     });
+});
 
+describe('AuthCtrl Dev Logged-in', function() {
+  var $scope, ctrl, $timeout, localStorageService, $location;
+
+  beforeEach(function () {
+      module('endevr');
+      inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_, _$location_) {
+
+          $scope = $rootScope.$new();
+          localStorageService = _localStorageService_;
+          $location = _$location_;
+          $timeout = _$timeout_;
+
+          ctrl = $controller('AuthCtrl', {
+              $scope: $scope
+          });
+
+          localStorageService.set('linkedin-token', true);
+          localStorageService.set('github-token', true);
+      });
+
+  });
+
+  // Controller-Wide Specs, user non-specific
+  it("should have a $scope variable", function() {
+      expect($scope).toBeDefined();
+  });
+
+  it('should set developers to authenticated', function() {
+    expect($scope.LinkedInAuthenticated).toBe(true);
+    expect($scope.GitHubAuthenticated).toBe(true);
+  });
+});
+
+describe('AuthCtrl Dev Logged-in', function() {
+  var $scope, ctrl, $timeout, localStorageService, $location;
+
+  beforeEach(function () {
+      module('endevr');
+      inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_, _$location_) {
+
+          $scope = $rootScope.$new();
+          localStorageService = _localStorageService_;
+          $location = _$location_;
+          $timeout = _$timeout_;
+
+          ctrl = $controller('AuthCtrl', {
+              $scope: $scope
+          });
+          localStorageService.clearAll();
+          localStorageService.set('employer-token', true);
+      });
+
+  });
+
+  // Controller-Wide Specs, user non-specific
+  it("should have a $scope variable", function() {
+      expect($scope).toBeDefined();
+  });
+
+  it('should set employers to authenticated', function() {
+    expect($scope.EmployerAuthenticated).toBe(true);
+  });
 });

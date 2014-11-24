@@ -1,33 +1,32 @@
 describe("MatchesCtrl", function () {
 
-    var $scope, ctrl, $timeout, $http //, $location;
+    var $scope, ctrl, $timeout, $http, localStorageService, $location;
 
     beforeEach(function () {
         module('endevr');
 
-        // INJECT! This part is critical
-        // $rootScope - injected to create a new $scope instance.
-        // $controller - injected to create an instance of our controller.
-        // $q - injected so we can create promises for our mocks.
-        // _$timeout_ - injected to we can flush unresolved promises.
-        inject(function ($rootScope, $controller, $q, _$timeout_) {
+        inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_, _$location_) {
 
-            // create a scope object for us to use.
             $scope = $rootScope.$new();
-            // $location = $injector.get('$location');
-            // assign $timeout to a scoped variable so we can use
-            // $timeout.flush() later. Notice the _underscore_ trick
-            // so we can keep our names clean in the tests.
             $timeout = _$timeout_;
+            $location = _$location_;
+            
+            $location.path = function(route) {
+              return '/app/matches/'+route;
+            };
 
-            // now run that scope through the controller function,
-            // injecting any services or other injectables we need.
-            // **NOTE**: this is the only time the controller function
-            // will be run, so anything that occurs inside of that
-            // will already be done before the first spec.
+            localStorageService = _localStorageService_;
+            localStorageService.set('usertype', 'dev');
+
             ctrl = $controller('MatchesCtrl', {
                 $scope: $scope
             });
+
+            var Modal = function() {void(0);}
+            Modal.prototype.show = function() {void(0);};
+            Modal.prototype.hide = function() {void(0);};
+            $scope.devProfileModal = new Modal();
+            $scope.empProfileModal = new Modal();
         });
 
     });
@@ -42,15 +41,101 @@ describe("MatchesCtrl", function () {
 
     it('should define a type and set interest based off local storage', function() {
       expect($scope.type).toBeDefined();
-      expect($scope.interest).toBeDefined();
     });
 
-    describe('navigate', function() {
+    describe('decide', function() {
       it('should be defined as a function', function() {
-        expect(angular.isFunction($scope.navigate)).toBe(true);
+        expect(angular.isFunction($scope.decide)).toBe(true);
+      });
+
+      it('should set the posid on scope', function() {
+        $scope.posid = 1;
+        $scope.decide(2);
+        expect($scope.posid).toBe(2);
+      });
+
+      it('should set the posid on rootScope', function() {
+        inject(function($rootScope) {
+          $rootScope.posid = 1;
+          $scope.decide(2);
+          expect($rootScope.posid).toBe(2);
+        });
+      });
+
+      it('should have called getMatches', function() {
+        spyOn($scope, 'getMatches');
+        $scope.decide(1);
+        expect($scope.getMatches).toHaveBeenCalled();
       });
     });
 
+    describe('Modals', function() {
+      describe('showModal', function() {
+        it('should be defined as a function', function() {
+          expect(angular.isFunction($scope.showModal)).toBe(true);
+        });
+
+        it('should set the profile variable', function() {
+          $scope.showModal("Adam");
+          expect($scope.profile).toBe("Adam");
+        });
+
+        it('should show the employer\'s profile modal', function() {
+          $scope.type = 'dev';
+          spyOn($scope.empProfileModal, 'show');
+          $scope.showModal("Adam");
+          expect($scope.empProfileModal.show).toHaveBeenCalled();
+        });
+
+        it('should show the developer\'s profile modal', function() {
+          $scope.type = 'emp';
+          spyOn($scope.devProfileModal, 'show');
+          $scope.showModal("Adam");
+          expect($scope.devProfileModal.show).toHaveBeenCalled();
+        });
+      });
+    });
+
+    describe('checkIfExists', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.checkIfExists)).toBe(true);
+      });
+
+      it('should return false if element doesn\'t exist', function() {
+        expect($scope.checkIfExists(null)).toBe(false);
+      });
+
+      it('should return true if element exists', function() {
+        expect($scope.checkIfExists(true)).toBe(true);
+      });
+    });
+
+    describe('navigate', function() {
+      beforeEach(function() {
+        spyOn($location, 'path');
+      });
+
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.navigate)).toBe(true);
+      });
+
+      it('should navigate to a matche sroute', function() {
+        $scope.navigate('Adam');
+        expect($location.path).toHaveBeenCalled();
+      });
+    });
+
+    describe('backToJobs', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.backToJobs)).toBe(true);
+      });
+
+      it('should set noMatches and chose to false', function() {
+        $scope.backToJobs();
+        expect($scope.noMatches).toBe(false);
+        expect($scope.chosen).toBe(false);
+      });
+    });
 
     describe('getMatches', function() {
       it('should be defined as a function', function() {
@@ -61,24 +146,61 @@ describe("MatchesCtrl", function () {
         expect(Array.isArray($scope.matches)).toEqual(true);
       });
 
-
-      xit('should contain objects with position IDs', function() {
-        $scope.matches = [{'positionID': 1}]
-        expect($scope.matches[0][id]).toBe(1);
-      });
-
-      xit('should make a GET request to */matches', function() {
-        expect(expecation).toBe(equal);
-      });
-
-      xit('should update the matches array', function() {
-        var oldMatchesArray = $scope.matches;
+      it('should differentiate for employers', function() {
+        $scope.type = 'emp';
         $scope.getMatches();
-        expect($scope.matches).not.toBe(oldMatchesArray);
+      });
+    });
+});
+
+describe("MatchesCtrl", function () {
+
+    var $scope, ctrl, $timeout, $http, localStorageService, $location;
+
+    beforeEach(function () {
+        module('endevr');
+
+        inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_, _$location_) {
+
+            $scope = $rootScope.$new();
+            $timeout = _$timeout_;
+            $location = _$location_;
+            
+            $location.path = function(route) {
+              return '/app/matches/'+route;
+            };
+
+            localStorageService = _localStorageService_;
+            localStorageService.set('usertype', 'emp');
+            localStorageService.set('jwt_token', '123');
+
+            ctrl = $controller('MatchesCtrl', {
+                $scope: $scope
+            });
+
+        });
+
+    });
+
+
+    // Test 1: The simplest of the simple.
+    // here we're going to make sure the $scope variable 
+    // exists evaluated.
+    it("should have a $scope variable", function() {
+        expect($scope).toBeDefined();
+    });
+
+    it('should define a type and set interest based off local storage', function() {
+      expect($scope.type).toBeDefined();
+    });
+
+    describe('initialization logic', function() {
+      it('should set chosen to false', function() {
+        expect($scope.chosen).toBe(false);
       });
 
-      xit('should call getMatches when the view is loaded', function() {
-        expect(expecation).toBe(equal);
+      it('should set interest to Developers', function() {
+        expect($scope.interest).toBe('Developers');
       });
     });
 });
