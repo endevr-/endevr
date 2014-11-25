@@ -51,7 +51,6 @@ angular.module('endevr.controllers')
   $scope.request = function(url, card, usertype, interest) {
 
     var fields = {};
-    // alert(url);
     if (usertype === 'dev') {
       //Remove the hardcoded value on line 29 for the real developer ID
       // fields.devid = 1;
@@ -66,8 +65,6 @@ angular.module('endevr.controllers')
             $ionicPopup.alert({
               title: '<h2 class="empProfile">Congratulations!</h2>',
               template: '<center>You have a new match!</center>'
-            }).then(function(res) {
-              // nothing to do.
             });
           }
         })
@@ -88,8 +85,6 @@ angular.module('endevr.controllers')
             $ionicPopup.alert({
               title: '<h2 class="empProfile">Congratulations!</h2>',
               template: '<center>You have a new match!</center>'
-            }).then(function(res) {
-              // nothing to do.
             });
           }
         })
