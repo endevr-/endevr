@@ -1,15 +1,16 @@
 describe("MatchesCtrl", function () {
 
-    var $scope, ctrl, $timeout, $http, localStorageService, $location;
+    var $scope, ctrl, $timeout, $httpBackend, localStorageService, $location;
 
     beforeEach(function () {
         module('endevr');
 
-        inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_, _$location_) {
+        inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_, _$location_, _$httpBackend_) {
 
             $scope = $rootScope.$new();
             $timeout = _$timeout_;
             $location = _$location_;
+            $httpBackend = _$httpBackend_;
             
             $location.path = function(route) {
               return '/app/matches/'+route;
@@ -17,6 +18,7 @@ describe("MatchesCtrl", function () {
 
             localStorageService = _localStorageService_;
             localStorageService.set('usertype', 'dev');
+            localStorageService.set('jwt_token', 'dev');
 
             ctrl = $controller('MatchesCtrl', {
                 $scope: $scope
@@ -27,14 +29,29 @@ describe("MatchesCtrl", function () {
             Modal.prototype.hide = function() {void(0);};
             $scope.devProfileModal = new Modal();
             $scope.empProfileModal = new Modal();
-        });
 
+            $httpBackend.whenGET('templates/profile.html').respond('');
+            $httpBackend.whenGET('templates/auth.html').respond('');
+            $httpBackend.whenGET('templates/matches.html').respond('');
+            $httpBackend.whenGET('templates/card.html').respond('');
+            $httpBackend.whenGET('templates/cards.html').respond('');
+            $httpBackend.whenGET('templates/empprofile.html').respond('');
+            $httpBackend.whenGET('templates/menu.html').respond('');
+            $httpBackend.whenGET('templates/tutorialModal.html').respond('');
+            $httpBackend.whenGET('templates/browse.html').respond('');
+            $httpBackend.whenGET('templates/devProfileModal.html').respond('');
+            $httpBackend.whenGET('templates/empProfileModal.html').respond('');
+            $httpBackend.whenGET('http://localhost:9000/api/developers/matches?jwt_token=123&usertype=dev')
+              .respond('');
+            $httpBackend.flush();
+        });
     });
 
+    afterEach(function() {
+       $httpBackend.verifyNoOutstandingExpectation();
+       $httpBackend.verifyNoOutstandingRequest();
+    });
 
-    // Test 1: The simplest of the simple.
-    // here we're going to make sure the $scope variable 
-    // exists evaluated.
     it("should have a $scope variable", function() {
         expect($scope).toBeDefined();
     });
@@ -146,10 +163,52 @@ describe("MatchesCtrl", function () {
         expect(Array.isArray($scope.matches)).toEqual(true);
       });
 
-      it('should differentiate for employers', function() {
-        $scope.type = 'emp';
-        $scope.getMatches();
+      describe('for developers', function() {
+        beforeEach(function() {
+          localStorageService.set('jwt_token', 123);
+          $scope.type = 'dev';
+        });
+
+        it('should update the matches array by GET request', function() {
+          var response = ['Adam', 'Anna', 'Benji'];
+          $httpBackend.whenGET('http://localhost:9000/api/developers/matches?jwt_token=123&usertype=dev')
+            .respond(response);
+          $scope.getMatches();
+          $httpBackend.flush();
+          expect($scope.matches.toString()).toBe(response.toString());
+          expect($scope.noMatches).toBe(false);
+        });
+
+        it('should try a GET request, but return no matches', function() {
+          var response = [];
+          $httpBackend.whenGET('http://localhost:9000/api/developers/matches?jwt_token=123&usertype=dev')
+            .respond(response);
+          $scope.getMatches();
+          $httpBackend.flush();
+          expect($scope.matches.length).toBe(0);
+          expect($scope.noMatches).toBe(true);
+        });
+
+        it('should error', function() {
+          var response = [];
+          $httpBackend.whenGET('http://localhost:9000/api/developers/matches?jwt_token=123&usertype=dev')
+            .respond(500, '');
+          $scope.getMatches();
+          $httpBackend.flush();
+          expect($scope.matches).not.toBeDefined();
+          expect($scope.noMatches).not.toBeDefined();
+        });
+
+
       });
+
+      describe('for employers', function() {
+        beforeEach(function() {
+          localStorageService.set('jwt_token', 456);
+          $scope.type = 'emp';
+        });
+      });
+
     });
 });
 
