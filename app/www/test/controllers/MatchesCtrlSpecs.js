@@ -94,6 +94,20 @@ describe('MatchesCtrl', function() {
         });
       });
 
+      describe('checkIfExists', function() {
+        it('should be defined as a function', function() {
+          expect(angular.isFunction($scope.checkIfExists)).toBe(true);
+        });
+
+        it('should return false if element doesn\'t exist', function() {
+          expect($scope.checkIfExists(null)).toBe(false);
+        });
+
+        it('should return true if element exists', function() {
+          expect($scope.checkIfExists(true)).toBe(true);
+        });
+      });
+
     });
 
     describe('with failure', function() {
