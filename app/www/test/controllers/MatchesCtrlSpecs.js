@@ -7,17 +7,26 @@ describe('MatchesCtrl', function() {
         module('endevr');
 
         inject(function($rootScope, $controller, _localStorageService_, _$httpBackend_, _$location_) {
+          // Create new scope and mock controller
           $scope = $rootScope.$new();
           ctrl = $controller('MatchesCtrl', {
             $scope: $scope
           });
 
+          $location = _$location_;
+          // Mock for navigate function
+          $location.path = function(route) {
+            return '/app/matches/'+route;
+          };
+
+          // Mock for modals
           var Modal = function() {void(0);}
           Modal.prototype.show = function() {void(0);};
           Modal.prototype.hide = function() {void(0);};
           $scope.devProfileModal = new Modal();
           $scope.empProfileModal = new Modal();
 
+          // Mock for outstanding GET requests
           $httpBackend = _$httpBackend_;
           $httpBackend.whenGET('templates/profile.html').respond('');
           $httpBackend.whenGET('templates/auth.html').respond('');
@@ -105,6 +114,33 @@ describe('MatchesCtrl', function() {
 
         it('should return true if element exists', function() {
           expect($scope.checkIfExists(true)).toBe(true);
+        });
+      });
+
+      describe('navigate', function() {
+        beforeEach(function() {
+          spyOn($location, 'path');
+        });
+
+        it('should be defined as a function', function() {
+          expect(angular.isFunction($scope.navigate)).toBe(true);
+        });
+
+        it('should navigate to a matche sroute', function() {
+          $scope.navigate('Adam');
+          expect($location.path).toHaveBeenCalled();
+        });
+      });
+
+      describe('backToJobs', function() {
+        it('should be defined as a function', function() {
+          expect(angular.isFunction($scope.backToJobs)).toBe(true);
+        });
+
+        it('should set noMatches and chose to false', function() {
+          $scope.backToJobs();
+          expect($scope.noMatches).toBe(false);
+          expect($scope.chosen).toBe(false);
         });
       });
 
