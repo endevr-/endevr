@@ -569,15 +569,6 @@ describe('MatchesCtrl', function() {
         expect($scope.matches.length).toBe(0);
         expect($scope.noMatches).not.toBeDefined();
       });
-    });
-    
+    }); 
   });
 });
-// when controller initializes
-  // for developers
-    // get Matches
-  // for employers
-    // get positions in if statement
-
-// errors
-  // respond 500
