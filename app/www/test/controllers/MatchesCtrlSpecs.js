@@ -1,7 +1,7 @@
 describe('MatchesCtrl', function() {
   describe('for developers', function() {
     describe('with success', function() {
-      var $scope, ctrl, $location, $httpBackend, localStorageService, $ionicModal;
+      var $scope, ctrl, $location, $httpBackend, localStorageService;
       
       beforeEach(function() {
         module('endevr');
@@ -165,10 +165,6 @@ describe('MatchesCtrl', function() {
       });
 
       describe('getMatches', function() {
-        beforeEach(function() {
-          $scope.type = 'dev';
-        });
-
         it('should be defined as a function', function() {
           expect(angular.isFunction($scope.getMatches)).toBe(true);
         });
@@ -186,18 +182,17 @@ describe('MatchesCtrl', function() {
       });
     });
 
-    xdescribe('with failure', function() {
-      var $scope, ctrl, $location, $httpBackend, localStorageService, $ionicModal;
+    describe('with failure', function() {
+      var $scope, ctrl, $httpBackend, localStorageService;
       
       beforeEach(function() {
         module('endevr');
 
-        inject(function($rootScope, $controller, _localStorageService_, _$httpBackend_, _$location_) {
+        inject(function($rootScope, $controller, _localStorageService_, _$httpBackend_) {
+          // Create new scope and mock controller
           $scope = $rootScope.$new();
-          ctrl = $controller('MatchesCtrl', {
-                    $scope: $scope
-          });
 
+          // Mock for outstanding GET requests
           $httpBackend = _$httpBackend_;
           $httpBackend.whenGET('templates/profile.html').respond('');
           $httpBackend.whenGET('templates/auth.html').respond('');
@@ -210,19 +205,98 @@ describe('MatchesCtrl', function() {
           $httpBackend.whenGET('templates/browse.html').respond('');
           $httpBackend.whenGET('templates/devProfileModal.html').respond('');
           $httpBackend.whenGET('templates/empProfileModal.html').respond('');
+          $httpBackend.whenGET('http://localhost:9000/api/developers/matches?jwt_token=123&usertype=dev')
+            .respond(500, '');
+
+          // Mock local storage
+          localStorageService = _localStorageService_;
+          localStorageService.set('usertype', 'dev');
+          localStorageService.set('jwt_token', 123);
+
+          ctrl = $controller('MatchesCtrl', {
+            $scope: $scope
+          });
+
+          // After the controller is created, there should be an outstanding GET
+          // request because of the if-statement at the bottom. 
           $httpBackend.flush();
         });
       });
       
       afterEach(function() {
-           $httpBackend.verifyNoOutstandingExpectation();
-           $httpBackend.verifyNoOutstandingRequest();
+        $httpBackend.verifyNoOutstandingExpectation();
+        $httpBackend.verifyNoOutstandingRequest();
       });
 
       it('should have a defined scope', function() {
         expect($scope).toBeDefined();
       });
+
+      it('getMatches should throw error on initialization', function() {
+        $scope.getMatches();
+        $httpBackend.flush();
+        expect($scope.matches.length).toBe(0);
+        expect($scope.noMatches).not.toBeDefined();
+      });
     }); 
+
+    describe('with no matches to return', function() {
+      var $scope, ctrl, $httpBackend, localStorageService;
+      
+      beforeEach(function() {
+        module('endevr');
+
+        inject(function($rootScope, $controller, _localStorageService_, _$httpBackend_) {
+          // Create new scope and mock controller
+          $scope = $rootScope.$new();
+
+          // Mock for outstanding GET requests
+          $httpBackend = _$httpBackend_;
+          $httpBackend.whenGET('templates/profile.html').respond('');
+          $httpBackend.whenGET('templates/auth.html').respond('');
+          $httpBackend.whenGET('templates/matches.html').respond('');
+          $httpBackend.whenGET('templates/card.html').respond('');
+          $httpBackend.whenGET('templates/cards.html').respond('');
+          $httpBackend.whenGET('templates/empprofile.html').respond('');
+          $httpBackend.whenGET('templates/menu.html').respond('');
+          $httpBackend.whenGET('templates/tutorialModal.html').respond('');
+          $httpBackend.whenGET('templates/browse.html').respond('');
+          $httpBackend.whenGET('templates/devProfileModal.html').respond('');
+          $httpBackend.whenGET('templates/empProfileModal.html').respond('');
+          $httpBackend.whenGET('http://localhost:9000/api/developers/matches?jwt_token=123&usertype=dev')
+            .respond([]);
+
+          // Mock local storage
+          localStorageService = _localStorageService_;
+          localStorageService.set('usertype', 'dev');
+          localStorageService.set('jwt_token', 123);
+
+          ctrl = $controller('MatchesCtrl', {
+            $scope: $scope
+          });
+
+          // After the controller is created, there should be an outstanding GET
+          // request because of the if-statement at the bottom. 
+          $httpBackend.flush();
+        });
+      });
+      
+      afterEach(function() {
+        $httpBackend.verifyNoOutstandingExpectation();
+        $httpBackend.verifyNoOutstandingRequest();
+      });
+
+      it('should have a defined scope', function() {
+        expect($scope).toBeDefined();
+      });
+
+      it('getMatches should throw error on initialization', function() {
+        $scope.getMatches();
+        $httpBackend.flush();
+        expect($scope.matches.length).toBe(0);
+        expect($scope.noMatches).toBe(true);
+      });
+    });
   });
 
   xdescribe('for employers', function() {
