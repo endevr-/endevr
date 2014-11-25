@@ -179,30 +179,16 @@ describe('BrowseCtrl for Employers', function() {
       });
   });
 
-  afterEach(function() {
-     $httpBackend.verifyNoOutstandingExpectation();
-     $httpBackend.verifyNoOutstandingRequest();
-  });
-
   it("should have a $scope variable", function() {
-    $httpBackend.whenGET('http://localhost:9000/api/employers/positions?jwt_token=123&usertype=emp')
-      .respond(['astronaut', 'scuba instructor']);
-    $httpBackend.flush()
-    expect($scope).toBeDefined();
+      expect($scope).toBeDefined();
   });
 
 
   it('should set type to emp', function() {
-    $httpBackend.whenGET('http://localhost:9000/api/employers/positions?jwt_token=123&usertype=emp')
-      .respond(['astronaut', 'scuba instructor']);
-    $httpBackend.flush()
     expect($scope.type).toBe('emp');
   });
 
   it('should set interest to Developers', function() {
-    $httpBackend.whenGET('http://localhost:9000/api/employers/positions?jwt_token=123&usertype=emp')
-      .respond(['astronaut', 'scuba instructor']);
-    $httpBackend.flush()  
     expect($scope.interest).toBe('Developers');
   });
 

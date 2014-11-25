@@ -46,12 +46,10 @@ describe("CardsCtrl", function () {
                 $scope: $scope,
                 queueService: queueService
             });
-        });
-    });
 
-    afterEach(function() {
-         $httpBackend.verifyNoOutstandingExpectation();
-         $httpBackend.verifyNoOutstandingRequest();
+
+        });
+
     });
 
     it("should have a $scope variable", function() {
