@@ -510,6 +510,68 @@ describe('MatchesCtrl', function() {
       });
     }); 
   });
+
+  describe('for other (else cases)', function() {
+    var $scope, ctrl, $httpBackend, localStorageService;
+    
+    beforeEach(function() {
+      module('endevr');
+
+      inject(function($rootScope, $controller, _localStorageService_, _$httpBackend_) {
+        // Create new scope and mock controller
+        $scope = $rootScope.$new();
+
+        // Mock for outstanding GET requests
+        $httpBackend = _$httpBackend_;
+        $httpBackend.whenGET('templates/profile.html').respond('');
+        $httpBackend.whenGET('templates/auth.html').respond('');
+        $httpBackend.whenGET('templates/matches.html').respond('');
+        $httpBackend.whenGET('templates/card.html').respond('');
+        $httpBackend.whenGET('templates/cards.html').respond('');
+        $httpBackend.whenGET('templates/empprofile.html').respond('');
+        $httpBackend.whenGET('templates/menu.html').respond('');
+        $httpBackend.whenGET('templates/tutorialModal.html').respond('');
+        $httpBackend.whenGET('templates/browse.html').respond('');
+        $httpBackend.whenGET('templates/devProfileModal.html').respond('');
+        $httpBackend.whenGET('templates/empProfileModal.html').respond('');
+
+        // Mock local storage
+        localStorageService = _localStorageService_;
+        localStorageService.set('usertype', 'other');
+        localStorageService.set('jwt_token', 789);
+
+        ctrl = $controller('MatchesCtrl', {
+          $scope: $scope
+        });
+        $rootScope.posid = 1;
+        // After the controller is created, there should be an outstanding GET
+        // request because of the if-statement at the bottom. 
+        $httpBackend.flush();
+      });
+    });
+    
+    afterEach(function() {
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
+    });
+
+    it('should have a defined scope', function() {
+      expect($scope).toBeDefined();
+    });
+
+    describe('getMatches', function() {
+      it('should be defined as a function', function() {
+        expect(angular.isFunction($scope.getMatches)).toBe(true);
+      });
+
+      it('should not update the matches array by GET request', function() {
+        $scope.getMatches();
+        expect($scope.matches.length).toBe(0);
+        expect($scope.noMatches).not.toBeDefined();
+      });
+    });
+    
+  });
 });
 // when controller initializes
   // for developers
