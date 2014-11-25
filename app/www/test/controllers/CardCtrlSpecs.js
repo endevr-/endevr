@@ -1,28 +1,50 @@
 // pending until Card Ctrl is refactored into Cards
 describe("CardCtrl: Employer", function () {
 
-    var $scope, ctrl, $timeout, $http, localStorageService;
+    var $scope, ctrl, $timeout, $httpBackend, localStorageService;
 
     beforeEach(function () {
         module('endevr');
 
-        inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_) {
+        inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_, _$httpBackend_) {
 
             // create a scope object for us to use.
             $scope = $rootScope.$new();
+            
+            // Mock parent controller
             $scope.$parent.cards = [{'name':'Adam'}, {'name':'Santa'}];
             $scope.$parent.request = function() {
                 void(0);
             };
+
+            // Mock local storage
             localStorageService = _localStorageService_;
             localStorageService.set('usertype', 'emp');
             localStorageService.set('jwt_token', 123);
 
             $timeout = _$timeout_;
 
+            // Mock modal get for template
+            $httpBackend = _$httpBackend_;
+            $httpBackend.whenGET('templates/profile.html').respond('');
+            $httpBackend.whenGET('templates/auth.html').respond('');
+            $httpBackend.whenGET('templates/matches.html').respond('');
+            $httpBackend.whenGET('templates/card.html').respond('');
+            $httpBackend.whenGET('templates/cards.html').respond('');
+            $httpBackend.whenGET('templates/empprofile.html').respond('');
+            $httpBackend.whenGET('templates/menu.html').respond('');
+            $httpBackend.whenGET('templates/tutorialModal.html').respond('');
+            $httpBackend.whenGET('templates/browse.html').respond('');
+            $httpBackend.whenGET('templates/devProfileModal.html').respond('');
+            $httpBackend.whenGET('templates/empProfileModal.html').respond('');
+            $httpBackend.whenGET('templates/cardInformation.html').respond('');
+
+
             ctrl = $controller('CardCtrl', {
                 $scope: $scope
             });
+
+            $httpBackend.flush();
         });
 
     });
