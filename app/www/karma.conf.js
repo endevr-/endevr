@@ -37,11 +37,13 @@ module.exports = function(config) {
     'js/*.js',
     'js/controllers/*.js',
     'js/services/*.js',
+    'js/directives/*.js',
 
     //Test files
     'test/*.js',
     'test/controllers/*.js',
-    'test/services/*.js'
+    'test/services/*.js',
+    'test/directives/*.js'
     ],
 
     // list of files to exclude
@@ -62,7 +64,8 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
         'js/controllers/*.js': 'coverage',
-        'js/services/*.js': 'coverage'
+        'js/services/*.js': 'coverage',
+        'js/directives/*.js': 'coverage'
     },
 
 

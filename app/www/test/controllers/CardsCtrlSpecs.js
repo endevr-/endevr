@@ -7,7 +7,9 @@ describe("CardsCtrl", function () {
         inject(function ($rootScope, $q, $controller, _$timeout_, _localStorageService_, _$httpBackend_, _$ionicPopup_) {
             // Mock service
             queueService = {};
-            queueService.storeTotalCards = function(jwt_token, userType, posid, callback) {void(0)};
+            queueService.storeTotalCards = function(jwt_token, userType, posid, callback) {
+              return callback(['Adam']);
+            };
             queueService.removeCurrentCard = function() {void(0)};    
             queueService.setCurrentCard = function() {void(0)};
             spyOn(queueService, 'storeTotalCards');
