@@ -10,10 +10,10 @@ describe("EmpProfileCtrl", function () {
             // Mock service
             empProfileService = {
               updateProfile: function(info, cb) {
-                void(0);
+                return cb(info);
               },
               getProfile: function(cb) {
-                void(0);
+                return cb("Adam");
               }
             };
 
@@ -122,6 +122,7 @@ describe("EmpProfileCtrl", function () {
 
       it('should call the empProfileService', function() {
         expect(empProfileService.getProfile).toHaveBeenCalled();
+        expect($scope.profile).toBe("Adam");
       });
 
       it('should hide the modal', function() {
