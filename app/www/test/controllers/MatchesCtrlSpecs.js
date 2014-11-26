@@ -146,7 +146,7 @@ describe('MatchesCtrl', function() {
           expect(angular.isFunction($scope.navigate)).toBe(true);
         });
 
-        it('should navigate to a matche sroute', function() {
+        it('should navigate to a route', function() {
           $scope.navigate('Adam');
           expect($location.path).toHaveBeenCalled();
         });
@@ -157,7 +157,7 @@ describe('MatchesCtrl', function() {
           expect(angular.isFunction($scope.backToJobs)).toBe(true);
         });
 
-        it('should set noMatches and chose to false', function() {
+        it('should set noMatches and chosen to false', function() {
           $scope.backToJobs();
           expect($scope.noMatches).toBe(false);
           expect($scope.chosen).toBe(false);
@@ -290,7 +290,7 @@ describe('MatchesCtrl', function() {
         expect($scope).toBeDefined();
       });
 
-      it('getMatches should throw error on initialization', function() {
+      it('getMatches should return no matches', function() {
         $scope.getMatches();
         $httpBackend.flush();
         expect($scope.matches.length).toBe(0);
@@ -431,7 +431,7 @@ describe('MatchesCtrl', function() {
               expect(Array.isArray($scope.matches)).toEqual(true);
             });
 
-            it('should update the matches array by GET request', function() {
+            it('should NOT update the matches array by GET request', function() {
               $scope.getMatches();
               $httpBackend.flush();
               expect($scope.matches.length).toBe(0);
@@ -501,7 +501,7 @@ describe('MatchesCtrl', function() {
           expect(Array.isArray($scope.matches)).toEqual(true);
         });
 
-        it('should update the matches array by GET request', function() {
+        it('should return no matches', function() {
           $scope.getMatches();
           $httpBackend.flush();
           expect($scope.matches.length).toBe(0);
