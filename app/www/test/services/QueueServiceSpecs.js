@@ -1,14 +1,29 @@
 describe("queueService", function () {
 
-    var queueService, $http; //, $location;
+    var queueService, $httpBackend;
 
     beforeEach(function () {
         module('endevr');
 
-        inject(function (_queueService_) {
+        inject(function (_queueService_, _$httpBackend_) {
             queueService = _queueService_;
-        });
 
+            $httpBackend = _$httpBackend_;
+
+              $httpBackend.whenGET('templates/profile.html').respond('');
+              $httpBackend.whenGET('templates/auth.html').respond('');
+              $httpBackend.whenGET('templates/matches.html').respond('');
+              $httpBackend.whenGET('templates/card.html').respond('');
+              $httpBackend.whenGET('templates/cards.html').respond('');
+              $httpBackend.whenGET('templates/empprofile.html').respond('');
+              $httpBackend.whenGET('templates/menu.html').respond('');
+              $httpBackend.flush();
+        });
+    });
+
+    afterEach(function() {
+         $httpBackend.verifyNoOutstandingExpectation();
+         $httpBackend.verifyNoOutstandingRequest();
     });
 
     describe('addCardToStorage', function() {
@@ -35,7 +50,12 @@ describe("queueService", function () {
         expect(angular.isFunction(queueService.removeCardFromStorage)).toBe(true);
       });
 
+      it('should return false if there are no cards in storage', function() {
+        expect(queueService.removeCardFromStorage(1)).toBe(false);
+      });
+
       it('should return false if the target card is not found', function() {
+        queueService.addCardToStorage(2);
         expect(queueService.removeCardFromStorage(1)).toBe(false);
       });
 
@@ -48,7 +68,6 @@ describe("queueService", function () {
       it('should return false if a target card is not specified', function() {
         expect(queueService.removeCardFromStorage()).toBe(false);
       });
-
     });
 
     describe('setCurrentCard', function() {
@@ -71,6 +90,59 @@ describe("queueService", function () {
     describe('storeTotalCards', function() {
       it('should have a storeTotalCards function', function() {
             expect(angular.isFunction(queueService.storeTotalCards) ).toBe(true);
+      });
+
+      it('should make a GET request for developers', function() {
+        var cardsArray = [0,1,2,3];
+        var returnedCard;
+        var cb = function(card) {
+          returnedCard = card;
+        };
+
+        $httpBackend.whenGET('http://localhost:9000/api/developers/cards?jwt_token=123&usertype=dev')
+          .respond(cardsArray);
+        
+        queueService.storeTotalCards(123, 'dev', null, cb);
+        $httpBackend.flush();
+        expect(returnedCard[0]).toBe(3);
+      });
+
+      it('should make a GET request for employers', function() {
+        var cardsArray = [4,5,6,7];
+        var returnedCard;
+        var cb = function(card) {
+          returnedCard = card;
+        };
+
+        $httpBackend.whenGET('http://localhost:9000/api/employers/cards?jwt_token=456&usertype=emp&posid=1')
+          .respond(cardsArray);
+        
+        queueService.storeTotalCards(456, 'emp', 1, cb);
+        $httpBackend.flush();
+        expect(returnedCard[0]).toBe(7);
+      });
+
+      it('should throw an error when incorrect parameters are passed', function() {
+        var returnedCard;
+        var cb = function(card) {
+          returnedCard = card;
+        };
+
+        // incorrect jwt
+        $httpBackend.whenGET('http://localhost:9000/api/employers/cards?jwt_token=123&usertype=emp&posid=1')
+          .respond(500, '');
+        // non-valid posid
+        $httpBackend.whenGET('http://localhost:9000/api/employers/cards?jwt_token=456&usertype=emp&posid=2')
+          .respond(500, '');
+        // no callback
+        $httpBackend.whenGET('http://localhost:9000/api/employers/cards?jwt_token=456&usertype=emp&posid=1')
+          .respond(500, '');
+
+        queueService.storeTotalCards(123, 'emp', 1, cb);
+        queueService.storeTotalCards(456, 'emp', 2, cb);
+        queueService.storeTotalCards(456, 'emp', 1);
+        $httpBackend.flush();
+        expect(returnedCard).not.toBeDefined();
       });
     });
 

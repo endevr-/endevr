@@ -10,10 +10,10 @@ describe("EmpProfileCtrl", function () {
             // Mock service
             empProfileService = {
               updateProfile: function(info, cb) {
-                void(0);
+                return cb(info);
               },
               getProfile: function(cb) {
-                void(0);
+                return cb("Adam");
               }
             };
 
@@ -26,6 +26,19 @@ describe("EmpProfileCtrl", function () {
             $location = _$location_;
             $window = _$window_;
 
+            $httpBackend.whenGET('templates/profile.html').respond('');
+            $httpBackend.whenGET('templates/auth.html').respond('');
+            $httpBackend.whenGET('templates/matches.html').respond('');
+            $httpBackend.whenGET('templates/card.html').respond('');
+            $httpBackend.whenGET('templates/cards.html').respond('');
+            $httpBackend.whenGET('templates/empprofile.html').respond('');
+            $httpBackend.whenGET('templates/menu.html').respond('');
+            $httpBackend.whenGET('templates/tutorialModal.html').respond('');
+            $httpBackend.whenGET('templates/browse.html').respond('');
+            $httpBackend.whenGET('templates/devProfileModal.html').respond('');
+            $httpBackend.whenGET('templates/empProfileModal.html').respond('');
+            $httpBackend.whenGET('templates/editEmpItem.html').respond('');
+
             ctrl = $controller('EmpProfileCtrl', {
                 $scope: $scope,
                 empProfileService: empProfileService
@@ -35,6 +48,8 @@ describe("EmpProfileCtrl", function () {
             Modal.prototype.show = function() {void(0);};
             Modal.prototype.hide = function() {void(0);};
             $scope.modal = new Modal();
+
+            $httpBackend.flush();
         });
 
     });
@@ -107,6 +122,7 @@ describe("EmpProfileCtrl", function () {
 
       it('should call the empProfileService', function() {
         expect(empProfileService.getProfile).toHaveBeenCalled();
+        expect($scope.profile).toBe("Adam");
       });
 
       it('should hide the modal', function() {

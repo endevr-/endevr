@@ -1,11 +1,11 @@
 describe("BrowseCtrl Functions", function () {
 
-    var $scope, ctrl, $timeout, localStorageService, $http, $ionicModal; //, $location;
+    var $scope, ctrl, $timeout, localStorageService, $ionicModal;
 
     beforeEach(function () {
         module('endevr');
 
-        inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_, $httpBackend) {
+        inject(function ($rootScope, $controller, $q, _$timeout_, _localStorageService_) {
             $scope = $rootScope.$new();
             
             // Mock parent
@@ -27,8 +27,6 @@ describe("BrowseCtrl Functions", function () {
             $scope.modal.hide = function() {
                 void(0);
             };
-
-            $http = $httpBackend;
         });
     });
 
@@ -118,7 +116,7 @@ describe("BrowseCtrl Functions", function () {
 });
 
 describe('BrowseCtrl for Developers', function() {
-  var $scope, ctrl, $timeout, localStorageService, $http;
+  var $scope, ctrl, $timeout, localStorageService;
 
   beforeEach(function () {
       module('endevr');
@@ -149,23 +147,31 @@ describe('BrowseCtrl for Developers', function() {
 });
 
 describe('BrowseCtrl for Employers', function() {
-  var $scope, ctrl, localStorageService, $http;
+  var $scope, ctrl, localStorageService, $httpBackend;
 
   beforeEach(function () {
       module('endevr');
 
-      inject(function ($rootScope, $controller,_localStorageService_, $httpBackend) {
+      inject(function ($rootScope, $controller,_localStorageService_, _$httpBackend_) {
           $scope = $rootScope.$new();
 
           localStorageService = _localStorageService_;
+          $httpBackend = _$httpBackend_;
 
           // When an employer navigates to browse, they should be
           // given a list of positions to browse
           localStorageService.set('jwt_token', 123);
           localStorageService.set('usertype', 'emp');
-          $http = $httpBackend;
-          $http.when('GET', '/api/employers/positions?jwt_token=123&usertype=emp')
-            .respond(['astronaut', 'scuba instructor']);
+
+          $httpBackend.whenGET('templates/profile.html').respond('');
+          $httpBackend.whenGET('templates/auth.html').respond('');
+          $httpBackend.whenGET('templates/matches.html').respond('');
+          $httpBackend.whenGET('templates/card.html').respond('');
+          $httpBackend.whenGET('templates/cards.html').respond('');
+          $httpBackend.whenGET('templates/empprofile.html').respond('');
+          $httpBackend.whenGET('templates/menu.html').respond('');
+          $httpBackend.whenGET('templates/tutorialModal.html').respond('');
+          $httpBackend.flush();
 
           ctrl = $controller('BrowseCtrl', {
               $scope: $scope
@@ -186,14 +192,33 @@ describe('BrowseCtrl for Employers', function() {
     expect($scope.interest).toBe('Developers');
   });
 
-  // unexpected
-  xit('should set noJobs to false', function() {
-    $http.flush();
-    expect($scope.noJobs).toBe(false);
-  });
+  describe('http request', function() {
+    it('should set notJobs to false if jobs are returned', function() {
+      $httpBackend.whenGET('http://localhost:9000/api/employers/positions?jwt_token=123&usertype=emp')
+        .respond(['astronaut', 'scuba instructor']);
+      $httpBackend.flush();
+      expect($scope.noJobs).toBe(false);
+    });
 
-  xit('should insert the data into positions', function() {
-    $http.flush();
-    expect($scope.positions.toString()).toBe(['astronaut', 'scuba instructor'].toString());
+    it('should set positions to be the jobs returned from the request', function() {
+      $httpBackend.whenGET('http://localhost:9000/api/employers/positions?jwt_token=123&usertype=emp')
+        .respond(['astronaut', 'scuba instructor']);
+      $httpBackend.flush();
+      expect($scope.positions.toString()).toBe(['astronaut', 'scuba instructor'].toString());
+    });
+
+    it('should set notJobs to true if NO jobs are returned', function() {
+      $httpBackend.whenGET('http://localhost:9000/api/employers/positions?jwt_token=123&usertype=emp')
+        .respond([]);
+      $httpBackend.flush();
+      expect($scope.noJobs).toBe(true);
+    });
+
+    it('should throw an error', function() {
+      $httpBackend.whenGET('http://localhost:9000/api/employers/positions?jwt_token=123&usertype=emp')
+        .respond(500, '');
+      $httpBackend.flush(); 
+      expect($scope.positions).not.toBeDefined();
+    });
   });
 });
